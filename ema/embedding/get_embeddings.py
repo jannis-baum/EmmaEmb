@@ -61,6 +61,36 @@ def parse_args() -> argparse.Namespace:
         help="Flag to enable development mode (shortening input data)",
         default=True,
     )
+    parser.add_argument(
+        "--layer",
+        type=int,
+        default=-1,
+        help="Layer index to extract embeddings from",
+    )
+    parser.add_argument(
+        "--output_format",
+        type=str,
+        default="npy",
+        help="File format for the embeddings",
+    )
+    parser.add_argument(
+        "--max_seq_length",
+        type=int,
+        default=300,
+        help="Maximum sequence length. Sequences longer than this will be chopped.",
+    )
+    parser.add_argument(
+        "--chunk_overlap",
+        type=int,
+        default=100,
+        help="Overlap size between chunks",
+    )
+    parser.add_argument(
+        "--bidirectional",
+        action="store_true",
+        help="Flag to chop sequences from both directions",
+        default=True,
+    )
     return parser.parse_args()
 
 
@@ -170,6 +200,7 @@ def validate_parameters(
     layer: int,
     no_gpu: bool,
     dev: bool,
+    bidrectional: bool = True,
 ) -> None:
     """
     Validates the parameters for the script.
@@ -183,6 +214,7 @@ def validate_parameters(
             or a non-negative integer.
         chunk_overlap (int): Overlap between chunks, must be a non-negative \
             integer.
+        bidrectional (bool): Whether to chop sequences from both directions.
         layer (ing): Layer index to extract embeddings from.
         no_gpu (bool): Whether to disable GPU usage (must be a boolean).
         dev (bool): Whether to use development mode (must be a boolean).
@@ -268,15 +300,23 @@ def validate_parameters(
     if not isinstance(dev, bool):
         raise ValueError("The dev parameter must be a boolean.")
 
+    # Validate bidrectional
+    if not isinstance(bidrectional, bool):
+        raise ValueError("The bidrectional parameter must be a boolean.")
 
-def chop_sequences(sequence: str, max_length: int, overlap: int) -> List[str]:
+
+def chop_sequences(
+    sequence: str, max_length: int, overlap: int, bidirectional: bool = True
+) -> List[str]:
     """
     i
 
     Args:
-        sequence (str): _description_
-        max_length (int): _description_
-        overlap (int): _description_
+        sequence (str): sequence to be chopped
+        max_length (int): max length of sequence for each chunk
+        overlap (int): length of overlap between chunks
+        bidirectional (book): whether to chop the sequence from both directions \
+            (default: True) or only from the left
 
     Returns:
         List[str]: _description_
@@ -285,35 +325,44 @@ def chop_sequences(sequence: str, max_length: int, overlap: int) -> List[str]:
         return [sequence]
 
     n = len(sequence)
-    middle = n // 2
 
-    # add chunks from the left up to the middle
-    start = 0
-    end = max_length
-    left_chunks = []
-    while start < middle:
-        left_chunks.append(sequence[start:end])
-        start = end - overlap
-        end = start + max_length
+    # num_chunks = (n - 2 * (max_length)) // (max_length - overlap) + 2
+    # remainder = (n - 2 * (max_length)) % (max_length - overlap)
 
-    # add chunks from the right up to the middle
-    start = n - max_length
-    end = n
-    right_chunks = []
-    while end > middle:
-        right_chunks.insert(0, sequence[start:end])
-        end = start + overlap
-        start = end - max_length
+    middle = n / 2
 
-    # TODO: check out edge case where middle chunk 
-    # would be duplicated 
-    
-    # combine left and right chunks
-    chunks = left_chunks + right_chunks
+    chunks = []
 
-    # add a middle chunk if needed
-    # if len(chunks) > 1:
-        
+    if not bidirectional:
+        start = 0
+        end = max_length
+        while end < n:
+            chunks.append(sequence[start:end])
+            start = end - overlap
+            end = start + max_length
+    else:
+
+        left_start = 0
+        left_end = max_length
+        chunks.append(sequence[left_start:left_end])
+
+        right_start = n - max_length
+        right_end = n
+        chunks.append(sequence[right_start:right_end])
+
+        if left_end - right_start <= overlap:
+            left_start = left_end - overlap
+            left_end = left_start + max_length
+            chunks.append(sequence[left_start:left_end])
+            if left_end - right_start > overlap:
+                break
+
+            right_end = right_start + overlap
+            right_start = right_end - max_length
+            chunks.insert(0, sequence[right_start:right_end])
+            if left_end - right_start > overlap:
+                break
+
     return chunks
 
 
@@ -438,7 +487,7 @@ def validate_chopped_protein_file_names(
                     but {n_chunks_expected} chunks are expected."
             )
 
-        # b) check for consecuitive indices starting from 0
+        # b) check for consecutive indices starting from 0
         indices = []
         for file in files:
             try:
@@ -554,6 +603,7 @@ def get_embeddings(
     max_seq_length: Optional[int] = None,
     chunk_overlap: Optional[int] = 0,
     logger: Optional[logging.Logger] = None,
+    bidirectional: bool = True,
     **kwargs,
 ) -> None:
     """
@@ -575,6 +625,8 @@ def get_embeddings(
             function.
         output_format (Optional[str], default="npy"): File format for \
             the embeddings. Default is npy file.
+        bidirectional (bool, default=True): Whether to chop sequences from \
+            both directions.
         **kwargs: Additional arguments for the embedding handler.
 
     Raises:
@@ -598,6 +650,7 @@ def get_embeddings(
         layer=layer,
         no_gpu=no_gpu,
         dev=dev,
+        bidrectional=bidirectional,
     )
 
     if layer == -1:
@@ -687,6 +740,7 @@ def get_embeddings(
                 sequence,
                 max_length=max_seq_length,
                 overlap=chunk_overlap,
+                bidirectional=bidirectional,
             )
             logger.info(f"Chopped {protein} into {len(chunks)} sequences.")
             n_chunks_per_protein[protein] = len(chunks)
