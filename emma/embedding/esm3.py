@@ -1,4 +1,4 @@
-from ema.embedding.embedding_handler import EmbeddingHandler
+from emma.embedding.embedding_handler import EmbeddingHandler
 
 
 # Script kindly provided by Evolutionary Scale

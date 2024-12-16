@@ -1,4 +1,4 @@
-from ema.embedding.get_embeddings import get_embeddings
+from emma.embedding.get_embeddings import get_embeddings
 import numpy as np
 
 get_embeddings(

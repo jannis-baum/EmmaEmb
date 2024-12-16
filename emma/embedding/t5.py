@@ -6,8 +6,9 @@ import numpy as np
 
 from torch.utils.data import Dataset
 from transformers import T5EncoderModel, T5Tokenizer
+from tqdm import tqdm
 
-from ema.embedding.embedding_handler import EmbeddingHandler
+from emma.embedding.embedding_handler import EmbeddingHandler
 
 
 class ProteinDataset(Dataset):
@@ -32,6 +33,10 @@ def get_T5_model(
         print("##########################")
         print("Loading cached model from: {}".format(model_dir))
         print("##########################")
+    else:
+        print(
+            f"Loading model into '{model_dir}'"
+        )
     model = T5EncoderModel.from_pretrained(
         transformer_link, cache_dir=model_dir
     )
@@ -42,7 +47,7 @@ def get_T5_model(
 
     model = model.to(device)
     model = model.eval()
-    vocab = T5Tokenizer.from_pretrained(transformer_link, do_lower_case=False)
+    vocab = T5Tokenizer.from_pretrained(transformer_link, do_lower_case=False, cache_dir=model_dir)
     return model, vocab
 
 
@@ -91,6 +96,7 @@ class T5(EmbeddingHandler):
         protein_sequences: dict,
         output_dir: str,
         truncation_seq_length: int,
+        model_dir: str,
         batch_size: int = 8,
         extension: str = "npy",
         layer: int = -1,
@@ -106,14 +112,16 @@ class T5(EmbeddingHandler):
         )
 
         model, vocab = get_T5_model(
-            model_dir=None,
+            model_dir=model_dir,
             transformer_link=model_id,
             device=self.device,
         )
 
         start = time.time()
         batch = list()
-        for seq_idx, (pdb_id, seq, seq_len) in enumerate(processed_sequences):
+        for seq_idx, (pdb_id, seq, seq_len) in tqdm(enumerate(processed_sequences), 
+                                                    total=len(processed_sequences), 
+                                                    desc="Processing sequences"):
             batch.append((pdb_id, seq, seq_len))
 
             # count residues in current batch and add the last sequence length

@@ -5,11 +5,11 @@ from typing import List
 import numpy as np
 import torch
 
-from ema.embedding.embedding_handler import EmbeddingHandler
-from ema.embedding.embedding_model_metadata_handler import (
+from emma.embedding.embedding_handler import EmbeddingHandler
+from emma.embedding.embedding_model_metadata_handler import (
     EmbeddingModelMetadataHandler,
 )
-from ema.utils import write_fasta
+from emma.utils import write_fasta
 
 from esm import (
     Alphabet,
@@ -41,6 +41,7 @@ class EsmFair(EmbeddingHandler):
         layer=-1,
         include: List[str] = ["mean"],
         truncation_seq_length: int = 1022,
+        model_dir: str=None,
     ):
         """script to extract representations from an ESM model
 
@@ -57,11 +58,14 @@ class EsmFair(EmbeddingHandler):
             include (List[str], optional): which representations to include.
             truncation_seq_length (int, optional): truncate sequences
                 longer than the given value. Defaults to 1022.
+            model_dir: Directory for model output. Should be a non-empty string
+                or missing.
 
         Returns:
             _type_: _description_
         """
-
+        os.environ['TORCH_HOME'] = model_dir
+        
         repr_layers = [layer]
 
         # validate model parameters
@@ -76,6 +80,8 @@ class EsmFair(EmbeddingHandler):
 
         # through error if model is not loaded
         self.model, alphabet = pretrained.load_model_and_alphabet(model_id)
+        cached_model_path = os.path.join(os.getenv("TORCH_HOME", "~/.cache/torch/hub"), "checkpoints", model_id)
+        print(f"Model cached at: {os.path.expanduser(cached_model_path)}")
         self.model.eval()
 
         if isinstance(self.model, MSATransformer):
@@ -83,7 +89,7 @@ class EsmFair(EmbeddingHandler):
                 "This script currently does not handle models with MSA input."
             )
 
-        if self.device.type == "cuda" and not self.no_gpu:
+        if self.device.type == "cuda":
             self.model = self.model.cuda()
             print("Transferred model to GPU")
 

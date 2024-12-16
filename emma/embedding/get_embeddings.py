@@ -11,11 +11,11 @@ import requests
 from tqdm import tqdm
 
 
-from ema.embedding.embedding_handler_selector import select_embedding_handler
-from ema.embedding.embedding_model_metadata_handler import (
+from emma.embedding.embedding_handler_selector import select_embedding_handler
+from emma.embedding.embedding_model_metadata_handler import (
     EmbeddingModelMetadataHandler,
 )
-from ema.utils import read_fasta_names, read_fasta, write_fasta, setup_logger
+from emma.utils import read_fasta_names, read_fasta, write_fasta, setup_logger
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
@@ -28,14 +28,14 @@ def parse_args() -> argparse.Namespace:
         type=str,
         help="Path to a FASTA file containing protein sequences or \
             a list of protein names",
-        default="examples/deeploc/data/deeploc_test.fasta",
+        default="examples/deeploc/data/deeploc_train_subset.fasta",
     )
     parser.add_argument(
         "-m",
         "--model",
         type=str,
         help="Name of the embedding model to be used",
-        default="Rostlab/prot_t5_xl_half_uniref50-enc",
+        default="esm2_t6_8M_UR50D",
     )
     parser.add_argument(
         "-o",
@@ -61,7 +61,7 @@ def parse_args() -> argparse.Namespace:
         "--dev",
         action="store_true",
         help="Flag to enable development mode (shortening input data)",
-        default=True,
+        default=False,
     )
     parser.add_argument(
         "--layer",
@@ -91,8 +91,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--bidirectional",
         action="store_true",
-        help="Flag to chop sequences from both directions",
         default=True,
+        help="Flag to chop sequences from both directions",
+    )
+    parser.add_argument(
+        "--model_dir",
+        type=str,
+        default="/scratch/protein_models/",
+        help="Directory for model output. Should be a non-empty string or missing."
     )
     return parser.parse_args()
 
@@ -203,6 +209,7 @@ def validate_parameters(
     layer: int,
     no_gpu: bool,
     dev: bool,
+    model_dir: str,
     bidrectional: bool = True,
 ) -> None:
     """
@@ -220,6 +227,7 @@ def validate_parameters(
         bidrectional (bool): Whether to chop sequences from both directions.
         layer (ing): Layer index to extract embeddings from.
         no_gpu (bool): Whether to disable GPU usage (must be a boolean).
+        model_dir (str): Directory for model output. Should be a non-empty string or missing.
         dev (bool): Whether to use development mode (must be a boolean).
 
     Raises:
@@ -246,8 +254,9 @@ def validate_parameters(
     # Validate output_dir
     if not isinstance(output_dir, str) or not output_dir.strip():
         raise ValueError("Output directory must be a non-empty string.")
-    if not Path(output_dir).exists():
-        raise ValueError(f"Output directory does not exist: {output_dir}")
+    if not os.path.isdir(output_dir):
+        print(f"The directory '{output_dir}' does not exist. Creating it...")
+        os.makedirs(output_dir)
 
     # Validate max_seq_length
     if max_seq_length is not None and (
@@ -302,7 +311,14 @@ def validate_parameters(
     # Validate dev
     if not isinstance(dev, bool):
         raise ValueError("The dev parameter must be a boolean.")
-
+    
+    # validate model_dir
+    if model_dir is not None and (not isinstance(output_dir, str) or not output_dir.strip()):
+        raise ValueError("Output directory must be a non-empty string.")
+    if not os.path.isdir(model_dir):
+        print(f"The directory '{model_dir} does not exist. Creating it ...")
+        os.makedirs(model_dir)
+    
     # Validate bidrectional
     if not isinstance(bidrectional, bool):
         raise ValueError("The bidrectional parameter must be a boolean.")
@@ -599,6 +615,7 @@ def get_embeddings(
     max_seq_length: Optional[int] = None,
     chunk_overlap: Optional[int] = 0,
     logger: Optional[logging.Logger] = None,
+    model_dir: Optional[str] = None,
     bidirectional: bool = True,
     **kwargs,
 ) -> None:
@@ -646,6 +663,7 @@ def get_embeddings(
         layer=layer,
         no_gpu=no_gpu,
         dev=dev,
+        model_dir=model_dir,
         bidrectional=bidirectional,
     )
 
@@ -774,6 +792,7 @@ def get_embeddings(
             output_dir=chopped_output_dir,
             layer=layer,
             truncation_seq_length=max_seq_length,
+            model_dir = model_dir,
             # add batch size parameter
             **kwargs,
         )

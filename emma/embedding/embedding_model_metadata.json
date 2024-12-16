@@ -172,11 +172,16 @@
     "Rostlab/prot_t5_xl_half_uniref50-enc": {
         "model_name": "ProtT5",
         "embedding_handler": "T5",
-        "max_sequence_length": 1022
+        "max_sequence_length": 1024
     },
     "Rostlab/ProstT5": {
         "model_name": "ProstT5",
         "embedding_handler": "T5",
-        "max_sequence_length": 1022
+        "max_sequence_length": 1024
+    },
+    "Rostlab/prot_t5_xl_uniref50": {
+        "model_name": "ProtT5",
+        "embedding_handler": "T5",
+        "max_sequence_length": 1024
     }
 }

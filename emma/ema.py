@@ -7,6 +7,9 @@ import math
 import plotly.graph_objects as go
 import scipy.stats as stats
 import random
+import os
+from typing import Tuple, Union
+import hashlib
 
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
@@ -14,6 +17,9 @@ from sklearn.cluster import KMeans
 from scipy.spatial.distance import pdist, squareform
 from statistics import mean
 from sklearn.mixture import GaussianMixture
+
+from emma.calculate_clusters import calculate_clusters
+from emma.cluster_metrics import evaluate_clusters, evaluate_clusters_per_cluster
 
 emb_space_colours = ["#56638A", "#BAD9B5", "#D77A61", "#D77A61", "#40531B"]
 distance_metric_aliases = {
@@ -78,6 +84,7 @@ class EmbeddingHandler:
         self.colour_map = self.__get_colour_map_for_features__()
         self.emb = dict()
         self.pw_meta_data = dict()
+        self.clusters = dict()
         print(f"{len(self.sample_names)} samples loaded.")
         print(f"Categories in meta data: {self.meta_data_categorical_columns}")
         print(
@@ -335,30 +342,73 @@ class EmbeddingHandler:
         )
         return emb_pwd
 
-    def add_emb_space(self, embeddings: np.array, emb_space_name: str) -> None:
+    def add_emb_space(self, embeddings_source: str, emb_space_name: str, ext: str = 'npy') -> None:
         """Add embedding space to emb object.
 
         Parameters:
-        embeddings (np.array): Embedding space. Embeddings need to be \
-            in the shape (n_samples, n_features). The order of samples should \
-            match the order of samples in the meta_data.
-        emb_space_name (str): Name of the embedding space. Can be any string. \
-            Should be unique. If the name already exists, an error is raised.
+        embeddings_source (str): Path to either a .npy file or a directory \
+            containing .npy files for each embedding.
+        emb_space_name (str): Name of the embedding space. Must be unique.
+        ext (str): Extension of the embedding files (default 'npy').
+        
+        If embeddings_source is a .npy file, it is loaded directly assuming it \
+            contains all embeddings for the provided meta data in respective order.
+        If embedding_source is a directory, embeddings are loaded from files in \
+            the directory corresponding to self.sample_names.
         """
-        if emb_space_name in self.emb.keys():
-            raise ValueError(
-                f"Embedding space {emb_space_name} already exists."
-            )
+        
+        if emb_space_name is None:
+            raise ValueError("Embedding space must be provided")
+        
+        if emb_space_name in self.emb:
+            raise ValueError("Embedding space with name {emb_space_name} \
+                has already been added.")
+    
+        if embeddings_source.endswith(f".npy"):
+            if not os.path.isfile(embeddings_source):
+                raise ValueError(f"The file {embeddings_source} \
+                    does not exist.")
+            embeddings = np.load(embeddings_source)
+        
+        elif os.path.isdir(embeddings_source):
+            embeddings = []
+            for sample in self.sample_names:
+                emb_file = os.path.join(embeddings_source, f"{sample}.{ext}")
+                if not os.path.exists(emb_file):
+                    raise ValueError(f"Embedding file for sample {sample} \
+                        not found: {emb_file}")
+                emb = np.load(emb_file)
+                embeddings.append(emb)
+            embeddings = np.stack(embeddings)
+            
+        else:
+            raise ValueError("embeddings_source must be a .npy file \
+                or a directory path.")
+            
         if embeddings.shape[0] != len(self.sample_names):
-            raise ValueError(
-                f"Number of samples in embeddings ({embeddings.shape[0]}) \
-                    does not match the number of samples in meta_data \
-                    ({len(self.sample_names)})"
-            )
+            raise ValueError(f"Number of samples in embeddings ({embeddings.shape[0]}) \
+                                does not match the number of samples in meta_data \
+                                ({len(self.sample_names)})")
+            
         self.emb[emb_space_name] = dict()
         self.emb[emb_space_name]["emb"] = embeddings
         self.__calculate_clusters__(emb_space_name, n_clusters=None)
-        # add a default colour for the new embedding space
+        
+        
+        # if emb_space_name in self.emb.keys():
+        #     raise ValueError(
+        #         f"Embedding space {emb_space_name} already exists."
+        #     )
+        # if embeddings.shape[0] != len(self.sample_names):
+        #     raise ValueError(
+        #         f"Number of samples in embeddings ({embeddings.shape[0]}) \
+        #             does not match the number of samples in meta_data \
+        #             ({len(self.sample_names)})"
+        #     )
+        # self.emb[emb_space_name] = dict()
+        # self.emb[emb_space_name]["emb"] = embeddings
+        # self.__calculate_clusters__(emb_space_name, n_clusters=None)
+        # # add a default colour for the new embedding space
         if len(self.emb.keys()) > len(emb_space_colours):
             self.emb[emb_space_name]["colour"] = px.colors.qualitative.Set3[
                 len(self.emb.keys()) - len(emb_space_colours)
@@ -437,6 +487,51 @@ class EmbeddingHandler:
                 f"Pairwise metadata {pw_metadata_name} not found."
             )
         return
+    
+    def _generate_params_hash(self, algorithm: str, kwargs: dict) -> str:
+        """
+        Generates a unique hash based on the algorithm and parameters.
+        """
+        # Create a string representation of the algorithm and kwargs
+        params_str = f"{algorithm}_{str(kwargs)}"
+        
+        # Generate a hash of the parameters string
+        return hashlib.sha256(params_str.encode()).hexdigest()
+    
+    def get_hash_from_params(self, algorithm: str, kwargs: dict) -> str:
+        """
+        Generate the hash from the given parameters (algorithm and kwargs).
+        """
+        return self._generate_params_hash(algorithm, kwargs)
+    
+    def calculate_clusters(
+        self, embedding_space: str, algorithm: str = "kmeans", **kwargs
+    ):
+        self.__check_for_emb_space__(embedding_space)
+        
+        # Create a unique identifier for the combination of algorithm and parameters
+        params_hash = self._generate_params_hash(algorithm, kwargs)
+        
+        # Check if this combination of parameters already exists in self.meta_data
+        if params_hash in self.clusters:
+            print(f"Clusters with these parameters already calculated. Skipping...")
+            return
+    
+        labels, _ = calculate_clusters(
+            embeddings=self.emb[embedding_space]['emb'],
+            algorithm=algorithm,
+            **kwargs
+        )
+        
+        # Store the result in the dictionary
+        self.clusters[params_hash] = {
+            'algorithm': algorithm,
+            'embedding_space': embedding_space,
+            'labels': labels,
+            'params': kwargs
+        }
+    
+        
 
     def recalculate_clusters(
         self, emb_space_name: str, n_clusters: int = None
@@ -2042,7 +2137,92 @@ class EmbeddingHandler:
             )
 
         return distances_per_group
+    
+    def plot_heatmap(self, 
+        x_axis:str, y_axis:str
+    ):
+        self.__check_col_categorical__(x_axis)
+        self.__check_col_categorical__(y_axis)
+        
+        matrix = pd.crosstab(self.meta_data[x_axis], self.meta_data[y_axis])
+        
+        fig = px.imshow(
+            matrix,
+            color_continuous_scale="Blues",
+        )
+        fig.show()
 
+    def evaluate_clustering(
+        self,
+        embedding_space: str,
+        clustering_algorithm: str,        
+        evaluation_method: str,
+        distance_metric: str = None,
+        **kwargs
+    ) -> float:
+        
+        # Generate a unique hash based on the algorithm and the parameters (kwargs)
+        params_hash = self._generate_params_hash(clustering_algorithm, kwargs)
+        
+        # Check if the clustering results already exist in self.meta_data
+        if params_hash not in self.clusters:
+            print("Clustering with these parameters not found. \
+                Performing clustering...")
+            self.calculate_clusters(
+                embedding_space=embedding_space,
+                algorithm=clustering_algorithm,
+                **kwargs
+            )
+        
+        # Retrieve the clustering labels from self.meta_data using the hash
+        labels = self.clusters[params_hash]['labels']
+
+        # Check if the embedding space exists in self.emb
+        self.__check_for_emb_space__(embedding_space)
+    
+        # Call the evaluate_clusters function with the retrieved labels
+        score = evaluate_clusters(
+            evaluation_method=evaluation_method,
+            embeddings=self.emb[embedding_space]['emb'],
+            labels=labels,
+            distance_metric=distance_metric
+        )
+
+        return score
+    
+    def evaluate_clustering_per_cluster(
+        self,
+        embedding_space: str,
+        clustering_algorithm: str,        
+        evaluation_method: str,
+        distance_metric: str = None,
+        **kwargs
+    ) -> dict:
+        
+        # Generate a unique hash based on the algorithm and the parameters (kwargs)
+        params_hash = self._generate_params_hash(clustering_algorithm, kwargs)
+        
+        # Check if the clustering results already exist in self.meta_data
+        if params_hash not in self.clusters:
+            raise ValueError(f"Clustering with the specified algorithm \
+                and parameters not found in meta_data.")
+        
+        # Retrieve the clustering labels from self.meta_data using the hash
+        labels = self.meta_data[params_hash]['labels']
+
+        # Check if the embedding space exists in self.emb
+        self.__check_for_emb_space__(embedding_space)
+    
+        # Call the evaluate_clusters function with the retrieved labels
+        score = evaluate_clusters_per_cluster(
+            evaluation_method=evaluation_method,
+            embeddings=self.emb[embedding_space]['emb'],
+            labels=labels,
+            distance_metric=distance_metric
+        )
+        return per_cluster_scores
+        
+        
 
 def global_rank(arr: np.ndarray) -> np.ndarray:
     """
@@ -2258,7 +2438,7 @@ def get_scatter_plot(
         categorical column in the meta_data.
 
     Args:
-        emb_object (dict): ema object.
+        emb_object (dict): emma object.
         emb_space_name (str): Name of the embedding space.
         colour (str): Name of the column in the meta_data to use for \
             colouring the points.

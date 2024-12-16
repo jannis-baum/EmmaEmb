@@ -16,15 +16,17 @@ class EmbeddingHandler(ABC):
             self.logger = logger
         else:
             self.logger = logging.getLogger(__name__)
+            print("Warning! New logger for model.")
 
         self.device = torch.device(
             "cuda" if torch.cuda.is_available() and not no_gpu else "cpu"
         )
         logging.info(f"Using device: {self.device}")
+        print(f"Device: {self.device}")
 
     @abstractmethod
     def get_embedding(
-        self, protein_sequences: dict, model_id, output_dir: str, layer: int
+        self, protein_sequences: dict, model_id, output_dir: str, layer: int, model_dir: str
     ):
         pass
 

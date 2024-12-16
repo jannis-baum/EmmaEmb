@@ -1,11 +1,11 @@
 import logging
 
-from ema.embedding.embedding_model_metadata_handler import (
+from emma.embedding.embedding_model_metadata_handler import (
     EmbeddingModelMetadataHandler,
 )
-from ema.embedding.esm3 import Esm3
-from ema.embedding.t5 import T5
-from ema.embedding.esm_fair import EsmFair
+from emma.embedding.esm3 import Esm3
+from emma.embedding.t5 import T5
+from emma.embedding.esm_fair import EsmFair
 
 
 def select_embedding_handler(
