@@ -53,7 +53,12 @@ class EmbeddingModelMetadataHandler:
         return model_handler
 
     def get_last_layer_per_model_id(self, model_name: str):
-        max_layers = self.get_metadata_per_model_id(model_name)["layers"]
+        # check if model has a last layer
+        if "layers" in self.get_metadata_per_model_id(model_name):
+            max_layers = self.get_metadata_per_model_id(model_name)["layers"]
+        else:
+            max_layers = None
+
         return max_layers
 
     def get_max_seq_lengtg_per_model(self, model_name: str):
@@ -70,18 +75,28 @@ class EmbeddingModelMetadataHandler:
 
     def validate_repr_layers(self, model_id: str, repr_layers: List[int]):
         model_parameters = self.get_metadata_per_model_id(model_id)
-        max_repr_layers = model_parameters["layers"]
-        # needs to be in range or - repr_layers to repr_layers
-        if not all(
-            [
-                layer in range(-max_repr_layers, max_repr_layers + 1)
-                for layer in repr_layers
-            ]
-        ):
+        # test whether the model accepts a representation layer parameter
+        if "layers" not in model_parameters and repr_layers == [-1]:
+            pass
+        elif "layers" not in model_parameters and repr_layers != [-1]:
             raise ValueError(
-                f"Invalid representation layers. \
-                    Must be in range -{max_repr_layers} to {max_repr_layers}."
+                f"For model {model_id}, only the last layer (-1) can be used \
+                    as representation layer."
             )
+        else:
+            max_repr_layers = model_parameters["layers"]
+            # needs to be in range or - repr_layers to repr_layers
+            if not all(
+                [
+                    layer in range(-max_repr_layers, max_repr_layers + 1)
+                    for layer in repr_layers
+                ]
+            ):
+                raise ValueError(
+                    f"Invalid representation layers. \
+                        Must be in range -{max_repr_layers} \
+                            to {max_repr_layers}."
+                )
 
     def validate_sequence_length(self, model_id: str, sequence_length: int):
         model_parameters = self.get_metadata_per_model_id(model_id)

@@ -6,6 +6,7 @@ import umap
 import math
 import plotly.graph_objects as go
 import scipy.stats as stats
+import random
 
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
@@ -26,6 +27,18 @@ distance_metric_aliases = {
     "adjusted_cosine": "Adjusted Cosine",
     "mahalanobis": "Mahalanobis",
 }
+
+
+def generate_random_colors_rgb(num_colors):
+    colors = []
+    for _ in range(num_colors):
+        color = (
+            random.randint(0, 255),
+            random.randint(0, 255),
+            random.randint(0, 255),
+        )
+        colors.append(color)
+    return colors
 
 
 class EmbeddingHandler:
@@ -105,15 +118,21 @@ class EmbeddingHandler:
             self.meta_data_categorical_columns
         ].columns:
             column_values = self.meta_data[column].unique()
-            if len(column_values) > 15:
+            if len(column_values) > 50:
                 print(
-                    f"Column {column} has more than 15 unique values. \
+                    f"Column {column} has more than 50 unique values. \
                         Skipping."
                 )
                 continue
             colour_map[column] = dict()
 
-            colours = px.colors.qualitative.Set2 + px.colors.qualitative.Set3
+            if len(column_values) < 15:
+                colours = (
+                    px.colors.qualitative.Set2 + px.colors.qualitative.Set3
+                )
+            else:
+                # random colours x len(column_values)
+                colours = px.colors.qualitative.Set3 * len(column_values)
 
             # Check if the colours list is empty
             if not colours:
@@ -675,6 +694,7 @@ class EmbeddingHandler:
                 round(variance_explained[1] * 100, 2)
             ),
         )
+        fig.update_layout(font=dict(size=20))
         return fig
 
     def visualise_emb_umap(

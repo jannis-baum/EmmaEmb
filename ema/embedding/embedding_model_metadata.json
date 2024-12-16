@@ -71,15 +71,6 @@
         "embedding_handler": "EsmFair",
         "max_sequence_length": 1022
     },
-    "esmfold_structure_module_only_*": {
-        "model_name": "ESMFold",
-        "layers": "0 (+various)",
-        "parameters": "various",
-        "training_data": "UR50/D 2021_04",
-        "embedding_size": "-",
-        "embedding_handler": "EsmFair",
-        "max_sequence_length": 1022
-    },
     "esm_if1_gvp4_t16_142M_UR50": {
         "model_name": "ESM-IF1",
         "layers": 20,
@@ -174,12 +165,18 @@
         "model_name": "ESM-3",
         "embedding_handler": "Esm3"
     },
+    "esm-c": {
+        "model_name": "ESM-C",
+        "embedding_handler": "EsmC"
+    },
     "Rostlab/prot_t5_xl_half_uniref50-enc": {
         "model_name": "ProtT5",
-        "embedding_handler": "T5"
+        "embedding_handler": "T5",
+        "max_sequence_length": 1022
     },
     "Rostlab/ProstT5": {
         "model_name": "ProstT5",
-        "embedding_handler": "T5"
+        "embedding_handler": "T5",
+        "max_sequence_length": 1022
     }
 }

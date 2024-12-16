@@ -1,21 +1,23 @@
 import argparse
-import requests
+import logging
 import os
 import sys
-import numpy as np
-
 from datetime import datetime
 from pathlib import Path
 from typing import List, Optional, Dict, Union, Tuple
-from tqdm import tqdm
-import logging
 
-sys.path.append(str(Path(__file__).resolve().parent.parent))
+import numpy as np
+import requests
+from tqdm import tqdm
+
+
 from ema.embedding.embedding_handler_selector import select_embedding_handler
 from ema.embedding.embedding_model_metadata_handler import (
     EmbeddingModelMetadataHandler,
 )
 from ema.utils import read_fasta_names, read_fasta, write_fasta, setup_logger
+
+sys.path.append(str(Path(__file__).resolve().parent.parent))
 
 
 def parse_args() -> argparse.Namespace:
@@ -26,14 +28,14 @@ def parse_args() -> argparse.Namespace:
         type=str,
         help="Path to a FASTA file containing protein sequences or \
             a list of protein names",
-        default="examples/proteome/uniprot_sprot_human.fasta",
+        default="examples/deeploc/data/deeploc_test.fasta",
     )
     parser.add_argument(
         "-m",
         "--model",
         type=str,
         help="Name of the embedding model to be used",
-        default="esm1b_t33_650M_UR50S",
+        default="Rostlab/prot_t5_xl_half_uniref50-enc",
     )
     parser.add_argument(
         "-o",
@@ -76,13 +78,14 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--max_seq_length",
         type=int,
-        default=300,
-        help="Maximum sequence length. Sequences longer than this will be chopped.",
+        default=1022,
+        help="Maximum sequence length. Sequences longer than this will \
+            be chopped.",
     )
     parser.add_argument(
         "--chunk_overlap",
         type=int,
-        default=100,
+        default=300,
         help="Overlap size between chunks",
     )
     parser.add_argument(
@@ -315,8 +318,8 @@ def chop_sequences(
         sequence (str): sequence to be chopped
         max_length (int): max length of sequence for each chunk
         overlap (int): length of overlap between chunks
-        bidirectional (book): whether to chop the sequence from both directions \
-            (default: True) or only from the left
+        bidirectional (book): whether to chop the sequence from both \
+            directions (default: True) or only from the left
 
     Returns:
         List[str]: _description_
@@ -325,11 +328,6 @@ def chop_sequences(
         return [sequence]
 
     n = len(sequence)
-
-    # num_chunks = (n - 2 * (max_length)) // (max_length - overlap) + 2
-    # remainder = (n - 2 * (max_length)) % (max_length - overlap)
-
-    middle = n / 2
 
     chunks = []
 
@@ -350,7 +348,7 @@ def chop_sequences(
         right_end = n
         chunks.append(sequence[right_start:right_end])
 
-        if left_end - right_start <= overlap:
+        while left_end - right_start <= overlap:
             left_start = left_end - overlap
             left_end = left_start + max_length
             chunks.append(sequence[left_start:left_end])
@@ -360,10 +358,8 @@ def chop_sequences(
             right_end = right_start + overlap
             right_start = right_end - max_length
             chunks.insert(0, sequence[right_start:right_end])
-            if left_end - right_start > overlap:
-                break
 
-    return chunks
+        return chunks
 
 
 def categorise_proteins_by_length(
@@ -770,13 +766,15 @@ def get_embeddings(
     if chopped_sequences != {}:
         # get embeddings for missing proteins
         embedding_handler = select_embedding_handler(
-            model_id=model, no_gpu=no_gpu
+            model_id=model, logger=logger, no_gpu=no_gpu
         )
         embedding_handler.get_embedding(
             protein_sequences=chopped_sequences,
             model_id=model,
             output_dir=chopped_output_dir,
             layer=layer,
+            truncation_seq_length=max_seq_length,
+            # add batch size parameter
             **kwargs,
         )
 

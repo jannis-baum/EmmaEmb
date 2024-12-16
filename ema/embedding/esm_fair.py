@@ -1,9 +1,9 @@
-import torch
-
+import logging
 import os
 from typing import List
 
 import numpy as np
+import torch
 
 from ema.embedding.embedding_handler import EmbeddingHandler
 from ema.embedding.embedding_model_metadata_handler import (
@@ -27,10 +27,10 @@ from esm import (
 class EsmFair(EmbeddingHandler):
     def __init__(
         self,
+        logger: logging.Logger = None,
         no_gpu: bool = False,
     ):
-        super().__init__(no_gpu)
-        self.model = None
+        super().__init__(logger, no_gpu)
 
     def get_embedding(
         self,
@@ -172,5 +172,4 @@ class EsmFair(EmbeddingHandler):
                     )
 
         os.remove(path_fasta_file)
-
         return result
