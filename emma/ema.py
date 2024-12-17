@@ -11,6 +11,7 @@ import os
 from typing import Tuple, Union
 import hashlib
 
+import json
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 from sklearn.cluster import KMeans
@@ -394,21 +395,6 @@ class EmbeddingHandler:
         self.emb[emb_space_name]["emb"] = embeddings
         self.__calculate_clusters__(emb_space_name, n_clusters=None)
         
-        
-        # if emb_space_name in self.emb.keys():
-        #     raise ValueError(
-        #         f"Embedding space {emb_space_name} already exists."
-        #     )
-        # if embeddings.shape[0] != len(self.sample_names):
-        #     raise ValueError(
-        #         f"Number of samples in embeddings ({embeddings.shape[0]}) \
-        #             does not match the number of samples in meta_data \
-        #             ({len(self.sample_names)})"
-        #     )
-        # self.emb[emb_space_name] = dict()
-        # self.emb[emb_space_name]["emb"] = embeddings
-        # self.__calculate_clusters__(emb_space_name, n_clusters=None)
-        # # add a default colour for the new embedding space
         if len(self.emb.keys()) > len(emb_space_colours):
             self.emb[emb_space_name]["colour"] = px.colors.qualitative.Set3[
                 len(self.emb.keys()) - len(emb_space_colours)
@@ -488,37 +474,121 @@ class EmbeddingHandler:
             )
         return
     
-    def _generate_params_hash(self, algorithm: str, kwargs: dict) -> str:
+    def _generate_params_hash(
+        self, algorithm: str, embedding_space: str, 
+        dim_reduction_method: str, dim_reduction_params: dict, params: dict
+    ) -> str:
         """
-        Generates a unique hash based on the algorithm and parameters.
-        """
-        # Create a string representation of the algorithm and kwargs
-        params_str = f"{algorithm}_{str(kwargs)}"
+        Generate a unique hash based on the clustering algorithm, embedding space, 
+        dimensionality reduction method and parameters, and clustering parameters.
         
-        # Generate a hash of the parameters string
-        return hashlib.sha256(params_str.encode()).hexdigest()
+        Args:
+        - algorithm (str): Clustering algorithm used.
+        - embedding_space (str): Embedding space name.
+        - dim_reduction_method (str): Dimensionality reduction method (if any).
+        - dim_reduction_params (dict): Parameters for dimensionality reduction.
+        - params (dict): Parameters for the clustering algorithm.
+        
+        Returns:
+        - str: A unique hash string.
+        """
+        # Combine all relevant information into a dictionary
+        combined_info = {
+            "algorithm": algorithm,
+            "embedding_space": embedding_space,
+            "dim_reduction_method": dim_reduction_method,
+            "dim_reduction_params": dim_reduction_params,
+            "params": params
+        }
+        
+        # Serialize to JSON for consistent formatting
+        combined_str = json.dumps(combined_info, sort_keys=True)
+        
+        # Generate a hash
+        hash_object = hashlib.sha256(combined_str.encode('utf-8'))
+        return hash_object.hexdigest()
     
-    def get_hash_from_params(self, algorithm: str, kwargs: dict) -> str:
+    def get_hash_from_params(
+        self, algorithm: str, embedding_space: str, 
+        dim_reduction_method: str = None, dim_reduction_params: dict = None, 
+        **kwargs
+        ) -> str:
         """
-        Generate the hash from the given parameters (algorithm and kwargs).
+        Generate the hash from the given parameters, including clustering algorithm, 
+        embedding space, dimensionality reduction method and parameters, and clustering parameters.
+        
+        Args:
+        - algorithm (str): Clustering algorithm.
+        - embedding_space (str): Name of the embedding space.
+        - dim_reduction_method (str, optional): Dimensionality reduction method used.
+        - dim_reduction_params (dict, optional): Parameters for dimensionality reduction.
+        - kwargs: Additional clustering parameters.
+
+        Returns:
+        - str: The unique hash string.
         """
-        return self._generate_params_hash(algorithm, kwargs)
+        return self._generate_params_hash(
+            algorithm=algorithm,
+            embedding_space=embedding_space,
+            dim_reduction_method=dim_reduction_method,
+            dim_reduction_params=dim_reduction_params,
+            params=kwargs
+            )
+
+    def _apply_dimensionality_reduction(self, embeddings: np.ndarray, 
+                                        method: str, params: dict) -> np.ndarray:
+        """
+        Apply the specified dimensionality reduction method to the embeddings.
+        """
+        params = params or {}
+        
+        if method == 'PCA':
+            n_components = params.get('n_components', 50)  # Default to 50 components if not provided
+            pca = PCA(n_components=n_components)
+            return pca.fit_transform(embeddings)
+
+        elif method == 'TSNE':
+            n_components = params.get('n_components', 2)  # Default to 2 components if not provided
+            perplexity = params.get('perplexity', 30)  # Default perplexity
+            tsne = TSNE(n_components=n_components, perplexity=perplexity)
+            return tsne.fit_transform(embeddings)
+
+        else:
+            raise ValueError(f"Dimensionality reduction method {method} not recognized.")
     
     def calculate_clusters(
-        self, embedding_space: str, algorithm: str = "kmeans", **kwargs
+        self, embedding_space: str, algorithm: str = "kmeans", 
+        dim_reduction_method: str = None,
+        dim_reduction_params: dict = None,
+        **kwargs
     ):
+        """
+        Perform clustering on embeddings, optionally applying dimensionality reduction.
+        """
+        
         self.__check_for_emb_space__(embedding_space)
         
         # Create a unique identifier for the combination of algorithm and parameters
-        params_hash = self._generate_params_hash(algorithm, kwargs)
+        params_hash = self._generate_params_hash(
+            algorithm=algorithm,
+            embedding_space=embedding_space,
+            dim_reduction_method=dim_reduction_method,
+            dim_reduction_params=dim_reduction_params,
+            params=kwargs
+        )
         
         # Check if this combination of parameters already exists in self.meta_data
         if params_hash in self.clusters:
-            print(f"Clusters with these parameters already calculated. Skipping...")
+            print(f"Clusters with these parameters already exist. Skipping calculation.")
             return
+        
+        embeddings = self.emb[embedding_space]['emb']
+        if dim_reduction_method:
+            embeddings = self._apply_dimensionality_reduction(embeddings, dim_reduction_method, dim_reduction_params)
+        
     
         labels, _ = calculate_clusters(
-            embeddings=self.emb[embedding_space]['emb'],
+            embeddings=embeddings,
             algorithm=algorithm,
             **kwargs
         )
@@ -527,12 +597,141 @@ class EmbeddingHandler:
         self.clusters[params_hash] = {
             'algorithm': algorithm,
             'embedding_space': embedding_space,
-            'labels': labels,
-            'params': kwargs
+            'dim_reduction_method': dim_reduction_method,
+            'dim_reduction_params': dim_reduction_params,
+            'params': kwargs,
+            'labels': labels
         }
-    
         
+        print(f"Clustering completed and saved with hash: {params_hash}")
+    
+    def get_clustering_summary(self) -> pd.DataFrame:
+        """
+        Summarises all clustering results and their parameters stored in self.clusters
+        
+        Returns:
+            pd.DataFrame: A Dataframe where each row represents a clustering run
+                and columnns provide details like algorithm, embedding space,
+                dimensionality reduction method, paameters, and hash.
+        """
+        # Check if there are clustering results
+        if not self.clusters:
+            print("No clustering results found.")
+            return pd.DataFrame()
+        
+        summary_data = []
+        
+        for params_hash, cluster_info in self.clusters.items():
+            # Create a summary dictionary for this clustering
+            summary_row = {
+                "Hash": params_hash,
+                "Algorithm": cluster_info["algorithm"],
+                "Embedding Space": cluster_info["embedding_space"],
+                "Dimensionality Reduction": cluster_info.get("dim_reduction_method", None),
+                "Dim Reduction Params": cluster_info.get("dim_reduction_params", None),
+                "Clustering Params": cluster_info.get("params", {})
+            }
+            summary_data.append(summary_row)
+        # Convert the list of summary dictionaries to a DataFrame
+        summary_df = pd.DataFrame(summary_data)
+        return summary_df
+    
+    def summarise_clustering_performance(
+        self,
+        embedding_space: str,
+        evaluation_method: str,
+        evaluation_params: dict = None,
+        output: str = "df"
+    ):
+        """
+        Summarise or plot the clustering performance for specific 
+        embedding space.
+        
+        Parameters:
+        - embedding_space (str): The embedding space to analyse.
+        - evaluation_method (str): The evaluation method for 
+            the clustering performance.
+        - evaluation_params (dict): Additional parameters for
+            the evaluation method.
+        - output (str): 'df' to return a DataFrame,
+            'plot' to return a Plotly graph.
+        
+        Returns:
+        - pd.DataFrame or Plotly graph, depending on 'output'
+        """
+        
+        # Ensure evaluation_params is a dict
+        evaluation_params = evaluation_params or {}
+        
+        # Initialize a list to store performance results
+        performance_results = []
+        
+        # Loop over all clusters in self.clusters
+        for params_hash, cluster_data in self.clusters.items():
+            # Filter clusters that match the embedding space
+            if cluster_data['embedding_space'] == embedding_space:
+                # Retrieve clustering labels and algorithm details
+                labels = cluster_data['labels']
+                algorithm = cluster_data['algorithm']
+                dim_method = cluster_data['dim_reduction_method'] or "None"
+                dim_params = cluster_data['dim_reduction_params'] or {}
+                clustering_params = cluster_data['params']
+                
+                clustering_params_str = ", ".join([f"{k}={v}" for k, v in clustering_params.items()])
+                
+                algo_clustering_label = f"{algorithm} - {clustering_params_str}"
 
+                # Evaluate clustering performance
+                score = evaluate_clusters(
+                    evaluation_method=evaluation_method,
+                    embeddings=self.emb[embedding_space]['emb'],
+                    labels=labels,
+                    **evaluation_params
+                )
+
+                # Append results to the list
+                performance_results.append({
+                    "Algorithm": algorithm,
+                    "Dimensionality Reduction": dim_method,
+                    "Dimensionality Reduction Params": dim_params,
+                    "Parameters Hash": params_hash,
+                    "Clustering Params": algo_clustering_label,
+                    "Performance Score": score
+                })
+
+        # Convert results into a DataFrame
+        results_df = pd.DataFrame(performance_results)
+        
+        # Check if any results were found
+        if not performance_results:
+            print(f"No clustering results found for embedding space '{embedding_space}'.")
+            return pd.DataFrame() if output == "df" else None
+        
+        # Output as DataFrame or Plot
+        if output == "df":
+            return results_df
+        elif output == "plot":
+            # Create a Plotly plot
+            fig = px.bar(
+                results_df,
+                x="Clustering Params",
+                y="Performance Score",
+                color="Dimensionality Reduction",
+                # facet_col="Algorithm",
+                barmode="group", 
+                hover_data=["Dimensionality Reduction Params"],
+                title=f"Clustering Performance in {embedding_space}",
+                labels={"Performance Score": evaluation_method}
+            )
+            fig.update_layout(
+                font={"family": "Arial",
+                      "color": "black"}, 
+                template="plotly_white"
+            )
+            return fig
+        else:
+            raise ValueError("Invalid output parameter. Use 'df' or 'plot'.")
+        
     def recalculate_clusters(
         self, emb_space_name: str, n_clusters: int = None
     ) -> None:
@@ -2155,14 +2354,22 @@ class EmbeddingHandler:
     def evaluate_clustering(
         self,
         embedding_space: str,
-        clustering_algorithm: str,        
+        clustering_algorithm: str,
         evaluation_method: str,
+        dim_reduction_method: str = None, 
+        dim_reduction_params: dict = None,     
         distance_metric: str = None,
         **kwargs
     ) -> float:
         
         # Generate a unique hash based on the algorithm and the parameters (kwargs)
-        params_hash = self._generate_params_hash(clustering_algorithm, kwargs)
+        params_hash = self._generate_params_hash(
+            algorithm=clustering_algorithm,
+            embedding_space=embedding_space,
+            dim_reduction_method=dim_reduction_method,
+            dim_reduction_params=dim_reduction_params,
+            params=kwargs
+        )
         
         # Check if the clustering results already exist in self.meta_data
         if params_hash not in self.clusters:
@@ -2171,6 +2378,8 @@ class EmbeddingHandler:
             self.calculate_clusters(
                 embedding_space=embedding_space,
                 algorithm=clustering_algorithm,
+                dim_reduction_method=dim_reduction_method,
+                dim_reduction_params=dim_reduction_params,
                 **kwargs
             )
         
@@ -2180,13 +2389,17 @@ class EmbeddingHandler:
         # Check if the embedding space exists in self.emb
         self.__check_for_emb_space__(embedding_space)
     
+        # Prepare evaluate_clusters arguments dynamically
+        evaluate_kwargs = {
+            "evaluation_method": evaluation_method,
+            "embeddings": self.emb[embedding_space]['emb'],
+            "labels": labels
+        }
+        if distance_metric is not None:
+            evaluate_kwargs["distance_metric"] = distance_metric
+
         # Call the evaluate_clusters function with the retrieved labels
-        score = evaluate_clusters(
-            evaluation_method=evaluation_method,
-            embeddings=self.emb[embedding_space]['emb'],
-            labels=labels,
-            distance_metric=distance_metric
-        )
+        score = evaluate_clusters(**evaluate_kwargs)
 
         return score
     

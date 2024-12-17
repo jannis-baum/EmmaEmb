@@ -12,7 +12,7 @@ def evaluate_clusters(
     evaluation_method: str,
     embeddings: np.array, 
     labels: list,
-    distance_metric: Optional[str]) -> int:
+    distance_metric: str = None) -> int:
     
     if evaluation_method == 'silhouette_score':
         score = silhouette_score(embeddings, labels, metric=distance_metric)
