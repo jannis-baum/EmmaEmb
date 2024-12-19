@@ -18,9 +18,10 @@ from sklearn.cluster import KMeans
 from scipy.spatial.distance import pdist, squareform
 from statistics import mean
 from sklearn.mixture import GaussianMixture
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
 
-from emma.calculate_clusters import calculate_clusters
-from emma.cluster_metrics import evaluate_clusters, evaluate_clusters_per_cluster
+from emma.calculate_clusters import calculate_clusters, apply_autoencoder
+from emma.cluster_metrics import evaluate_clusters, evaluate_clusters_per_cluster, compare_clusterings
 
 emb_space_colours = ["#56638A", "#BAD9B5", "#D77A61", "#D77A61", "#40531B"]
 distance_metric_aliases = {
@@ -536,25 +537,59 @@ class EmbeddingHandler:
             )
 
     def _apply_dimensionality_reduction(self, embeddings: np.ndarray, 
-                                        method: str, params: dict) -> np.ndarray:
+                                        method: str, params: dict,
+                                        normalize: bool = True)-> np.ndarray:
         """
         Apply the specified dimensionality reduction method to the embeddings.
+        
+        Parameters:
+        - embeddings (np.ndarray): The input embedding matrix (n_samples x n_features).
+        - method (str): The dimensionality reduction method. Options: 'PCA', 'TSNE', 'Autoencoder'.
+        - params (dict): Parameters for the dimensionality reduction method.
+        - normalize (bool): Whether to normalize embeddings before reduction.
+
+        Returns:
+        - reduced_embeddings (np.ndarray): The reduced embedding matrix.
         """
+        # Ensure the storage dictionary exists
+        if not hasattr(self, 'reduced_spaces'):
+            self.reduced_spaces = {}
+
+        if cache_key is None:
+            cache_key = f"{method}_{str(params)}"
+        
+        if cache_key in self.reduced_spaces:
+            print(f"Using cached reduced space for method: {method}, params: {params}")
+            return self.reduced_spaces[cache_key]
+        
+        # Normalise embeddings if requested
+        if normalize:
+            scaler = StandardScaler() if method in ['PCA', 'Autoencoder'] else MinMaxScaler()
+            embeddings = scaler.fit_transform(embeddings)
+        
         params = params or {}
+        reduced_embeddings = None
         
         if method == 'PCA':
             n_components = params.get('n_components', 50)  # Default to 50 components if not provided
             pca = PCA(n_components=n_components)
-            return pca.fit_transform(embeddings)
+            reduced_embeddings = pca.fit_transform(embeddings)
 
         elif method == 'TSNE':
             n_components = params.get('n_components', 2)  # Default to 2 components if not provided
             perplexity = params.get('perplexity', 30)  # Default perplexity
             tsne = TSNE(n_components=n_components, perplexity=perplexity)
-            return tsne.fit_transform(embeddings)
-
+            reduced_embeddings = tsne.fit_transform(embeddings)
+        
+        elif method == 'Autoencoder':
+            reduced_embeddings = self._apply_autoencoder(embeddings, params)
         else:
             raise ValueError(f"Dimensionality reduction method {method} not recognized.")
+        
+        self.reduced_spaces[cache_key] = reduced_embeddings
+        print(f"Cached reduced space for method: {method}, params: {params}")
+
+        return reduced_embeddings
     
     def calculate_clusters(
         self, embedding_space: str, algorithm: str = "kmeans", 
@@ -696,7 +731,8 @@ class EmbeddingHandler:
                     "Dimensionality Reduction Params": dim_params,
                     "Parameters Hash": params_hash,
                     "Clustering Params": algo_clustering_label,
-                    "Performance Score": score
+                    "Performance Score": score,
+                    "Raw Params": clustering_params 
                 })
 
         # Convert results into a DataFrame
@@ -711,15 +747,21 @@ class EmbeddingHandler:
         if output == "df":
             return results_df
         elif output == "plot":
+            # For plotting: Remove "random_state" from clustering params
+            results_df['Clustering Params (varying random states)'] = results_df['Raw Params'].apply(
+                lambda params: ", ".join(
+                    f"{k}={v}" for k, v in params.items() if k != "random_state"
+                )
+            )
             # Create a Plotly plot
-            fig = px.bar(
+            fig = px.scatter(
                 results_df,
-                x="Clustering Params",
+                x="Clustering Params (varying random states)",
                 y="Performance Score",
                 color="Dimensionality Reduction",
                 # facet_col="Algorithm",
                 barmode="group", 
-                hover_data=["Dimensionality Reduction Params"],
+                hover_data=["Dimensionality Reduction Params", "Raw Params"],
                 title=f"Clustering Performance in {embedding_space}",
                 labels={"Performance Score": evaluation_method}
             )
@@ -731,6 +773,129 @@ class EmbeddingHandler:
             return fig
         else:
             raise ValueError("Invalid output parameter. Use 'df' or 'plot'.")
+        
+    def remove_clustering(
+        self,
+        embedding_space: str,
+        clustering_algorithm: str,
+        clustering_params: dict = None,
+        dim_reduction_method: str = None,
+        dim_reduction_params: dict = None
+    ):
+        """
+        Deletes a clustering result from self.clusters based on the \
+            provided parameters.
+            
+        Parameters:
+        - embedding_space (str): The embedding space name.
+        - clustering_algorithm (str): The clustering algorithm.
+        - clustering_params (dict): Parameters for the clustering 
+            algorithm.
+        - dim_reduction_method (str): The dimensionality reduction 
+            method (if any).
+        - dim_reduction_params (dict): Parameters for the dimensionality 
+            reduction method.
+        
+        Returns:
+        - None
+        """
+        # ensure clustering_params and dim_reduction_params are dicts
+        clustering_params = clustering_params or {}
+        dim_reduction_params = dim_reduction_params or None
+        
+        # Generate the unique hash for the provided parameters
+        params_hash = self._generate_params_hash(
+            algorithm=clustering_algorithm,
+            embedding_space=embedding_space,
+            dim_reduction_method=dim_reduction_method,
+            dim_reduction_params=dim_reduction_params,
+            params=clustering_params
+        )
+        
+        # Check if the clustering with this hash exists
+        if params_hash in self.clusters:
+            # Delete the clustering
+            del self.clusters[params_hash]
+            print(f"Clustering with hash '{params_hash}' \
+                has been deleted.")
+        else:
+            print(f"No clustering found for the given parameters \
+                in embedding space '{embedding_space}'.")
+            
+    def store_clustering(
+        self,
+        embedding_space: str,
+        clustering_params: dict = None,
+        dim_reduction_method: str = None,
+        dim_reduction_params: dict = None
+    ):
+        """
+        Find the relevant clustering and add it to 
+        self.emb[embedding_space] under 'clustering'.
+
+        Parameters:
+        - embedding_space (str): The embedding space to 
+            analyze.
+        - clustering_params (dict): Clustering parameters 
+            (e.g., {'algorithm': 'KMeans', 'params': {}}).
+        - dim_reduction_method (str): Dimensionality reduction 
+            method (e.g., 'PCA').
+        - dim_reduction_params (dict): Parameters for the 
+            dimensionality reduction method.
+        """
+        
+        # validate the embedding space
+        self.__check_for_emb_space__(embedding_space)
+        
+        # generate a hash based on the clustering and 
+        # dimensionality reduction parameters
+        params_hash = self._generate_params_hash(
+            algorithm=clustering_params.get("algorithm") if clustering_params else None,
+            embedding_space=embedding_space,
+            dim_reduction_method=dim_reduction_method,
+            dim_reduction_params=dim_reduction_params,
+            params=clustering_params.get("params", {}) if clustering_params else {}
+        )
+        
+        # check if clustering exissts in self.clusters
+        if params_hash not in self.clusters:
+            raise ValueError("Clustering with the specific \
+                parameters has not been computed yet.")
+        
+        # extract clustering information
+        clustering_data = self.clusters[params_hash]
+    # def compare_clusterings(
+    #     self,
+    #     embedding_space: str,
+    #     clustering_1_params: dict = None,
+    #     clustering_2_params: dict = None,
+    #     labels_1: np.ndarray = None,
+    #     labels_2: np.ndarray = None,
+    #     score_method: str = "ARI",
+    #     **kwargs
+    # ) -> float:
+    #     """
+    #     Compare two clusterings or a clustering 
+    #     with the ground-truth labels.
+        
+    #     Parameters:
+    #     - embedding_space (str): Name of the embedding space in self.emb to use.
+    #     - clustering_1_params (dict): Parameters for the first clustering.
+    #     - clustering_2_params (dict): Parameters for the second clustering.
+    #         These params must include the clustering algorithm and dimensionality reduction method.
+    #     - labels_1 (np.ndarray): Optional. Precomputed labels for the first clustering.
+    #     - labels_2 (np.ndarray): Optional. Precomputed labels for the second clustering.
+    #     - score_method (str): Scoring method. Options are 'ARI', 'NMI', 'Purity', 'Entropy'.
+    #     - kwargs: Additional scoring method parameters (e.g., for NMI).
+        
+    #     Returns:
+    #     - float: The computed score.
+    #     """
+        
+    #     # Helper functions
+    #     def purity_score(y_true, )
+        
+        
         
     def recalculate_clusters(
         self, emb_space_name: str, n_clusters: int = None

@@ -1,6 +1,7 @@
 from typing import Optional
 
 import numpy as np
+from scipy.stats import entropy
 
 from sklearn.metrics import (
     silhouette_score, silhouette_samples, 
@@ -52,3 +53,115 @@ def evaluate_clusters_per_cluster(
             support evaluation methods.")
     
     return per_cluster_scores
+
+def purity_score(labels_true, labels_pred):
+    """
+    Compute the purity score for a clustering compared to true labels.
+    
+    Purity is the proportion of the total number of points that are assigned
+    to the most frequent class within each cluster.
+    
+    Parameters:
+    - labels_true (np.ndarray): True class labels.
+    - labels_pred (np.ndarray): Predicted cluster labels.
+    
+    Returns:
+    - float: Purity score.
+    """
+    total_correct = 0
+    
+    # iterate over each cluster
+    for cluster in np.unique(labels_pred):
+        # find indices of the points in the current cluster
+        cluster_indices = np.where=(labels_pred == cluster)[0]
+        
+        # get the true labels of the points in the cluster
+        true_labels_in_cluster = labels_true[cluster_indices]
+        
+        # find most frequent true label in this cluster
+        most_frequent_class = np.bincount(true_labels_in_cluster).argmax()
+        
+        # add the number of points in this cluster that match the most frequent class
+        total_correct += np.sum(true_labels_in_cluster == most_frequent_class)
+    
+    return total_correct/ len(labels_true)
+
+def entropy_score(labels_true, labels_pred):
+    """
+    Compute the entropy score for a clustering compared to the true labels.
+    
+    Entropy measures the disorder in the distribution of true labels within 
+    each cluster.
+    
+    Parameters:
+    - labels_true (np.array): True class labels
+    - labels_pred (np.array): Predicted cluster labels
+    
+    Returns:
+    - float: Entropy score
+    """
+    
+    entropy_scores = []
+    
+    # iterate over each cluster
+    for cluster in np.unique(labels_pred):
+        # find the indices of the points in the current cluster
+        cluster_indices = np.where(labels_pred == cluster)[0]
+        
+        # get the true labels of the points in the cluster
+        true_labels_in_cluster = labels_true[cluster_indices]
+        
+        # calculate the entropy of the distribution of true labels in this cluster
+        class_probabilities = np.bincount(true_labels_in_cluster) / len(true_labels_in_cluster)
+        cluster_entropy = entropy(class_probabilities)
+        entropy_scores.append(cluster_entropy)
+    
+    # return the mean entropy across all clusters
+    return np.mean(entropy_scores)
+
+
+def compare_clusterings(
+    labels_1: np.ndarray,
+    labels_2: np.ndarray,
+    score_method: str = "ARI",
+    **kwargs
+    ) -> float:
+    """
+    Compare two clusterings. Different methods can be used.
+    
+    Parameters:
+    - labels_1 (np.ndarray): First set of clustering labels 
+        or ground truth labels.
+    - labels_2 (np.ndarray): Second set of clustering labels
+    - score_method (str): The scoring method to use. Options:
+        - 'ARI': Adjusted Rand Index
+        - 'NMI': Normalised Mutual Information
+        - 'Purity': Purity score
+        - 'Entropy': Entropy score.
+    - kwargs: Additional parameters for specific score
+        methods (if any are required).
+    
+    Returns:
+    - float: The computed score based on the specified method.
+    """
+    
+    # Ensure labels are numpy arrays
+    labels_1 = np.asarray(labels_1)
+    labels_2 = np.asarray(labels_2)
+    
+    # Select and compute the score
+    if score_method == "ARI":
+        score = adjusted_rand_score(labels_1, labels_2)
+    elif score_method == "NMI":
+        score = normalized_mutual_info_score(labels_1, 
+                                             labels_2, 
+                                             **kwargs)
+    elif score_method == "Purity":
+        score = purity_score(labels_1, labels_2)
+    elif score_method == "Entropy":
+        score = entropy_score(labels_1)
+    else:
+        raise ValueError(f"Invalid score_method '{score_method}'. \
+            Choose from 'ARI', 'NMI', 'Purity', or 'Entropy'.")
+
+    return score

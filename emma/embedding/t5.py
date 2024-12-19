@@ -120,7 +120,7 @@ class T5(EmbeddingHandler):
         start = time.time()
         batch = list()
         for seq_idx, (pdb_id, seq, seq_len) in tqdm(enumerate(processed_sequences), 
-                                                    total=len(processed_sequences), 
+                                                    total=len(protein_sequences), 
                                                     desc="Processing sequences"):
             batch.append((pdb_id, seq, seq_len))
 
@@ -131,7 +131,7 @@ class T5(EmbeddingHandler):
             if (
                 len(batch) >= max_batch
                 or n_res_batch >= max_residues
-                or seq_idx == len(protein_sequences)  # last sequence
+                or seq_idx == len(protein_sequences) -1  # last sequence
                 or seq_len > max_seq_len
             ):
                 pdb_ids, seqs, seq_lens = zip(*batch)

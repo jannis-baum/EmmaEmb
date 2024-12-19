@@ -28,7 +28,7 @@ def parse_args() -> argparse.Namespace:
         type=str,
         help="Path to a FASTA file containing protein sequences or \
             a list of protein names",
-        default="examples/deeploc/data/deeploc_train_subset.fasta",
+        default="examples/deeploc/data/deeploc_train.fasta",
     )
     parser.add_argument(
         "-m",
