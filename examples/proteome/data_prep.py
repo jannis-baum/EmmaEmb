@@ -1,4 +1,4 @@
-from ema.utils import read_fasta, write_fasta
+from emma.utils import read_fasta, write_fasta
 
 path_swissprot = "examples/proteome/uniprot_sprot.fasta"
 path_swissprot_filtered = "examples/proteome/uniprot_sprot_human.fasta"
