@@ -5,5 +5,7 @@
 data/**
 logs/**
 embeddings/**
+experiments/*/**
 dist/
 .vscode/**
+.slurm/**

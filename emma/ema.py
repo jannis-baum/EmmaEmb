@@ -19,6 +19,7 @@ from scipy.spatial.distance import pdist, squareform
 from statistics import mean
 from sklearn.mixture import GaussianMixture
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
+from sklearn.preprocessing import StandardScaler
 
 from emma.calculate_clusters import calculate_clusters, apply_autoencoder
 from emma.cluster_metrics import evaluate_clusters, evaluate_clusters_per_cluster, compare_clusterings
@@ -87,6 +88,8 @@ class EmbeddingHandler:
         self.emb = dict()
         self.pw_meta_data = dict()
         self.clusters = dict()
+        self.default_clusterings = dict()
+        self.hash_to_params = dict()
         print(f"{len(self.sample_names)} samples loaded.")
         print(f"Categories in meta data: {self.meta_data_categorical_columns}")
         print(
@@ -477,7 +480,8 @@ class EmbeddingHandler:
     
     def _generate_params_hash(
         self, algorithm: str, embedding_space: str, 
-        dim_reduction_method: str, dim_reduction_params: dict, params: dict
+        dim_reduction_method: str, dim_reduction_params: dict, params: dict, 
+        normalise: str,
     ) -> str:
         """
         Generate a unique hash based on the clustering algorithm, embedding space, 
@@ -489,6 +493,7 @@ class EmbeddingHandler:
         - dim_reduction_method (str): Dimensionality reduction method (if any).
         - dim_reduction_params (dict): Parameters for dimensionality reduction.
         - params (dict): Parameters for the clustering algorithm.
+        - normalise (str): Method for normalising the embedding.
         
         Returns:
         - str: A unique hash string.
@@ -499,20 +504,35 @@ class EmbeddingHandler:
             "embedding_space": embedding_space,
             "dim_reduction_method": dim_reduction_method,
             "dim_reduction_params": dim_reduction_params,
-            "params": params
+            "params": params,
+            "normalise": normalise
         }
         
         # Serialize to JSON for consistent formatting
         combined_str = json.dumps(combined_info, sort_keys=True)
         
         # Generate a hash
-        hash_object = hashlib.sha256(combined_str.encode('utf-8'))
-        return hash_object.hexdigest()
+        #hash_object = hashlib.sha256(combined_str.encode('utf-8'))
+        param_hash = hashlib.sha256(combined_str.encode('utf-8')).hexdigest()
+        self.hash_to_params[param_hash] = combined_str
+        return param_hash
+
+    def get_params_from_hash(self, param_hash):
+        """
+        Retrieves the original parameters given a hash.
+        
+        Args:
+            param_hash (str): The hash for which the parameters are to be retrieved.
+            
+        Returns:
+            dict: The parameters corresponding to the hash, or None if not found.
+        """
+        return self.hash_to_params.get(param_hash, None)
     
     def get_hash_from_params(
         self, algorithm: str, embedding_space: str, 
         dim_reduction_method: str = None, dim_reduction_params: dict = None, 
-        **kwargs
+        normalise=str,**kwargs
         ) -> str:
         """
         Generate the hash from the given parameters, including clustering algorithm, 
@@ -533,12 +553,14 @@ class EmbeddingHandler:
             embedding_space=embedding_space,
             dim_reduction_method=dim_reduction_method,
             dim_reduction_params=dim_reduction_params,
-            params=kwargs
+            params=kwargs,
+            normalise=normalise
             )
 
     def _apply_dimensionality_reduction(self, embeddings: np.ndarray, 
                                         method: str, params: dict,
-                                        normalize: bool = True)-> np.ndarray:
+                                        normalize: bool = True, 
+                                        cache_key: str = None)-> np.ndarray:
         """
         Apply the specified dimensionality reduction method to the embeddings.
         
@@ -582,12 +604,14 @@ class EmbeddingHandler:
             reduced_embeddings = tsne.fit_transform(embeddings)
         
         elif method == 'Autoencoder':
-            reduced_embeddings = self._apply_autoencoder(embeddings, params)
+            reduced_embeddings = apply_autoencoder(embeddings, params)
         else:
-            raise ValueError(f"Dimensionality reduction method {method} not recognized.")
+            raise ValueError(f"Dimensionality reduction method {method} \
+                not recognized.")
         
         self.reduced_spaces[cache_key] = reduced_embeddings
-        print(f"Cached reduced space for method: {method}, params: {params}")
+        print(f"Cached reduced space for method: {method}, \
+            params: {params}")
 
         return reduced_embeddings
     
@@ -595,8 +619,9 @@ class EmbeddingHandler:
         self, embedding_space: str, algorithm: str = "kmeans", 
         dim_reduction_method: str = None,
         dim_reduction_params: dict = None,
+        normalise: str = None,
         **kwargs
-    ):
+    ) -> np.ndarray:
         """
         Perform clustering on embeddings, optionally applying dimensionality reduction.
         """
@@ -609,6 +634,7 @@ class EmbeddingHandler:
             embedding_space=embedding_space,
             dim_reduction_method=dim_reduction_method,
             dim_reduction_params=dim_reduction_params,
+            normalise=normalise,
             params=kwargs
         )
         
@@ -618,9 +644,14 @@ class EmbeddingHandler:
             return
         
         embeddings = self.emb[embedding_space]['emb']
+        
+        if kwargs.get("normalise") == "standard":
+            if dim_reduction_method not in (None, "no_dimensionality_reduction"):
+                raise ValueError("Dimensionality reduction method must be 'None' or 'no_dimensionality_reduction' when normalization is applied.")
+            scaler = StandardScaler()
+            embeddings = scaler.fit_transform(embeddings)
         if dim_reduction_method:
             embeddings = self._apply_dimensionality_reduction(embeddings, dim_reduction_method, dim_reduction_params)
-        
     
         labels, _ = calculate_clusters(
             embeddings=embeddings,
@@ -635,11 +666,56 @@ class EmbeddingHandler:
             'dim_reduction_method': dim_reduction_method,
             'dim_reduction_params': dim_reduction_params,
             'params': kwargs,
+            'normalise': normalise,
             'labels': labels
         }
         
         print(f"Clustering completed and saved with hash: {params_hash}")
+        return labels
     
+    def get_clustering_results(
+        self,
+        embedding_space: str,
+        algorithm: str,
+        dim_reduction_method: str = None,
+        dim_reduction_params: dict = None,
+        clustering_params: dict = None,
+        normalise: str = None,
+    ) -> dict:
+        """
+        Retrieve clustering results for a specific configuation.
+        
+        
+        Parameters:
+        - embedding_space (str): The embedding space name.
+        - algorithm (str): Clustering algorithm name.
+        - dim_reduction_method (str): Dimensionality reduction method ('PCA', 'TSNE', 'Autoencoder', etc.).
+        - dim_reduction_params (dict): Parameters for the dimensionality reduction method.
+        - clustering_params (dict): Parameters for the clustering algorithm.
+        
+        Returns:
+        - dict: The stored clustering result matching the configuration.
+        - None: If no matching result is found.
+        """
+        clustering_params = clustering_params or {} 
+        
+        cluster_hash = self.get_hash_from_params(
+             algorithm = algorithm, 
+             embedding_space = embedding_space, 
+             dim_reduction_method = dim_reduction_method,
+             dim_reduction_params = dim_reduction_params,
+             normalise = normalise,
+             **clustering_params
+        )
+        
+        if cluster_hash in self.clusters:
+            cluster_data = self.clusters[cluster_hash]
+            return cluster_data
+        else:
+            print("No clustering result found for the specified configuration.")
+            return None
+    
+
     def get_clustering_summary(self) -> pd.DataFrame:
         """
         Summarises all clustering results and their parameters stored in self.clusters
@@ -664,7 +740,8 @@ class EmbeddingHandler:
                 "Embedding Space": cluster_info["embedding_space"],
                 "Dimensionality Reduction": cluster_info.get("dim_reduction_method", None),
                 "Dim Reduction Params": cluster_info.get("dim_reduction_params", None),
-                "Clustering Params": cluster_info.get("params", {})
+                "Clustering Params": cluster_info.get("params", {}),
+                "Normalise": cluster_info.get("normalise", None)
             }
             summary_data.append(summary_row)
         # Convert the list of summary dictionaries to a DataFrame
@@ -708,9 +785,10 @@ class EmbeddingHandler:
                 # Retrieve clustering labels and algorithm details
                 labels = cluster_data['labels']
                 algorithm = cluster_data['algorithm']
-                dim_method = cluster_data['dim_reduction_method'] or "None"
+                dim_method = cluster_data['dim_reduction_method'] or None
                 dim_params = cluster_data['dim_reduction_params'] or {}
                 clustering_params = cluster_data['params']
+                normalise = cluster_data['normalise']
                 
                 clustering_params_str = ", ".join([f"{k}={v}" for k, v in clustering_params.items()])
                 
@@ -732,7 +810,8 @@ class EmbeddingHandler:
                     "Parameters Hash": params_hash,
                     "Clustering Params": algo_clustering_label,
                     "Performance Score": score,
-                    "Raw Params": clustering_params 
+                    "Raw Params": clustering_params,
+                    "Normalise": normalise
                 })
 
         # Convert results into a DataFrame
@@ -750,20 +829,22 @@ class EmbeddingHandler:
             # For plotting: Remove "random_state" from clustering params
             results_df['Clustering Params (varying random states)'] = results_df['Raw Params'].apply(
                 lambda params: ", ".join(
-                    f"{k}={v}" for k, v in params.items() if k != "random_state"
+                    f"{k}={v}" for k, v in params.items() if k != "state"
                 )
             )
+            results_df['Dimensionality Reduction'] = results_df['Dimensionality Reduction'].fillna("No dimensionality reduction.")
             # Create a Plotly plot
             fig = px.scatter(
                 results_df,
                 x="Clustering Params (varying random states)",
                 y="Performance Score",
                 color="Dimensionality Reduction",
-                # facet_col="Algorithm",
-                barmode="group", 
-                hover_data=["Dimensionality Reduction Params", "Raw Params"],
-                title=f"Clustering Performance in {embedding_space}",
-                labels={"Performance Score": evaluation_method}
+                facet_col="Algorithm",
+                #barmode="group", 
+                hover_data=["Dimensionality Reduction Params", "Raw Params", "Normalise"],
+                title=f"Clustering Performance in {embedding_space} {evaluation_params}",
+                labels={"Performance Score": evaluation_method},
+                #category_orders=category_orders,
             )
             fig.update_layout(
                 font={"family": "Arial",
@@ -774,13 +855,95 @@ class EmbeddingHandler:
         else:
             raise ValueError("Invalid output parameter. Use 'df' or 'plot'.")
         
+    def plot_sample_cluster_distribution(
+        self,
+        embedding_space: str,
+        algorithm: str,
+        clustering_params: dict,
+        dim_reduction_method: str = None,
+        dim_reduction_params: dict = None,
+        normalise: str = None
+    ):
+        self.__check_for_emb_space__(embedding_space)
+        
+        clustering_params = clustering_params or {} 
+        
+        cluster_hash = self.get_hash_from_params(
+             algorithm = algorithm, 
+             embedding_space = embedding_space, 
+             dim_reduction_method = dim_reduction_method,
+             dim_reduction_params = dim_reduction_params,
+             normalise = normalise,
+             **clustering_params
+        )
+        if cluster_hash in self.clusters:
+            cluster_data = self.clusters[cluster_hash]
+            
+            print()
+            
+        else:
+            print("No clustering result found for the specified configuration.")
+            return None
+    def add_clustering_result(
+        self,
+        embedding_space: str,
+        algorithm: str,
+        labels: np.ndarray,
+        clustering_params: dict,
+        dim_reduction_method: str = None,
+        dim_reduction_params: dict = None,
+        normalise: str = None
+    ):
+        """
+        Add previously computed clustering results to the object's 
+        cluster storage.
+
+        Parameters:
+        - embedding_space (str): The embedding space the clustering 
+            was performed on.
+        - algorithm (str): The clustering algorithm used.
+        - labels (np.ndarray): The cluster labels for each sample.
+        - clustering_params (dict): Parameters used for the clustering 
+            algorithm.
+        """
+        # Ensure the embedding space exists in the object
+        self.__check_for_emb_space__(embedding_space)
+       
+        param_hash = self.get_hash_from_params(
+            embedding_space=embedding_space, 
+            algorithm=algorithm, 
+            dim_reduction_method=dim_reduction_method,
+            dim_reduction_params=dim_reduction_params,
+            normalise=normalise,
+            **clustering_params)
+        
+        if param_hash in self.clusters:
+            print(f"Clustering result for {embedding_space}, \
+                  {algorithm}, {clustering_params} already exists.")
+            return
+        
+        # Store the clustering result
+        self.clusters[param_hash] = {
+            "embedding_space": embedding_space,
+            "algorithm": algorithm,
+            "labels": labels,
+            "params": clustering_params,
+            "dim_reduction_method": dim_reduction_method,
+            "dim_reduction_params": dim_reduction_params,
+            "normalise": normalise
+        }
+        print(f"Clustering result added: {embedding_space}, \
+            {algorithm}, {clustering_params}")
+        
+        
     def remove_clustering(
         self,
         embedding_space: str,
         clustering_algorithm: str,
         clustering_params: dict = None,
         dim_reduction_method: str = None,
-        dim_reduction_params: dict = None
+        dim_reduction_params: dict = None,
+        normalise: str = None,
     ):
         """
         Deletes a clustering result from self.clusters based on the \
@@ -795,6 +958,8 @@ class EmbeddingHandler:
             method (if any).
         - dim_reduction_params (dict): Parameters for the dimensionality 
             reduction method.
+        - normalise (str): method to normalise the data before
+            clustering
         
         Returns:
         - None
@@ -809,7 +974,8 @@ class EmbeddingHandler:
             embedding_space=embedding_space,
             dim_reduction_method=dim_reduction_method,
             dim_reduction_params=dim_reduction_params,
-            params=clustering_params
+            params=clustering_params,
+            normalise=normalise
         )
         
         # Check if the clustering with this hash exists
@@ -822,12 +988,171 @@ class EmbeddingHandler:
             print(f"No clustering found for the given parameters \
                 in embedding space '{embedding_space}'.")
             
+    def plot_cluster_distribution(
+        self,
+        embedding_space: str,
+        clustering_algorithm: str,
+        clustering_params: dict = None,
+        dim_reduction_method: str = None, 
+        dim_reduction_params: dict = None,
+        normalise: str = None
+    ):
+        """
+        Plot the distribution of the number of samples per 
+        cluster for a specific clustering.
+        
+        Args:
+            embedding_space (str): The name of the embedding space.
+            clustering_algorithm (str): The clustering algorithm used.
+            clustering_params (dict, optional): The parameters defining
+                the specific clustering.
+            dim_reduction_method (str, optional): The dimensionality
+                reduction method.
+            dim_reduction_params (dict, optional): Parameters for
+                the dimensionality reduction.
+            normalise (str, optional): The normalisation method.
+        
+        Raises:
+            ValueError: If the specified clustering does not
+                exist yet.
+        """
+        params_hash = self._generate_params_hash(
+            algorithm=clustering_algorithm,
+            embedding_space=embedding_space,
+            dim_reduction_method=dim_reduction_method,
+            dim_reduction_params=dim_reduction_params,
+            params=clustering_params,
+            normalise=normalise
+        )
+        
+        # Check if the clustering has been calculated
+        if params_hash not in self.clusters:
+            raise ValueError(f"Clustering with the specified parameters has not been calculated")
+        
+        # Retrieve the labels
+        labels = self.clusters[params_hash]['labels']
+        
+        cluster_counts = pd.Series(labels).value_counts().sort_index()
+        cluster_counts_df = cluster_counts.reset_index()
+        cluster_counts_df.columns = ["Cluster ID", "Number of Samples"]
+        
+        # plot the distribution
+        
+        fig = px.bar(
+            cluster_counts_df,
+            x="Cluster ID",
+            y="Number of Samples",
+            title=f"Sample distribution for clustering in {embedding_space}\
+                <br>Algorithm: {clustering_algorithm}, Params: {clustering_params}"
+        )
+        # Customizing appearance
+        fig.update_traces(textfont_family="Arial",)
+        fig.update_layout(
+            font=dict(family="Arial", size=14),
+            title=dict(font=dict(family="Arial", size=16)),
+            xaxis_title="Cluster ID",
+            yaxis_title="Number of Samples",
+            template="plotly_white"
+        )
+        return fig
+        
+        
+    def set_default_clustering(
+        self,
+        embedding_space: str,
+        clustering_algorithm: str,
+        clustering_params: dict = None,
+        dim_reduction_method: str = None, 
+        dim_reduction_params: dict = None,
+        normalise: str = None
+    ):
+        """
+        Set a specific clustering as the default for further analysis by
+        adding its labels to the 'self.meta_data' DataFrame under the
+        column 'cluster_' + embedding_space name.
+        
+        Args:
+            embedding_space (str): The name of the embedding space.
+            clustering_algorithm (str): The clustering algorithm used.
+            clustering_params (dict, optional): The parameters defining
+                the specific clustering.
+            dim_reduction_method (str, optional): The dimensionality
+                reduction method.
+            dim_reduction_params (dict, optional): Parameters for
+                the dimensionality reduction.
+            normalise (str, optional): The normalisation method.
+        """
+        
+        params_hash = self._generate_params_hash(
+            algorithm=clustering_algorithm,
+            embedding_space=embedding_space,
+            dim_reduction_method=dim_reduction_method,
+            dim_reduction_params=dim_reduction_params,
+            params=clustering_params,
+            normalise=normalise
+        )
+        
+        # Ensure the clustering has been calculated
+        if params_hash not in self.clusters:
+            raise ValueError(f"Clustering with the specified parameters \
+                has not been calculated: {params_hash}")
+        
+        # Set the default clustering for the embedding space
+        self.default_clusterings[embedding_space] = params_hash
+        
+        # Retrieve the labels
+        labels = self.clusters[params_hash]['labels']
+        
+        # Add or overwrite the column in `self.meta_data`
+        cluster_column = f"cluster_{embedding_space}"
+        self.meta_data[cluster_column] = labels
+        
+        print(f"Default clustering set for {embedding_space} using {clustering_algorithm} with params: "
+          f"dim_reduction_method={dim_reduction_method}, dim_reduction_params={dim_reduction_params}, "
+          f"normalization={normalise}, clustering_params={clustering_params}")
+        
+    def get_default_clustering_params(
+        self, embedding_space: str
+    ) -> dict:
+        """
+        Retrieve the parameters of the default clustering for the
+        specified embedding space.
+        
+        Args:
+            embedding_space (str): The embedding space for which
+                to fetch default clustering parameters.
+        
+        Returns:
+            dict: Parameters of the default clustering.
+        """
+        
+        if embedding_space not in self.default_clusterings:
+            raise ValueError(f"No default clustering set for \
+                embedding space: {embedding_space}")
+
+        params_hash = self.default_clusterings[embedding_space]
+        clustering_info = self.clusters.get(params_hash)
+
+        if clustering_info is None:
+            raise ValueError(f"Clustering information for hash \
+                {params_hash} not found.")
+
+        return {
+            'embedding_space': clustering_info['embedding_space'],
+            'algorithm': clustering_info['algorithm'],
+            'dim_reduction_method': clustering_info['dim_reduction_method'],
+            'dim_reduction_params': clustering_info['dim_reduction_params'],
+            'normalization': clustering_info.get('params', {}).get('normalisation'),
+            'clustering_params': clustering_info['params']
+        }
+            
     def store_clustering(
         self,
         embedding_space: str,
         clustering_params: dict = None,
         dim_reduction_method: str = None,
-        dim_reduction_params: dict = None
+        dim_reduction_params: dict = None,
+        normalise: str = None
     ):
         """
         Find the relevant clustering and add it to 
@@ -854,7 +1179,8 @@ class EmbeddingHandler:
             embedding_space=embedding_space,
             dim_reduction_method=dim_reduction_method,
             dim_reduction_params=dim_reduction_params,
-            params=clustering_params.get("params", {}) if clustering_params else {}
+            params=clustering_params.get("params", {}) if clustering_params else {},
+            normalise=normalise
         )
         
         # check if clustering exissts in self.clusters
@@ -864,37 +1190,6 @@ class EmbeddingHandler:
         
         # extract clustering information
         clustering_data = self.clusters[params_hash]
-    # def compare_clusterings(
-    #     self,
-    #     embedding_space: str,
-    #     clustering_1_params: dict = None,
-    #     clustering_2_params: dict = None,
-    #     labels_1: np.ndarray = None,
-    #     labels_2: np.ndarray = None,
-    #     score_method: str = "ARI",
-    #     **kwargs
-    # ) -> float:
-    #     """
-    #     Compare two clusterings or a clustering 
-    #     with the ground-truth labels.
-        
-    #     Parameters:
-    #     - embedding_space (str): Name of the embedding space in self.emb to use.
-    #     - clustering_1_params (dict): Parameters for the first clustering.
-    #     - clustering_2_params (dict): Parameters for the second clustering.
-    #         These params must include the clustering algorithm and dimensionality reduction method.
-    #     - labels_1 (np.ndarray): Optional. Precomputed labels for the first clustering.
-    #     - labels_2 (np.ndarray): Optional. Precomputed labels for the second clustering.
-    #     - score_method (str): Scoring method. Options are 'ARI', 'NMI', 'Purity', 'Entropy'.
-    #     - kwargs: Additional scoring method parameters (e.g., for NMI).
-        
-    #     Returns:
-    #     - float: The computed score.
-    #     """
-        
-    #     # Helper functions
-    #     def purity_score(y_true, )
-        
         
         
     def recalculate_clusters(
@@ -2524,6 +2819,7 @@ class EmbeddingHandler:
         dim_reduction_method: str = None, 
         dim_reduction_params: dict = None,     
         distance_metric: str = None,
+        normalise: str = None,
         **kwargs
     ) -> float:
         
@@ -2533,7 +2829,8 @@ class EmbeddingHandler:
             embedding_space=embedding_space,
             dim_reduction_method=dim_reduction_method,
             dim_reduction_params=dim_reduction_params,
-            params=kwargs
+            params=kwargs,
+            normalise=normalise
         )
         
         # Check if the clustering results already exist in self.meta_data
@@ -2545,6 +2842,7 @@ class EmbeddingHandler:
                 algorithm=clustering_algorithm,
                 dim_reduction_method=dim_reduction_method,
                 dim_reduction_params=dim_reduction_params,
+                normalise=normalise,
                 **kwargs
             )
         

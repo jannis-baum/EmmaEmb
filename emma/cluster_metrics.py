@@ -8,6 +8,8 @@ from sklearn.metrics import (
     davies_bouldin_score, calinski_harabasz_score
     )
 
+from sklearn.metrics.cluster import adjusted_rand_score, normalized_mutual_info_score
+
 
 def evaluate_clusters(
     evaluation_method: str,
@@ -16,6 +18,8 @@ def evaluate_clusters(
     distance_metric: str = None) -> int:
     
     if evaluation_method == 'silhouette_score':
+        if sum(labels) < 0: #TODO fix this error
+            return None
         score = silhouette_score(embeddings, labels, metric=distance_metric)
         
     elif evaluation_method == 'davies_bouldin_index':
@@ -146,8 +150,8 @@ def compare_clusterings(
     """
     
     # Ensure labels are numpy arrays
-    labels_1 = np.asarray(labels_1)
-    labels_2 = np.asarray(labels_2)
+    labels_1 = np.asarray(labels_1, dtype=str)
+    labels_2 = np.asarray(labels_2, dtype=str)
     
     # Select and compute the score
     if score_method == "ARI":
@@ -159,7 +163,7 @@ def compare_clusterings(
     elif score_method == "Purity":
         score = purity_score(labels_1, labels_2)
     elif score_method == "Entropy":
-        score = entropy_score(labels_1)
+        score = entropy_score(labels_1, labels_2)
     else:
         raise ValueError(f"Invalid score_method '{score_method}'. \
             Choose from 'ARI', 'NMI', 'Purity', or 'Entropy'.")

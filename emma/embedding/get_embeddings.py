@@ -35,7 +35,7 @@ def parse_args() -> argparse.Namespace:
         "--model",
         type=str,
         help="Name of the embedding model to be used",
-        default="esm2_t6_8M_UR50D",
+        default="esm2_t30_150M_UR50D",
     )
     parser.add_argument(
         "-o",
