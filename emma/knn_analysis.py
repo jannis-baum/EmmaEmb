@@ -6,13 +6,17 @@ from sklearn.neighbors import kneighbors_graph
 from sklearn.neighbors import NearestNeighbors
 import plotly.express as px
 
+
 ## k-NN feature enrichment scores
 
 def compare_knn_fraction_across_embeddings(
     ema, 
     feature_column, 
     k_neighbors=10, 
-    ):
+    distance_metric='euclidean',
+    embedding_order=None, 
+    color='#303496',
+):
     """
     Compares the fraction of same-class neighbors across \
         different embedding spaces using boxplots.
@@ -22,7 +26,9 @@ def compare_knn_fraction_across_embeddings(
     - feature_column: Column name in ema.meta_data for the \
         feature to analyze.
     - k_neighbors: Number of neighbors to consider in KNN graph.
-    - title: Title for the boxplot.
+    - distance_metric: Distance metric to use for KNN graph \
+        (e.g., 'euclidean', 'cosine').
+    - embedding_order: Optional list specifying the order of embedding spaces on the x-axis.
     """
     # Store results across all embeddings
     all_results = []
@@ -33,10 +39,13 @@ def compare_knn_fraction_across_embeddings(
         feature_classes = ema.meta_data[feature_column]  # Extract feature classes
 
         # Create KNN graph for current embeddings
-        knn_graph = kneighbors_graph(embeddings, 
-                                     n_neighbors=k_neighbors, 
-                                     mode='connectivity', 
-                                     include_self=False)
+        knn_graph = kneighbors_graph(
+            embeddings, 
+            n_neighbors=k_neighbors, 
+            mode='connectivity', 
+            metric=distance_metric,
+            include_self=False
+        )
         knn_matrix = knn_graph.toarray()
 
         # Calculate the fraction of same-class neighbors
@@ -45,7 +54,7 @@ def compare_knn_fraction_across_embeddings(
             neighbor_indices = np.where(neighbors == 1)[0]
             same_class_count = np.sum(
                 feature_classes.iloc[neighbor_indices].values == feature_classes.iloc[i]
-                )
+            )
             fraction = same_class_count / k_neighbors
             fractions.append(fraction)
 
@@ -65,11 +74,15 @@ def compare_knn_fraction_across_embeddings(
         all_results_df,
         x='Embedding',
         y='Fraction',
-        color='Embedding',
-        title=f"Comparison of Fraction of Same-Class Neighbors for {feature_column}",
-        labels={'Embedding': 'Embedding Space', 'Fraction': 'Fraction of k Nearest Neighbors in Same Class'},
-        template='plotly_white'
+        title=f"KNN feature enrichment scores for {feature_column}<br>k = {k_neighbors}, {distance_metric}",
+        labels={'Embedding': 'Embedding Space', 'Fraction': 'KNN feature enrichment scores'},
+        template='plotly_white',
+        color_discrete_sequence=[color]
     )
+
+    # Apply embedding order if provided
+    if embedding_order:
+        fig.update_xaxes(categoryorder='array', categoryarray=embedding_order)
     
     fig.update_layout(
         font=dict(family="Arial", color="black")
@@ -77,26 +90,22 @@ def compare_knn_fraction_across_embeddings(
     
     # Display the boxplot
     fig.show()
+    return fig
 
-
-def plot_knn_fraction_heatmap(
+def compare_knn_statistics_across_embeddings(
     ema, 
     feature_column, 
-    k_neighbors=10,
-    embedding_order=None
-    ):
+    k_neighbors=10
+):
     """
-    Generates a heatmap showing the mean fraction \
-        of same-class neighbors across embeddings.
+    Compares the mean and std of same-class neighbors across \
+        different embedding spaces using a bar plot.
 
     Parameters:
-    - ema: Handler object containing embeddings \
-        and metadata.
-    - feature_column: Column name in ema.meta_data \
-        for the feature to analyze.
-    - k_neighbors: Number of neighbors to consider \
-        in KNN graph.
-    - title: Title for the heatmap.
+    - ema: Handler object containing embeddings and metadata.
+    - feature_column: Column name in ema.meta_data for the \
+        feature to analyze.
+    - k_neighbors: Number of neighbors to consider in KNN graph.
     """
     # Store results across all embeddings
     all_results = []
@@ -119,7 +128,97 @@ def plot_knn_fraction_heatmap(
             neighbor_indices = np.where(neighbors == 1)[0]
             same_class_count = np.sum(
                 feature_classes.iloc[neighbor_indices].values == feature_classes.iloc[i]
-                )
+            )
+            fraction = same_class_count / k_neighbors
+            fractions.append(fraction)
+
+        # Calculate mean and std for this embedding
+        mean_fraction = np.mean(fractions)
+        std_fraction = np.std(fractions)
+
+        # Store the results
+        all_results.append({
+            'Embedding': model_id,
+            'Mean Fraction': mean_fraction,
+            'Std Fraction': std_fraction
+        })
+
+    # Convert results into a DataFrame
+    results_df = pd.DataFrame(all_results)
+
+    # Plot mean and std across embedding spaces using a bar plot
+    fig = px.bar(
+        results_df,
+        x='Embedding',
+        y=['Mean Fraction', 'Std Fraction'],
+        title=f"Mean and Std of Same-Class Neighbors for {feature_column} with k = {k_neighbors}",
+        labels={'Embedding': 'Embedding Space', 'value': 'Fraction of k Nearest Neighbors in Same Class'},
+        barmode='group',
+        template='plotly_white'
+    )
+
+    # Update layout for better appearance
+    fig.update_layout(
+        font=dict(family="Arial", color="black"),
+        yaxis_title='Fraction',
+        xaxis_title='Embedding Space'
+    )
+
+    # Display the plot
+    fig.show()
+    
+    return fig
+
+def plot_knn_fraction_heatmap(
+    ema, 
+    feature_column, 
+    k_neighbors=10,
+    distance_metric='euclidean',
+    embedding_order=None,
+    color_value='darkblue'
+):
+    """
+    Generates a heatmap showing the mean fraction \
+        of same-class neighbors across embeddings.
+
+    Parameters:
+    - ema: Handler object containing embeddings \
+        and metadata.
+    - feature_column: Column name in ema.meta_data \
+        for the feature to analyze.
+    - k_neighbors: Number of neighbors to consider \
+        in KNN graph.
+    - embedding_order: Optional list specifying the \
+        order of embedding spaces on the x-axis.
+    - distance_metric: Distance metric to use for KNN graph \
+        (e.g., 'euclidean', 'cosine').
+    - color_value: Hex code for the color to use at the maximum of the heatmap.
+    """
+    # Store results across all embeddings
+    all_results = []
+
+    # Iterate through each embedding space in ema
+    for model_id, emb_data in ema.emb.items():
+        embeddings = emb_data["emb"]  # Numpy array of embeddings
+        feature_classes = ema.meta_data[feature_column]  # Extract feature classes
+
+        # Create KNN graph for current embeddings
+        knn_graph = kneighbors_graph(
+            embeddings, 
+            n_neighbors=k_neighbors, 
+            mode='connectivity', 
+            metric=distance_metric,
+            include_self=False
+        )
+        knn_matrix = knn_graph.toarray()
+
+        # Calculate the fraction of same-class neighbors
+        fractions = []
+        for i, neighbors in enumerate(knn_matrix):
+            neighbor_indices = np.where(neighbors == 1)[0]
+            same_class_count = np.sum(
+                feature_classes.iloc[neighbor_indices].values == feature_classes.iloc[i]
+            )
             fraction = same_class_count / k_neighbors
             fractions.append(fraction)
 
@@ -151,7 +250,7 @@ def plot_knn_fraction_heatmap(
 
     # Update heatmap index with sample counts
     heatmap_data.index = [
-        f"{feature_class} (n = {count / len(ema.emb.items())})" 
+        f"{feature_class} (n = {int(count / len(ema.emb.items()))})" 
         for feature_class, count in zip(heatmap_data.index, class_counts[heatmap_data.index])
     ]
 
@@ -163,12 +262,13 @@ def plot_knn_fraction_heatmap(
             y="Feature Class (Samples)", 
             color="Mean Fraction"
             ),
-        title=f"KNN Fraction Heatmap for {feature_column}",
+        title=f"KNN Fraction Heatmap for {feature_column}<br>with k = {k_neighbors} ({distance_metric} metric)",
         color_continuous_scale=[
-            (0.0, "lightblue"),  # Light blue for the lowest value
-            (1.0, "darkblue")    # Dark blue for the highest value
+            (0.0, "lightblue"),  # White for the lowest value
+            (1.0, "darkblue")    # Custom color for the highest value
         ],
-        text_auto=".2f"
+        text_auto=".2f",
+        aspect='auto'
     )
 
     # Update font settings for the heatmap
@@ -180,44 +280,90 @@ def plot_knn_fraction_heatmap(
 
     # Display heatmap
     fig.show()
+    return fig
     
-    
-# cross-class neighbourhodd analysis
-def compute_class_mixing_in_neighborhood(embeddings, feature_classes, k):
+import numpy as np
+from sklearn.neighbors import NearestNeighbors
+from sklearn.preprocessing import LabelEncoder
+from collections import Counter
+
+def compute_class_mixing_in_neighborhood(embeddings, feature_classes, k_neighbors, distance_metric):
     """
     Calculate the overlap of neighbors' feature classes for each point.
-    Returns a DataFrame with counts of each class in the k-nearest neighbors for each point.
+    Returns a matrix with counts of each class in the k-nearest neighbors for each point.
     """
+    # Encode feature classes to numerical labels
+    le = LabelEncoder()
+    encoded_classes = le.fit_transform(feature_classes)
+    unique_classes = le.classes_
+    num_classes = len(unique_classes)
+    
     # Fit the NearestNeighbors model to the embeddings
-    knn = NearestNeighbors(n_neighbors=k+1)  # +1 because the point itself is included
+    knn = NearestNeighbors(n_neighbors=k_neighbors + 1, metric=distance_metric)  # +1 to include the point itself
     knn.fit(embeddings)
     
     # Get k-nearest neighbors for each point
-    distances, indices = knn.kneighbors(embeddings)
+    _, indices = knn.kneighbors(embeddings)
     
     # Initialize a matrix to store the counts of neighbors' feature classes
-    neighbor_class_counts = np.zeros((len(feature_classes.unique()), len(feature_classes.unique())))
+    neighbor_class_counts = np.zeros((num_classes, num_classes), dtype=int)
     
     # Loop over each sample and its neighbors
-    for i, idx in enumerate(indices):
-        # Exclude the point itself (the first in the neighbors list)
-        neighbor_classes = feature_classes.iloc[idx[1:]]  # Skip the first neighbor (the point itself)
+    for i, neighbors in enumerate(indices):
+        sample_class_idx = encoded_classes[i]
+        neighbor_class_indices = encoded_classes[neighbors[1:]]  # Exclude the point itself
         
-        # For each of the neighbors, increment the count for their feature class in the matrix
-        sample_class = feature_classes.iloc[i]
-        for neighbor_class in neighbor_classes:
-            sample_class_index = np.where(feature_classes.unique() == sample_class)[0][0]
-            neighbor_class_index = np.where(feature_classes.unique() == neighbor_class)[0][0]
-            neighbor_class_counts[neighbor_class_index, sample_class_index] += 1
+        # Count occurrences of each class in the neighbors
+        class_counts = Counter(neighbor_class_indices)
+        
+        # Update the neighbor class counts matrix
+        for neighbor_class_idx, count in class_counts.items():
+            neighbor_class_counts[neighbor_class_idx, sample_class_idx] += count
     
-    return neighbor_class_counts, feature_classes.unique()
+    return neighbor_class_counts, unique_classes
 
-def plot_class_mixing_heatmap(ema, embedding_space, feature, k):
+# cross-class neighbourhodd analysis
+# def compute_class_mixing_in_neighborhood(embeddings, feature_classes, 
+#                                          k_neighbors, distance_metric):
+#     """
+#     Calculate the overlap of neighbors' feature classes for each point.
+#     Returns a DataFrame with counts of each class in the k-nearest neighbors for each point.
+#     """
+#     # Fit the NearestNeighbors model to the embeddings
+#     knn = NearestNeighbors(n_neighbors=k_neighbors+1, metric=distance_metric)  # +1 because the point itself is included
+#     knn.fit(embeddings)
+    
+#     # Get k-nearest neighbors for each point
+#     distances, indices = knn.kneighbors(embeddings)
+    
+#     # Initialize a matrix to store the counts of neighbors' feature classes
+#     neighbor_class_counts = np.zeros((len(feature_classes.unique()), len(feature_classes.unique())))
+    
+#     # Loop over each sample and its neighbors
+#     for i, idx in enumerate(indices):
+#         # Exclude the point itself (the first in the neighbors list)
+#         neighbor_classes = feature_classes.iloc[idx[1:]]  # Skip the first neighbor (the point itself)
+        
+#         # For each of the neighbors, increment the count for their feature class in the matrix
+#         sample_class = feature_classes.iloc[i]
+#         for neighbor_class in neighbor_classes:
+#             sample_class_index = np.where(feature_classes.unique() == sample_class)[0][0]
+#             neighbor_class_index = np.where(feature_classes.unique() == neighbor_class)[0][0]
+#             neighbor_class_counts[neighbor_class_index, sample_class_index] += 1
+    
+#     return neighbor_class_counts, feature_classes.unique()
+
+def plot_class_mixing_heatmap(ema, embedding_space, feature, 
+                              k_neighbors, 
+                              distance_metric,
+                              color = ""):
     embeddings = ema.emb[embedding_space]["emb"]
     feature_classes = ema.meta_data[feature]
     
     # Get class mixing counts
-    mixing_counts, class_labels = compute_class_mixing_in_neighborhood(embeddings, feature_classes, k)
+    mixing_counts, class_labels = compute_class_mixing_in_neighborhood(embeddings, feature_classes, 
+                                                                       k_neighbors,
+                                                                       distance_metric)
 
     # Convert counts to a DataFrame for easier plotting
     mixing_df = pd.DataFrame(mixing_counts, index=class_labels, columns=class_labels)
@@ -228,13 +374,15 @@ def plot_class_mixing_heatmap(ema, embedding_space, feature, k):
         labels=dict(x="Feature Class (Sample)", y="Feature Class (Neighbor)", color="Neighbor Count"),
         title=f"Class Mixing in Neighborhoods (Embedding: {embedding_space})",
         color_continuous_scale="Blues",
-        text_auto=True
+        text_auto=True,
+        aspect='auto'
     )
     
     fig.update_layout(
         font=dict(family="Arial", color="black")
     )
     fig.show()
+    return fig
 
 # cross-space neighbourhood similarity
 
@@ -299,7 +447,100 @@ def plot_heatmap_feature_distribution(ema,
         font=dict(family="Arial", color="black")
     )
     fig.show()
-    
+
+
+
+def plot_class_mixing_stacked_bar(ema, embedding_space, feature, k):
+    """
+    Plot a stacked bar chart showing the proportions of neighbor classes for each class.
+    """
+    embeddings = ema.emb[embedding_space]["emb"]
+    feature_classes = ema.meta_data[feature]
+
+    # Get class mixing counts
+    mixing_counts, class_labels = compute_class_mixing_in_neighborhood(embeddings, feature_classes, k)
+
+    # Convert counts to proportions
+    mixing_proportions = (mixing_counts.T / mixing_counts.sum(axis=1)).T  # Normalize rows
+    mixing_df = pd.DataFrame(mixing_proportions, index=class_labels, columns=class_labels)
+
+    # Melt DataFrame for stacked bar plot
+    melted_df = mixing_df.reset_index().melt(
+        id_vars="index", var_name="Neighbor Class", value_name="Proportion"
+    )
+    melted_df.rename(columns={"index": "Sample Class"}, inplace=True)
+
+    # Plot stacked bar chart
+    fig = px.bar(
+        melted_df,
+        x="Sample Class",
+        y="Proportion",
+        color="Neighbor Class",
+        barmode="stack",
+        title=f"Class Mixing in Neighborhoods (Embedding: {embedding_space})",
+        labels={"Proportion": "Proportion of Neighbors"},
+        color_discrete_sequence=px.colors.qualitative.Set1,
+    )
+
+    fig.update_layout(
+        font=dict(family="Arial", color="black"),
+        xaxis_title="Feature Class (Sample)",
+        yaxis_title="Proportion of Neighbors",
+    )
+
+    fig.show()
+
+def plot_class_mixing_stacked_bar_absolute(ema, embedding_space, feature, k):
+    """
+    Plot a stacked bar chart showing the absolute counts of neighbor classes for each sample class.
+    """
+    embeddings = ema.emb[embedding_space]["emb"]
+    feature_classes = ema.meta_data[feature]
+
+    # Get class mixing counts
+    mixing_counts, class_labels = compute_class_mixing_in_neighborhood(embeddings, feature_classes, k)
+
+    # Convert counts to a DataFrame
+    mixing_df = pd.DataFrame(mixing_counts, index=class_labels, columns=class_labels)
+
+    # Melt DataFrame for stacked bar plot
+    melted_df = mixing_df.reset_index().melt(
+        id_vars="index", var_name="Neighbor Class", value_name="Count"
+    )
+    melted_df.rename(columns={"index": "Sample Class"}, inplace=True)
+
+    # Plot stacked bar chart
+    fig = px.bar(
+        melted_df,
+        x="Sample Class",
+        y="Count",
+        color="Neighbor Class",
+        barmode="stack",
+        title=f"Class Mixing in Neighborhoods (Embedding: {embedding_space})",
+        labels={"Count": "Neighbor Count"},
+        color_discrete_sequence=px.colors.qualitative.Set1,
+    )
+
+    # Add total count annotations on top of each bar
+    total_counts = mixing_df.sum(axis=1)
+    for i, total in enumerate(total_counts):
+        fig.add_annotation(
+            x=class_labels[i],
+            y=total,
+            text=str(int(total)),
+            showarrow=False,
+            font=dict(size=10, color="black", family="Arial"),
+            xanchor="center",
+            yanchor="bottom",
+        )
+
+    fig.update_layout(
+        font=dict(family="Arial", color="black"),
+        xaxis_title="Feature Class (Sample)",
+        yaxis_title="Neighbor Count",
+    )
+
+    fig.show()
     
 def analyze_low_similarity_distributions(
     ema,
@@ -360,7 +601,105 @@ def analyze_low_similarity_distributions(
         fig.update_traces(texttemplate='%{y:.2f}', textposition='outside')  # Add text labels
         fig.show()
 
-    return feature_distributions
+    return fig
+
+def analyze_low_similarity_distribution(
+    ema,
+    embedding_space_1,
+    embedding_space_2,
+    feature,
+    similarity_threshold=0.2,
+    k_neighbors=10,
+    distance_metric="euclidean"
+):
+    """
+    Analyze and visualize the distribution of a single feature for samples with low neighborhood similarity.
+
+    Parameters:
+    - ema: Handler object containing embeddings and metadata.
+    - embedding_space_1: Name of the first embedding space.
+    - embedding_space_2: Name of the second embedding space.
+    - feature: Feature column name from ema.meta_data to analyze.
+    - similarity_threshold: Threshold below which similarity is considered "low" (default: 0.2).
+    - k_neighbors: Number of neighbors to consider in KNN graph (default: 10).
+    - distance_metric: Metric to use for computing KNN graph (default: "euclidean").
+      Examples include "euclidean", "cosine", "manhattan", etc.
+    """
+    def compute_neighborhood_similarity(emb1, emb2, k, metric):
+        """
+        Helper function to compute neighborhood similarity between two embeddings.
+        """
+        knn_1 = kneighbors_graph(emb1, n_neighbors=k, mode="connectivity", metric=metric).toarray()
+        knn_2 = kneighbors_graph(emb2, n_neighbors=k, mode="connectivity", metric=metric).toarray()
+        similarity = np.sum(knn_1 * knn_2, axis=1) / k  # Fraction of shared neighbors
+        return similarity
+
+    # Retrieve embeddings
+    emb1 = ema.emb[embedding_space_1]["emb"]
+    emb2 = ema.emb[embedding_space_2]["emb"]
+
+    # Compute neighborhood similarity
+    similarities = compute_neighborhood_similarity(emb1, emb2, k_neighbors, distance_metric)
+
+    # Identify samples with low similarity
+    low_similarity_indices = np.where(similarities < similarity_threshold)[0]
+    low_similarity_samples = ema.meta_data.iloc[low_similarity_indices]
+
+    # Compute distributions
+    total_distribution = ema.meta_data[feature].value_counts(normalize=True)  # Entire dataset
+    low_similarity_distribution = low_similarity_samples[feature].value_counts(normalize=True)  # Low-similarity subset
+
+    # Align indices to ensure consistent comparison
+    aligned_distributions = total_distribution.align(low_similarity_distribution, fill_value=0)
+
+    # Prepare scatter plot data
+    fractions_in_dataset = aligned_distributions[0]  # Fraction in entire dataset
+    fractions_in_subset = aligned_distributions[1]   # Fraction in low-similarity subset
+    class_labels = aligned_distributions[0].index  # Class labels for legend
+
+    # Create scatter plot
+    fig = px.scatter(
+        x=fractions_in_dataset,
+        y=fractions_in_subset,
+        color=class_labels,
+        labels={"x": "Fraction in Dataset", "y": "Fraction in Subsample", "color": feature},
+        title=f"Comparison of {feature} Fractions (Similarity < {similarity_threshold} between {embedding_space_1} and {embedding_space_2}, Metric: {distance_metric})",
+        template="plotly_white"
+    )
+    fig.update_traces(marker=dict(size=10, line=None))  # Remove rim around dots
+    fig.add_shape(
+        type="line",
+        x0=0, y0=0,
+        x1=1, y1=1,
+        line=dict(color="LightGrey", dash="dash")
+    )  # Add diagonal reference line
+    
+    fig.update_layout(
+        template="plotly_white",
+        font=dict(family="Arial", size=12, color="black"),
+    )
+    # show line at y=0 and x=0
+    fig.update_xaxes(showline=True, linecolor="black", linewidth=2)
+    fig.update_yaxes(showline=True, linecolor="black", linewidth=2)
+    # hide gridlines
+    fig.update_xaxes(showgrid=False)
+    fig.update_yaxes(showgrid=False)
+
+    # Update layout for font and legend
+    fig.update_layout(
+        font=dict(family="Arial", color="black"),
+        # legend=dict(orientation="h", yanchor="bottom", y=-0.2),  # Move legend below plot
+        showlegend=True
+    )
+
+    fig.show()
+
+    return fractions_in_dataset, fractions_in_subset
+
+
+
+
+
 
 def plot_low_similarity_class_representation(
     ema, 
@@ -556,6 +895,7 @@ def plot_low_similarity_class_proportions(
 
     # Show figure
     fig.show()
+    return fig
 
 def plot_high_similarity_class_proportions(
     ema,
@@ -660,3 +1000,4 @@ def plot_high_similarity_class_proportions(
 
     # Show figure
     fig.show()
+    
