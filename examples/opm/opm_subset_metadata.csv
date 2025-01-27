@@ -1,0 +1,1073 @@
+uniprotcode,family_name_cache,species_name_cache,membrane_name_cache,species_id,family_id,superfamily_id,classtype_id,type_id,sequence_length,sequence_length_bin
+M2_I97A1,Influenza virus matrix protein 2,Influenza A virus,Viral,s51,f263,sf185,c11,t1,97,0-100
+OMPF_ECOLI,General Bacterial Porin (GBP),Escherichia coli,Gram-neg. outer,s9,f42,sf31,c2,t1,362,300-500
+OMPC_KLEPN,General Bacterial Porin (GBP),Klebsiella pneumoniae,Gram-neg. outer,s16,f42,sf31,c2,t1,363,300-500
+OMP32_DELAC,General Bacterial Porin (GBP),Comamonas acidovorans,Gram-neg. outer,s8,f42,sf31,c2,t1,351,300-500
+FHUA_ECOLI,Outer Membrane Receptor (OMR),Escherichia coli,Gram-neg. outer,s9,f83,sf33,c2,t1,747,500-1000
+FEPA_ECOLI,Outer Membrane Receptor (OMR),Escherichia coli,Gram-neg. outer,s9,f83,sf33,c2,t1,746,500-1000
+FECA_ECOLI,Outer Membrane Receptor (OMR),Escherichia coli,Gram-neg. outer,s9,f83,sf33,c2,t1,774,500-1000
+BTUB_ECOLI,Outer Membrane Receptor (OMR),Escherichia coli,Gram-neg. outer,s9,f83,sf33,c2,t1,614,500-1000
+FPVA_PSEAE,Outer Membrane Receptor (OMR),Pseudomonas aeruginosa,Gram-neg. outer,s28,f83,sf33,c2,t1,815,500-1000
+MSCS_ECOLI,Small conductance mechanosensitive ion channels,Escherichia coli,Gram-neg. inner,s9,f19,sf11,c1,t1,286,100-300
+AQPZ_ECOLI,Major intrinsic protein (MIP) family,Escherichia coli,Gram-neg. inner,s9,f15,sf7,c1,t1,231,100-300
+GLPF_ECOLI,Major intrinsic protein (MIP) family,Escherichia coli,Gram-neg. inner,s9,f15,sf7,c1,t1,281,100-300
+MIP_BOVIN,Major intrinsic protein (MIP) family,Bos taurus,Eykaryo. plasma,s6,f15,sf7,c1,t1,263,100-300
+Q8YSC4_NOSS1,Microbial and algal rhodopsins,Nostoc sp.,Gram-neg. inner,s2,f13,sf6,c1,t1,261,100-300
+OPSD_BOVIN,"G-protein coupled receptors, family A",Bos taurus,Eykaryo. plasma,s6,f14,sf6,c1,t1,348,300-500
+BACR_HALSA,Microbial and algal rhodopsins,Halobacterium salinarum,Archaebac.,s12,f13,sf6,c1,t1,262,100-300
+BACH_HALSA,Microbial and algal rhodopsins,Halobacterium salinarum,Archaebac.,s12,f13,sf6,c1,t1,274,100-300
+BACR1_HALEZ,Microbial and algal rhodopsins,Halobacterium sp.,Archaebac.,s13,f13,sf6,c1,t1,260,100-300
+MIP_SHEEP,Major intrinsic protein (MIP) family,Ovis aries,Eykaryo. plasma,s26,f15,sf7,c1,t1,263,100-300
+AQP1_BOVIN,Major intrinsic protein (MIP) family,Bos taurus,Eykaryo. plasma,s6,f15,sf7,c1,t1,271,100-300
+DEF3_HUMAN,Vertebrate defensin,Homo sapiens,Secreted,s14,f67,sf54,c3,t2,94,0-100
+CIRA_CHAPA,Cyclotide,Chassalia parviflora,Secreted,s49,f148,sf112,c3,t2,30,0-100
+DMYC_DROME,Invertebrate and fungal defensins,Drosophila melanogaster,Secreted,s50,f72,sf58,c6,t2,70,0-100
+BLC_ECOLI,"Retinol binding protein-like (n=8,S=12)",Escherichia coli,Gram-neg. outer,s9,f63,sf50,c3,t2,177,100-300
+ANXA5_RAT,Annexins,Rattus norvegicus,Eykaryo. plasma,s54,f54,sf41,c4,t2,319,300-500
+SCX3_CENSC,Long-chain scorpion toxins,Centruroides sculpturatus,Secreted,s48,f71,sf58,c6,t2,87,0-100
+3SOF5_NAJAT,Snake venom toxins,Naja atra,Secreted,s53,f66,sf53,c3,t2,83,0-100
+KPCA_RAT,C2 domain,Rattus norvegicus,Eykaryo. plasma,s54,f60,sf45,c3,t2,672,500-1000
+SYT1_RAT,C2 domain,Rattus norvegicus,Eykaryo. plasma,s54,f60,sf45,c3,t2,421,300-500
+NCF4_HUMAN,PX domain,Homo sapiens,Endosome,s14,f70,sf57,c6,t2,339,300-500
+KPCD_MOUSE,C1 domain,Mus musculus,Eykaryo. plasma,s52,f74,sf60,c3,t2,674,500-1000
+BACS2_NATPH,Microbial and algal rhodopsins,Natronomonas pharaonis,Archaebac.,s23,f13,sf6,c1,t1,239,100-300
+AQP1_HUMAN,Major intrinsic protein (MIP) family,Homo sapiens,Eykaryo. plasma,s14,f15,sf7,c1,t1,269,100-300
+BACR2_HALS2,Microbial and algal rhodopsins,Halobacterium sp.,Archaebac.,s13,f13,sf6,c1,t1,259,100-300
+FPTA_PSEAE,Outer Membrane Receptor (OMR),Pseudomonas aeruginosa,Gram-neg. outer,s28,f83,sf33,c2,t1,720,500-1000
+PHOE_ECOLI,General Bacterial Porin (GBP),Escherichia coli,Gram-neg. outer,s9,f42,sf31,c2,t1,351,300-500
+AQPM_METTM,Major intrinsic protein (MIP) family,Methanothermobacter marburgensis,Archaebac.,s59,f15,sf7,c1,t1,246,100-300
+Q41372_SPIOL,Major intrinsic protein (MIP) family,Spinacia oleracea,Eykaryo. plasma,s37,f15,sf7,c1,t1,281,100-300
+OPSD_TODPA,"G-protein coupled receptors, family A",Todarodes pacificus,Eykaryo. plasma,s248,f14,sf6,c1,t1,448,300-500
+Q8WPZ6_PLAFA,Major intrinsic protein (MIP) family,Plasmodium falciparum,Eykaryo. plasma,s249,f15,sf7,c1,t1,258,100-300
+AQP4_RAT,Major intrinsic protein (MIP) family,Rattus norvegicus,Eykaryo. plasma,s54,f15,sf7,c1,t1,323,300-500
+CYC6_SYNEL,Cytochrome c,Thermosynechococcus elongatus,Thylakoid,s41,f92,sf71,c4,t2,87,0-100
+CYC6_LIMMA,Cytochrome c,Arthrospira maxima,Thylakoid,s85,f92,sf71,c4,t2,89,0-100
+CYC6_CLAGO,Cytochrome c,Cladophora glomerata,Thylakoid,s115,f92,sf71,c4,t2,91,0-100
+CY552_NITEU,Cytochrome c,Nitrosomonas europaea,Gram-neg. inner,s176,f92,sf71,c4,t2,103,100-300
+CYC_HORSE,Cytochrome c,Equus caballus,Mitochon. inner,s142,f92,sf71,c4,t2,105,100-300
+CYC2_BLAVI,Cytochrome c,Rhodopseudomonas viridis,Gram-neg. inner,s34,f92,sf71,c4,t2,127,100-300
+O52685_SHEPU,Cytochrome c,Shewanella putrefaciens,Gram-neg. inner,s201,f92,sf71,c4,t2,99,0-100
+CY551_STUST,Cytochrome c,Pseudomonas stutzeri,Gram-neg. inner,s190,f92,sf71,c4,t2,104,100-300
+CY551_PSEAE,Cytochrome c,Pseudomonas aeruginosa,Gram-neg. inner,s28,f92,sf71,c4,t2,104,100-300
+CYC4_STUST,Cytochrome c,Pseudomonas stutzeri,Gram-neg. inner,s190,f92,sf71,c4,t2,210,100-300
+ANXA1_PIG,Annexins,Sus scrofa,Vesicle,s56,f54,sf41,c4,t2,346,300-500
+ANXA2_HUMAN,Annexins,Homo sapiens,Eykaryo. plasma,s14,f54,sf41,c4,t2,339,300-500
+ANXA3_HUMAN,Annexins,Homo sapiens,Eykaryo. plasma,s14,f54,sf41,c4,t2,323,300-500
+ANXA4_BOVIN,Annexins,Bos taurus,Eykaryo. plasma,s6,f54,sf41,c4,t2,319,300-500
+ANXA5_HUMAN,Annexins,Homo sapiens,Eykaryo. plasma,s14,f54,sf41,c4,t2,320,300-500
+ANXA5_CHICK,Annexins,Gallus gallus,Eykaryo. plasma,s11,f54,sf41,c4,t2,321,300-500
+ANXA6_HUMAN,Annexins,Homo sapiens,Eykaryo. plasma,s14,f54,sf41,c4,t2,673,500-1000
+ANXA8_HUMAN,Annexins,Homo sapiens,Eykaryo. plasma,s14,f54,sf41,c4,t2,327,300-500
+ANX12_HYDVU,Annexins,Hydra vulgaris,Eykaryo. plasma,s159,f54,sf41,c4,t2,316,300-500
+Q42657_CAPAN,Annexins,Capsicum annuum,Eykaryo. plasma,s111,f54,sf41,c4,t2,314,300-500
+ANX1_GOSHI,Annexins,Gossypium hirsutum,Eykaryo. plasma,s147,f54,sf41,c4,t2,315,300-500
+CP2C5_RABIT,Cytochrome P450,Oryctolagus cuniculus,Endoplasm. reticulum,s25,f52,sf39,c11,t1,487,300-500
+CP2B4_RABIT,Cytochrome P450,Oryctolagus cuniculus,Endoplasm. reticulum,s25,f52,sf39,c11,t1,491,300-500
+CP2C8_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,490,300-500
+CP2C9_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,490,300-500
+CP3A4_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,503,500-1000
+CP2A6_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,494,300-500
+LOX15_RABIT,Lipoxygenases,Oryctolagus cuniculus,Eykaryo. plasma,s25,f104,sf80,c4,t2,663,500-1000
+CEL_HUMAN,Acetylcholinesterase-like,Homo sapiens,Secreted,s14,f178,sf127,c5,t2,753,500-1000
+PA2A1_NAJAT,Vertebrate secretory phospholipase A2,Naja atra,Secreted,s53,f107,sf82,c4,t2,146,100-300
+PA2A2_OPHHA,Vertebrate secretory phospholipase A2,Ophiophagus hannah,Secreted,s179,f107,sf82,c4,t2,146,100-300
+PA2A_CROAT,Vertebrate secretory phospholipase A2,Crotalus atrox,Secreted,s127,f107,sf82,c4,t2,138,100-300
+PA2A_GLOHA,Vertebrate secretory phospholipase A2,Gloydius halys,Secreted,s77,f107,sf82,c4,t2,124,100-300
+PA2BB_GLOHA,Vertebrate secretory phospholipase A2,Gloydius halys,Secreted,s77,f107,sf82,c4,t2,138,100-300
+PA2N_GLOHA,Vertebrate secretory phospholipase A2,Gloydius halys,Secreted,s77,f107,sf82,c4,t2,122,100-300
+PA2B1_AGKPI,Vertebrate secretory phospholipase A2,Agkistridon piscivorus,Secreted,s74,f107,sf82,c4,t2,123,100-300
+PA2H1_AGKCL,Vertebrate secretory phospholipase A2,Agkistrodon contortrix laticinctus,Secreted,s76,f107,sf82,c4,t2,137,100-300
+PA2B_NOTSC,Vertebrate secretory phospholipase A2,Notechis scutatus scutatus,Secreted,s344,f107,sf82,c4,t2,119,100-300
+PA2B_DABRR,Vertebrate secretory phospholipase A2,Daboia russelli,Secreted,s128,f107,sf82,c4,t2,121,100-300
+PA2A1_ECHCA,Vertebrate secretory phospholipase A2,Echis carinatus,Secreted,s135,f107,sf82,c4,t2,136,100-300
+PA2B5_BUNCE,Vertebrate secretory phospholipase A2,Bungarus caeruleus,Secreted,s100,f107,sf82,c4,t2,137,100-300
+PA2B3_BUNCE,Vertebrate secretory phospholipase A2,Bungarus caeruleus,Secreted,s100,f107,sf82,c4,t2,137,100-300
+PA2A1_BUNCE,Vertebrate secretory phospholipase A2,Bungarus caeruleus,Secreted,s100,f107,sf82,c4,t2,137,100-300
+PA2H_DEIAC,Vertebrate secretory phospholipase A2,Agkistrodon acutus,Secreted,s75,f107,sf82,c4,t2,138,100-300
+PA2A_BOTJR,Vertebrate secretory phospholipase A2,Bothrops jararacussu,Secreted,s95,f107,sf82,c4,t2,138,100-300
+PA2H2_CERGO,Vertebrate secretory phospholipase A2,Bothrops godmani,Secreted,s94,f107,sf82,c4,t2,121,100-300
+PA2H3_BOTPI,Vertebrate secretory phospholipase A2,Bothrops pirajai,Secreted,s97,f107,sf82,c4,t2,120,100-300
+PA2H2_BOTMO,Vertebrate secretory phospholipase A2,Bothrops moojeni,Secreted,s96,f107,sf82,c4,t2,122,100-300
+PA2B8_DABRR,Vertebrate secretory phospholipase A2,Daboia russelli,Secreted,s128,f107,sf82,c4,t2,121,100-300
+PA2GA_HUMAN,Vertebrate secretory phospholipase A2,Homo sapiens,Secreted,s14,f107,sf82,c4,t2,144,100-300
+PA21B_BOVIN,Vertebrate secretory phospholipase A2,Bos taurus,Secreted,s6,f107,sf82,c4,t2,145,100-300
+PA21B_PIG,Vertebrate secretory phospholipase A2,Sus scrofa,Secreted,s56,f107,sf82,c4,t2,146,100-300
+PA2GX_HUMAN,Vertebrate secretory phospholipase A2,Homo sapiens,Secreted,s14,f107,sf82,c4,t2,165,100-300
+FUS_PIV5,Juxtamembrane peptides of viral envelope glycoproteins,Simian virus 5,Viral,s202,f439,sf277,c7,t3,529,500-1000
+RET2_RAT,Fatty acid binding protein-like (n=10),Rattus norvegicus,Eykaryo. plasma,s54,f137,sf50,c3,t2,134,100-300
+LCN5_RAT,"Retinol binding protein-like (n=8,S=12)",Rattus norvegicus,Secreted,s54,f63,sf50,c3,t2,188,100-300
+CO8G_HUMAN,"Retinol binding protein-like (n=8,S=12)",Homo sapiens,Secreted,s14,f63,sf50,c3,t2,202,100-300
+PTGDS_HUMAN,Fatty acid binding protein-like (n=10),Homo sapiens,Endoplasm. reticulum,s14,f137,sf50,c3,t2,190,100-300
+AMCY_PARDE,Plastocyanin/azurin-like,Paracoccus denitrificans,Gram-neg. inner,s27,f123,sf93,c3,t2,131,100-300
+AMCY_PARVE,Plastocyanin/azurin-like,Paracoccus versutus,Gram-neg. inner,s214,f123,sf93,c3,t2,132,100-300
+PLAS_PHAVU,Plastocyanin/azurin-like,Phaseolus vulgaris,Thylakoid,s184,f123,sf93,c3,t2,99,0-100
+PLAS_CHLRE,Plastocyanin/azurin-like,Chlamydomonas reinhardtii,Thylakoid,s7,f123,sf93,c3,t2,145,100-300
+PLAS_SYNE7,Plastocyanin/azurin-like,Synechocystis sp.,Thylakoid,s212,f123,sf93,c3,t2,125,100-300
+PLAS_PROHO,Plastocyanin/azurin-like,Prochlorothrix hollandica,Thylakoid,s188,f123,sf93,c3,t2,131,100-300
+AZUP_METEA,Plastocyanin/azurin-like,Methylorubrum extorquens,Gram-neg. inner,s169,f123,sf93,c3,t2,148,100-300
+O82080_SPIOL,Plastocyanin/azurin-like,Spinacia oleracea,Thylakoid,s37,f123,sf93,c3,t2,121,100-300
+AZUR1_ALCXX,Plastocyanin/azurin-like,Alcaligenes xylosoxidans,Gram-neg. inner,s79,f123,sf93,c3,t2,129,100-300
+AZUR2_METJ,Plastocyanin/azurin-like,Methylomonas sp.,Gram-neg. inner,s170,f123,sf93,c3,t2,129,100-300
+KPCE_RAT,C2 domain,Rattus norvegicus,Eykaryo. plasma,s54,f60,sf45,c3,t2,737,500-1000
+SYT3_RAT,C2 domain,Rattus norvegicus,Eykaryo. plasma,s54,f60,sf45,c3,t2,588,500-1000
+SYT4_HUMAN,C2 domain,Homo sapiens,Eykaryo. plasma,s14,f60,sf45,c3,t2,425,300-500
+KPCB_RAT,C2 domain,Rattus norvegicus,Eykaryo. plasma,s54,f60,sf45,c3,t2,671,500-1000
+RIMS2_RAT,C2 domain,Rattus norvegicus,Eykaryo. plasma,s54,f60,sf45,c3,t2,1555,1000-2000
+AOSL_PLEHO,Lipoxygenases,Plexaura homomalla,Eykaryo. plasma,s187,f104,sf80,c4,t2,1066,1000-2000
+G1K3Q0_ACEAT,Microbial and algal rhodopsins,Acetabularia acetabulum,Eykaryo. plasma,s348,f13,sf6,c1,t1,229,100-300
+FABPM_LOCMI,Fatty acid binding protein-like (n=10),Locusta migratoria,Eykaryo. plasma,s352,f137,sf50,c3,t2,134,100-300
+RET2_HUMAN,Fatty acid binding protein-like (n=10),Homo sapiens,Eykaryo. plasma,s14,f137,sf50,c3,t2,134,100-300
+DYN1_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,864,500-1000
+PLEK_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,350,300-500
+DAPP1_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,280,100-300
+PKHA1_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,404,300-500
+AKT1_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,480,300-500
+AKT2_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,481,300-500
+MTMR5_MOUSE,Pleckstrin-homology domain,Mus musculus,Eykaryo. plasma,s52,f62,sf49,c3,t2,1867,1000-2000
+TRIO_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,3097,>2000
+PKHA4_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,779,500-1000
+RET4_BOVIN,"Retinol binding protein-like (n=8,S=12)",Bos taurus,Secreted,s6,f63,sf50,c3,t2,183,100-300
+RET4_PIG,"Retinol binding protein-like (n=8,S=12)",Sus scrofa,Secreted,s56,f63,sf50,c3,t2,201,100-300
+RET4_HUMAN,"Retinol binding protein-like (n=8,S=12)",Homo sapiens,Secreted,s14,f63,sf50,c3,t2,201,100-300
+FABPH_HUMAN,Fatty acid binding protein-like (n=10),Homo sapiens,Eykaryo. plasma,s14,f137,sf50,c3,t2,133,100-300
+FABPH_BOVIN,Fatty acid binding protein-like (n=10),Bos taurus,Eykaryo. plasma,s6,f137,sf50,c3,t2,133,100-300
+FABPI_RAT,Fatty acid binding protein-like (n=10),Rattus norvegicus,Eykaryo. plasma,s54,f137,sf50,c3,t2,132,100-300
+FABPI_HUMAN,Fatty acid binding protein-like (n=10),Homo sapiens,Eykaryo. plasma,s14,f137,sf50,c3,t2,132,100-300
+FABP7_HUMAN,Fatty acid binding protein-like (n=10),Homo sapiens,Eykaryo. plasma,s14,f137,sf50,c3,t2,132,100-300
+FABP5_HUMAN,Fatty acid binding protein-like (n=10),Homo sapiens,Eykaryo. plasma,s14,f137,sf50,c3,t2,135,100-300
+FABP4_MOUSE,Fatty acid binding protein-like (n=10),Mus musculus,Eykaryo. plasma,s52,f137,sf50,c3,t2,132,100-300
+FABP4_HUMAN,Fatty acid binding protein-like (n=10),Homo sapiens,Eykaryo. plasma,s14,f137,sf50,c3,t2,132,100-300
+FABP1_ECHGR,Fatty acid binding protein-like (n=10),Echinococcus granulosus,Eykaryo. plasma,s134,f137,sf50,c3,t2,133,100-300
+FABPM_SCHGR,Fatty acid binding protein-like (n=10),Schistocerca gregaria,Eykaryo. plasma,s198,f137,sf50,c3,t2,134,100-300
+RABP2_HUMAN,Fatty acid binding protein-like (n=10),Homo sapiens,Nuclear outer,s14,f137,sf50,c3,t2,138,100-300
+RABP1_MOUSE,Fatty acid binding protein-like (n=10),Bos taurus,Eykaryo. plasma,s6,f137,sf50,c3,t2,137,100-300
+RET1_RAT,Fatty acid binding protein-like (n=10),Rattus norvegicus,Eykaryo. plasma,s54,f137,sf50,c3,t2,135,100-300
+Q8UVG6_DANRE,Fatty acid binding protein-like (n=10),Danio rerio,Eykaryo. plasma,s129,f137,sf50,c3,t2,135,100-300
+RET5_HUMAN,Fatty acid binding protein-like (n=10),Homo sapiens,Eykaryo. plasma,s14,f137,sf50,c3,t2,135,100-300
+RET7_HUMAN,Fatty acid binding protein-like (n=10),Homo sapiens,Eykaryo. plasma,s14,f137,sf50,c3,t2,134,100-300
+MYP2_BOVIN,Fatty acid binding protein-like (n=10),Bos taurus,Eykaryo. plasma,s6,f137,sf50,c3,t2,132,100-300
+FABP_SCHMA,Fatty acid binding protein-like (n=10),Schistosoma mansoni,Eykaryo. plasma,s199,f137,sf50,c3,t2,133,100-300
+CP2D6_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,497,300-500
+POLG_DEN2P,Flavivirus glycoprotein,Dengue virus,Viral,s131,f147,sf109,c11,t1,3388,>2000
+KAB2_OLDAF,Cyclotide,Oldenlandia affinis,Secreted,s178,f148,sf112,c3,t2,210,100-300
+CYO1_VIOOD,Cyclotide,Viola odorata,Secreted,s221,f148,sf112,c3,t2,30,0-100
+VHR1_VIOHE,Cyclotide,Viola hederacea,Secreted,s220,f148,sf112,c3,t2,30,0-100
+PALIC_PALCO,Cyclotide,Palicourea condensata,Secreted,s180,f148,sf112,c3,t2,37,0-100
+O16O3_CONST,Conotoxin O1,Conus striatus,Secreted,s124,f153,sf112,c3,t2,71,0-100
+U6A_CONER,Conotoxin O1,Conus ermineus,Secreted,s120,f153,sf112,c3,t2,32,0-100
+O17_CONTE,Conotoxin O1,Conus textile,Secreted,s125,f153,sf112,c3,t2,77,0-100
+O16A_CONTE,Conotoxin O1,Conus textile,Secreted,s125,f153,sf112,c3,t2,78,0-100
+O16B_CONMR,Conotoxin O1,Conus marmoreus,Secreted,s122,f153,sf112,c3,t2,82,0-100
+TX23B_AGEAP,Spider ion channel inhibitory toxins,Agelenopsis aperta,Secreted,s73,f154,sf112,c3,t2,83,0-100
+TXMO_HADIN,Spider ion channel inhibitory toxins,Hadronyche infensa,Secreted,s150,f154,sf112,c3,t2,83,0-100
+D1A_HADVE,Spider ion channel inhibitory toxins,Hadronyche versuta,Secreted,s438,f154,sf112,c3,t2,42,0-100
+TXDT1_ATRRO,Spider ion channel inhibitory toxins,Atrax robustus,Secreted,s86,f154,sf112,c3,t2,42,0-100
+TXH1_CYRSC,Spider ion channel inhibitory toxins,Haplopelma hainanum,Secreted,s282,f154,sf112,c3,t2,81,0-100
+TXP1_PARSR,Spider ion channel inhibitory toxins,Paraphysa scrofa,Secreted,s181,f154,sf112,c3,t2,29,0-100
+TXHN1_GRARO,Spider ion channel inhibitory toxins,Grammostola rosea,Secreted,s283,f154,sf112,c3,t2,85,0-100
+VSTX1_GRARO,Spider ion channel inhibitory toxins,Grammostola rosea,Secreted,s283,f154,sf112,c3,t2,63,0-100
+SCX2_CENSC,Long-chain scorpion toxins,Centruroides sculpturatus,Secreted,s48,f71,sf58,c6,t2,87,0-100
+SCX2_CENNO,Long-chain scorpion toxins,Centruroides noxius,Secreted,s113,f71,sf58,c6,t2,84,0-100
+SCM1_MESMA,Long-chain scorpion toxins,Buthus martensii,Secreted,s104,f71,sf58,c6,t2,84,0-100
+SCX1_HOTTA,Long-chain scorpion toxins,Hottentotta tamulus,Secreted,s105,f71,sf58,c6,t2,64,0-100
+SCX1_TITSE,Long-chain scorpion toxins,Tityus serrulatus,Secreted,s215,f71,sf58,c6,t2,84,0-100
+SCX7_MESMA,Long-chain scorpion toxins,Buthus martensii,Secreted,s104,f71,sf58,c6,t2,66,0-100
+SCL3_LEIHE,Long-chain scorpion toxins,Leiurus quinquestriatus hebraeus,Secreted,s163,f71,sf58,c6,t2,67,0-100
+KAX11_LEIHE,Short-chain scorpion toxins,Leiurus quinquestriatus hebraeus,Secreted,s163,f157,sf58,c6,t2,59,0-100
+CTX5A_MESEU,Short-chain scorpion toxins,Buthus eupeus,Secreted,s103,f157,sf58,c6,t2,35,0-100
+DEFN_ARCDE,Invertebrate and fungal defensins,Archaeoprepona demophon,Secreted,s84,f72,sf58,c6,t2,44,0-100
+SAPE_SARPE,Invertebrate and fungal defensins,Sarcophaga peregrina,Secreted,s197,f72,sf58,c6,t2,94,0-100
+DEF1_RAPSA,Plant defensins,Raphanus sativus,Secreted,s193,f158,sf58,c6,t2,80,0-100
+DEF1_PEA,Plant defensins,Pisum sativum,Secreted,s185,f158,sf58,c6,t2,46,0-100
+3SA1_NAJPA,Snake venom toxins,Naja pallida,Secreted,s228,f66,sf53,c3,t2,60,0-100
+3SA4_NAJMO,Snake venom toxins,Naja mossambica,Secreted,s172,f66,sf53,c3,t2,60,0-100
+3SAN_NAJAT,Snake venom toxins,Naja atra,Secreted,s53,f66,sf53,c3,t2,81,0-100
+3SA2_NAJOX,Snake venom toxins,Naja oxiana,Secreted,s173,f66,sf53,c3,t2,60,0-100
+3SA3_NAJAT,Snake venom toxins,Naja atra,Secreted,s53,f66,sf53,c3,t2,81,0-100
+3L22_OPHHA,Snake venom toxins,Ophiophagus hannah,Secreted,s179,f66,sf53,c3,t2,73,0-100
+DEFB1_HUMAN,Vertebrate defensin,Homo sapiens,Secreted,s14,f67,sf54,c3,t2,68,0-100
+D103A_HUMAN,Vertebrate defensin,Homo sapiens,Secreted,s14,f67,sf54,c3,t2,67,0-100
+DEFB7_MOUSE,Vertebrate defensin,Mus musculus,Secreted,s52,f67,sf54,c3,t2,71,0-100
+DEFB8_MOUSE,Vertebrate defensin,Mus musculus,Secreted,s52,f67,sf54,c3,t2,60,0-100
+DFB12_BOVIN,Vertebrate defensin,Bos taurus,Secreted,s6,f67,sf54,c3,t2,38,0-100
+SPHE2_APTPA,Vertebrate defensin,Aptenodytes patagonicus,Secreted,s83,f67,sf54,c3,t2,38,0-100
+RK1_RABIT,Vertebrate defensin,Oryctolagus cuniculus,Secreted,s25,f67,sf54,c3,t2,32,0-100
+GTR3_HUMAN,Sugar porter family,Homo sapiens,Eykaryo. plasma,s14,f656,sf15,c1,t1,496,300-500
+AQPM_ARCFU,Major intrinsic protein (MIP) family,Archaeoglobus fulgidus,Archaebac.,s58,f15,sf7,c1,t1,246,100-300
+TTPA_HUMAN,CRAL/TRIO domain,Homo sapiens,Golgi,s14,f172,sf121,c5,t2,278,100-300
+NGAL_HUMAN,"Retinol binding protein-like (n=8,S=12)",Homo sapiens,Secreted,s14,f63,sf50,c3,t2,198,100-300
+ACES_TETCF,Acetylcholinesterase-like,Torpedo californica,Eykaryo. plasma,s216,f178,sf127,c5,t2,586,500-1000
+ACES_MOUSE,Acetylcholinesterase-like,Mus musculus,Eykaryo. plasma,s52,f178,sf127,c5,t2,614,500-1000
+CEL_BOVIN,Acetylcholinesterase-like,Bos taurus,Secreted,s6,f178,sf127,c5,t2,597,500-1000
+LIPB_PSEA2,Fungal lipases,Candida antarctica,Secreted,s107,f183,sf127,c5,t2,342,300-500
+LIP_RHIMI,Fungal lipases,Rhizomucor miehei,Secreted,s195,f183,sf127,c5,t2,363,300-500
+LIP_THELA,Fungal lipases,Thermomyces lanuginosus,Secreted,s158,f183,sf127,c5,t2,291,100-300
+LIP_RHINI,Fungal lipases,Rhizopus niveus,Secreted,s196,f183,sf127,c5,t2,392,300-500
+LIP1_DIURU,Fungal lipases,Candida rugosa,Secreted,s109,f183,sf127,c5,t2,549,500-1000
+LIP2_DIURU,Fungal lipases,Candida rugosa,Secreted,s109,f183,sf127,c5,t2,548,500-1000
+LIP3_DIURU,Fungal lipases,Diutina rugosa,Secreted,s108,f183,sf127,c5,t2,549,500-1000
+LIP_BURCE,Bacterial lipase,Burkholderia cepacia,Secreted,s102,f184,sf127,c5,t2,364,300-500
+LIP_PSEAE,Bacterial lipase,Pseudomonas aeruginosa,Secreted,s28,f184,sf127,c5,t2,311,300-500
+O66015_GEOSE,Bacterial lipase,Bacillus stearothermophilus,Secreted,s88,f184,sf127,c5,t2,417,300-500
+Q9L6D3_GEOSE,Bacterial lipase,Bacillus stearothermophilus,Secreted,s88,f184,sf127,c5,t2,417,300-500
+CUTI1_FUSVN,Cutinase-like,Fusarium vanettenii,Secreted,s145,f186,sf127,c5,t2,230,100-300
+SCP2_RABIT,Sterol carrier protein,Oryctolagus cuniculus,Eykaryo. plasma,s25,f194,sf135,c6,t2,547,500-1000
+STAR4_MOUSE,STAR domain,Mus musculus,Eykaryo. plasma,s52,f197,sf138,c6,t2,224,100-300
+PPCT_HUMAN,STAR domain,Homo sapiens,Eykaryo. plasma,s14,f197,sf138,c6,t2,214,100-300
+CA1A_CONPE,Alpha-conotoxin-like,Conus pennaceus,Secreted,s123,f212,sf148,c7,t3,16,0-100
+CA1B_CONPE,Alpha-conotoxin-like,Conus pennaceus,Secreted,s123,f212,sf148,c7,t3,61,0-100
+CA12_CONMA,Alpha-conotoxin-like,Conus magus,Secreted,s121,f212,sf148,c7,t3,68,0-100
+CA1B_CONAL,Alpha-conotoxin-like,Conus aulicus,Secreted,s119,f212,sf148,c7,t3,58,0-100
+PLE1_PSEAM,Pleurocidin,Pseudopleuronectes americanus,Secreted,s191,f215,sf142,c7,t3,68,0-100
+P3C2A_MOUSE,C2 domain,Mus musculus,Eykaryo. plasma,s52,f60,sf45,c3,t2,1686,1000-2000
+PA2A1_OPHHA,Vertebrate secretory phospholipase A2,Ophiophagus hannah,Secreted,s179,f107,sf82,c4,t2,151,100-300
+A8N031_SERIN,Sugar porter family,Acanthamoeba culbertsoni,Eykaryo. plasma,s412,f656,sf15,c1,t1,522,500-1000
+Y1866_STAAM,Lipid exporter family,Staphylococcus aureus,Gram-pos. inner,s38,f99,sf17,c1,t1,578,500-1000
+STA13_HUMAN,STAR domain,Homo sapiens,Eykaryo. plasma,s14,f197,sf138,c6,t2,1113,1000-2000
+RET4_CHICK,"Retinol binding protein-like (n=8,S=12)",Gallus gallus,Secreted,s11,f63,sf50,c3,t2,196,100-300
+LIP2_GEOCN,Fungal lipases,Geotrichum candidum,Secreted,s227,f183,sf127,c5,t2,563,500-1000
+PEPT_YERP4,Proton-dependent oligopeptide transporter (POT),Yersinia enterocolitica,Gram-neg. inner,s508,f333,sf15,c1,t1,511,500-1000
+NCF1_HUMAN,PX domain,Homo sapiens,Endosome,s14,f70,sf57,c6,t2,390,300-500
+SOS1_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,1333,1000-2000
+KSR1_MOUSE,C1 domain,Mus musculus,Eykaryo. plasma,s52,f74,sf60,c3,t2,873,500-1000
+RAF1_HUMAN,C1 domain,Homo sapiens,Eykaryo. plasma,s14,f74,sf60,c3,t2,648,500-1000
+KPCG_RAT,C1 domain,Rattus norvegicus,Eykaryo. plasma,s54,f74,sf60,c3,t2,697,500-1000
+DGKD_HUMAN,C1 domain,Homo sapiens,Eykaryo. plasma,s14,f74,sf60,c3,t2,1214,1000-2000
+VAM7_YEAST,PX domain,Saccharomyces cerevisiae,Vacuole,s36,f70,sf57,c6,t2,316,300-500
+SNX3_YEAST,PX domain,Saccharomyces cerevisiae,Endosome,s36,f70,sf57,c6,t2,162,100-300
+STAR3_HUMAN,STAR domain,Homo sapiens,Endosome,s14,f197,sf138,c6,t2,445,300-500
+CP7A1_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,504,500-1000
+ERBB4_HUMAN,Protein tyrosine kinases,Homo sapiens,Eykaryo. plasma,s14,f264,sf186,c11,t1,1308,1000-2000
+PTGDS_MOUSE,"Retinol binding protein-like (n=8,S=12)",Mus musculus,Endoplasm. reticulum,s52,f63,sf50,c3,t2,189,100-300
+MYP2_HUMAN,Fatty acid binding protein-like (n=10),Homo sapiens,Eykaryo. plasma,s14,f137,sf50,c3,t2,132,100-300
+LACB_BOVIN,"Retinol binding protein-like (n=8,S=12)",Bos taurus,Secreted,s6,f63,sf50,c3,t2,178,100-300
+APOD_HUMAN,"Retinol binding protein-like (n=8,S=12)",Homo sapiens,Secreted,s14,f63,sf50,c3,t2,189,100-300
+PDPK1_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,556,500-1000
+PKHA2_MOUSE,Pleckstrin-homology domain,Mus musculus,Eykaryo. plasma,s52,f62,sf49,c3,t2,425,300-500
+AA2AR_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,412,300-500
+SEC14_YEAST,CRAL/TRIO domain,Saccharomyces cerevisiae,Golgi,s36,f172,sf121,c5,t2,304,300-500
+BTK_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,659,500-1000
+3SA1_NAJAT,Snake venom toxins,Naja atra,Secreted,s53,f66,sf53,c3,t2,81,0-100
+3SA1_NAJOX,Snake venom toxins,Naja oxiana,Secreted,s173,f66,sf53,c3,t2,60,0-100
+3L21_NAJKA,Snake venom toxins,Naja kaouthia,Secreted,s230,f66,sf53,c3,t2,71,0-100
+CYC2_CERSP,Cytochrome c,Cereibacter sphaeroides,Gram-neg. inner,s31,f92,sf71,c4,t2,124,100-300
+OMPC_ECOLI,General Bacterial Porin (GBP),Escherichia coli,Gram-neg. outer,s9,f42,sf31,c2,t1,367,300-500
+Q80E47_9FLAV,Flavivirus glycoprotein,Tick-borne encephalitis virus,Viral,s233,f147,sf109,c11,t1,721,500-1000
+DFB4A_HUMAN,Vertebrate defensin,Homo sapiens,Secreted,s14,f67,sf54,c3,t2,64,0-100
+DEFA4_MOUSE,Vertebrate defensin,Mus musculus,Secreted,s52,f67,sf54,c3,t2,92,0-100
+DEF4_HUMAN,Vertebrate defensin,Homo sapiens,Secreted,s14,f67,sf54,c3,t2,97,0-100
+DEF5_HUMAN,Vertebrate defensin,Homo sapiens,Secreted,s14,f67,sf54,c3,t2,94,0-100
+DEF6_HUMAN,Vertebrate defensin,Homo sapiens,Secreted,s14,f67,sf54,c3,t2,100,100-300
+UNC89_CAEEL,Pleckstrin-homology domain,Caenorhabditis elegans,Eykaryo. plasma,s236,f62,sf49,c3,t2,8081,>2000
+SKAP1_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,359,300-500
+SKAP2_MOUSE,Pleckstrin-homology domain,Mus musculus,Eykaryo. plasma,s52,f62,sf49,c3,t2,358,300-500
+PKHB1_MOUSE,Pleckstrin-homology domain,Mus musculus,Eykaryo. plasma,s52,f62,sf49,c3,t2,243,100-300
+DOK2_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,412,300-500
+OSB11_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,747,500-1000
+RP3A_RAT,C2 domain,Rattus norvegicus,Eykaryo. plasma,s54,f60,sf45,c3,t2,684,500-1000
+SGK3_MOUSE,PX domain,Homo sapiens,Endosome,s14,f70,sf57,c6,t2,496,300-500
+CHIO_HUMAN,C1 domain,Homo sapiens,Eykaryo. plasma,s14,f74,sf60,c3,t2,468,300-500
+STAC3_HUMAN,C1 domain,Homo sapiens,Eykaryo. plasma,s14,f74,sf60,c3,t2,364,300-500
+MYP2_HORSE,Fatty acid binding protein-like (n=10),Equus caballus,Eykaryo. plasma,s142,f137,sf50,c3,t2,132,100-300
+Q5SL92_THET8,Sterol carrier protein,Thermus thermophilus,Gram-neg. inner,s43,f194,sf135,c6,t2,130,100-300
+LOX12_HUMAN,Lipoxygenases,Homo sapiens,Eykaryo. plasma,s14,f104,sf80,c4,t2,663,500-1000
+DEFM0_ARTOT,Invertebrate and fungal defensins,Arthroderma otae,Secreted,s520,f72,sf58,c6,t2,81,0-100
+SPTB2_MOUSE,Pleckstrin-homology domain,Mus musculus,Eykaryo. plasma,s52,f62,sf49,c3,t2,2363,>2000
+CYH3_MOUSE,Pleckstrin-homology domain,Mus musculus,Eykaryo. plasma,s52,f62,sf49,c3,t2,399,300-500
+CIRA_ECOLI,Outer Membrane Receptor (OMR),Escherichia coli,Gram-neg. outer,s9,f83,sf33,c2,t1,663,500-1000
+PTR7_ARATH,Proton-dependent oligopeptide transporter (POT),Arabidopsis thaliana,Eykaryo. plasma,s246,f333,sf15,c1,t1,590,500-1000
+PORD_PSEAE,Outer membrane porin (Opr),Pseudomonas aeruginosa,Gram-neg. outer,s28,f259,sf182,c2,t1,443,300-500
+PA2HS_ECHCA,Vertebrate secretory phospholipase A2,Echis carinatus,Secreted,s135,f107,sf82,c4,t2,122,100-300
+PA2B1_VIPBN,Vertebrate secretory phospholipase A2,Vipera nikolskii,Secreted,s245,f107,sf82,c4,t2,138,100-300
+Q842J9_9BACI,Bacterial lipase,Geobacillus zalihae,Secreted,s242,f184,sf127,c5,t2,416,300-500
+CP1A2_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,516,500-1000
+Q59933_SERMA,Fungal lipases,Serratia marcescens,Secreted,s243,f183,sf127,c5,t2,613,500-1000
+PTGIS_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,500,500-1000
+ERBB2_HUMAN,Protein tyrosine kinases,Homo sapiens,Eykaryo. plasma,s14,f264,sf186,c11,t1,1255,1000-2000
+M2_I72A2,Influenza virus matrix protein 2,Influenza A virus,Viral,s51,f263,sf185,c11,t1,97,0-100
+ASTX2_ASTEC,"Lasso peptides, type 2",Asticcacaulis excentricus,Secreted,s584,f219,sf155,c9,t3,49,0-100
+PA2HC_OXYSC,Vertebrate secretory phospholipase A2,Oxyuranus scutellatus scutellatus,Secreted,s470,f107,sf82,c4,t2,118,100-300
+Q9HUR5_PSEAE,Outer membrane porin (Opr),Pseudomonas aeruginosa,Gram-neg. outer,s28,f259,sf182,c2,t1,417,300-500
+EPHA1_HUMAN,Protein tyrosine kinases,Homo sapiens,Eykaryo. plasma,s14,f264,sf186,c11,t1,976,500-1000
+AQP5_HUMAN,Major intrinsic protein (MIP) family,Homo sapiens,Eykaryo. plasma,s14,f15,sf7,c1,t1,265,100-300
+CP2E1_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,493,300-500
+CP2R1_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,501,500-1000
+Q2S2F8_SALRD,Microbial and algal rhodopsins,Salinibacter ruber,Gram-neg. inner,s256,f13,sf6,c1,t1,273,100-300
+C74A2_PARAR,Cytochrome P450,Parthenium argentatum,Vacuole,s257,f52,sf39,c11,t1,473,300-500
+Q5DRN8_9GAMM,Fungal lipases,Photobacterium sp.,Secreted,s258,f183,sf127,c5,t2,340,300-500
+Q9RBY1_9PSED,Bacterial lipase,Pseudomonas sp.,Secreted,s259,f184,sf127,c5,t2,617,500-1000
+Q9X6A5_BORPT,Outer Membrane Receptor (OMR),Bordetella pertussis,Gram-neg. outer,s241,f83,sf33,c2,t1,734,500-1000
+AQP4_HUMAN,Major intrinsic protein (MIP) family,Homo sapiens,Eykaryo. plasma,s14,f15,sf7,c1,t1,323,300-500
+YKJ1_YEAST,CRAL/TRIO domain,Saccharomyces cerevisiae,Nuclear outer,s36,f172,sf121,c5,t2,310,300-500
+S14L2_HUMAN,CRAL/TRIO domain,Homo sapiens,Eykaryo. plasma,s14,f172,sf121,c5,t2,403,300-500
+F2QVG4_KOMPC,Major intrinsic protein (MIP) family,Komagataella pastoris,Eykaryo. plasma,s268,f15,sf7,c1,t1,279,100-300
+DHB4_HUMAN,Sterol carrier protein,Homo sapiens,Peroxisome,s14,f194,sf135,c6,t2,736,500-1000
+CP46A_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,500,500-1000
+P72412_SHIDY,Outer Membrane Receptor (OMR),Shigella dysenteriae,Gram-neg. outer,s270,f83,sf33,c2,t1,660,500-1000
+EPHA2_HUMAN,Protein tyrosine kinases,Homo sapiens,Eykaryo. plasma,s14,f264,sf186,c11,t1,976,500-1000
+CP19A_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,503,500-1000
+CP51A_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,509,500-1000
+NF1_HUMAN,CRAL/TRIO domain,Homo sapiens,Eykaryo. plasma,s14,f172,sf121,c5,t2,2839,>2000
+SIX1_MESMA,Long-chain scorpion toxins,Mesobuthus martensii,Secreted,s279,f71,sf58,c6,t2,88,0-100
+TXP1_PSACA,Spider ion channel inhibitory toxins,Psalmopoeus cambridgei,Secreted,s280,f154,sf112,c3,t2,40,0-100
+TXH4_CYRSC,Spider ion channel inhibitory toxins,Haplopelma hainanum,Secreted,s282,f154,sf112,c3,t2,89,0-100
+JZ11A_CHIGU,Spider ion channel inhibitory toxins,Chilobrachys guangxiensis,Secreted,s200,f154,sf112,c3,t2,86,0-100
+TX23A_AGEAP,Spider ion channel inhibitory toxins,Agelenopsis aperta,Secreted,s73,f154,sf112,c3,t2,48,0-100
+SYT1_HUMAN,C2 domain,Homo sapiens,Eykaryo. plasma,s14,f60,sf45,c3,t2,422,300-500
+PA2H_BOTPA,Vertebrate secretory phospholipase A2,Bothrops neuwiedi pauloensis,Secreted,s284,f107,sf82,c4,t2,121,100-300
+ITCH_HUMAN,C2 domain,Homo sapiens,Eykaryo. plasma,s14,f60,sf45,c3,t2,903,500-1000
+PA2B2_BOTJR,Vertebrate secretory phospholipase A2,Bothrops jararacussu,Secreted,s95,f107,sf82,c4,t2,138,100-300
+Q59260_9BACI,Bacterial lipase,Geobacillus thermocatenulatus,Secreted,s285,f184,sf127,c5,t2,417,300-500
+PA2HL_VIPAA,Vertebrate secretory phospholipase A2,Vipera ammodytes ammodytes,Secreted,s287,f107,sf82,c4,t2,138,100-300
+CP120_SYNY3,Cytochrome P450,Synechocystis sp.,Thylakoid,s212,f52,sf39,c11,t1,444,300-500
+Q385E8_TRYB2,Cytochrome P450,Trypanosoma brucei,Endoplasm. reticulum,s219,f52,sf39,c11,t1,481,300-500
+SNX17_HUMAN,PX domain,Homo sapiens,Endosome,s14,f70,sf57,c6,t2,470,300-500
+P3C2G_HUMAN,PX domain,Homo sapiens,Golgi,s14,f70,sf57,c6,t2,1486,1000-2000
+Q4KH25_PSEF5,Outer membrane porin (Opr),Pseudomonas fluorescens,Gram-neg. outer,s290,f259,sf182,c2,t1,420,300-500
+A2TEF2_LEIIN,Cytochrome P450,Leishmania infantum,Endoplasm. reticulum,s291,f52,sf39,c11,t1,480,300-500
+CP24A_RAT,Cytochrome P450,Rattus norvegicus,Mitochon. inner,s54,f52,sf39,c11,t1,514,500-1000
+AQPZ2_AGRFC,Major intrinsic protein (MIP) family,Agrobacterium tumefaciens,Gram-neg. inner,s294,f15,sf7,c1,t1,228,100-300
+Q5RT80_NEIME,General Bacterial Porin (GBP),Neisseria meningitidis,Gram-neg. outer,s24,f42,sf31,c2,t1,322,300-500
+STAR5_HUMAN,STAR domain,Homo sapiens,Eykaryo. plasma,s14,f197,sf138,c6,t2,213,100-300
+ENV_HV1LW,Juxtamembrane peptides of viral envelope glycoproteins,Human immunodeficiency virus type 1,Viral,s157,f439,sf277,c7,t3,856,500-1000
+MORO_MORSA,Pleurocidin,Morone saxatilis,Secreted,s302,f215,sf142,c7,t3,79,0-100
+ACES_DROME,Acetylcholinesterase-like,Drosophila melanogaster,Eykaryo. plasma,s50,f178,sf127,c5,t2,649,500-1000
+LOX1_SOYBN,Lipoxygenases,Glycine max,Eykaryo. plasma,s146,f104,sf80,c4,t2,839,500-1000
+LOX3_SOYBN,Lipoxygenases,Glycine max,Eykaryo. plasma,s146,f104,sf80,c4,t2,857,500-1000
+LOXX_SOYBN,Lipoxygenases,Glycine max,Eykaryo. plasma,s146,f104,sf80,c4,t2,864,500-1000
+Q43446_SOYBN,Lipoxygenases,Glycine max,Eykaryo. plasma,s146,f104,sf80,c4,t2,853,500-1000
+ANXA4_HUMAN,Annexins,Homo sapiens,Eykaryo. plasma,s14,f54,sf41,c4,t2,319,300-500
+ANXA6_BOVIN,Annexins,Bos taurus,Eykaryo. plasma,s6,f54,sf41,c4,t2,673,500-1000
+ANXD1_ARATH,Annexins,Arabidopsis thaliana,Eykaryo. plasma,s246,f54,sf41,c4,t2,317,300-500
+ANXA4_RAT,Annexins,Rattus norvegicus,Eykaryo. plasma,s54,f54,sf41,c4,t2,319,300-500
+PERF_MOUSE,C2 domain,Mus musculus,Vesicle,s52,f60,sf45,c3,t2,554,500-1000
+PA2H1_BOTPI,Vertebrate secretory phospholipase A2,Bothrops pirajai,Secreted,s97,f107,sf82,c4,t2,121,100-300
+PA21B_HUMAN,Vertebrate secretory phospholipase A2,Homo sapiens,Secreted,s14,f107,sf82,c4,t2,148,100-300
+PA2H2_BOTPI,Vertebrate secretory phospholipase A2,Bothrops pirajai,Secreted,s97,f107,sf82,c4,t2,121,100-300
+PA2A2_TROCA,Vertebrate secretory phospholipase A2,Micropechis ikaheka,Secreted,s171,f107,sf82,c4,t2,151,100-300
+PA2A_DEIAC,Vertebrate secretory phospholipase A2,Agkistrodon acutus,Secreted,s75,f107,sf82,c4,t2,123,100-300
+PA2BA_VIPAA,Vertebrate secretory phospholipase A2,Vipera ammodytes ammodytes,Secreted,s287,f107,sf82,c4,t2,138,100-300
+PA2H1_BOTJR,Vertebrate secretory phospholipase A2,Bothrops jararacussu,Secreted,s95,f107,sf82,c4,t2,137,100-300
+PA2BC_VIPAA,Vertebrate secretory phospholipase A2,Vipera ammodytes ammodytes,Secreted,s287,f107,sf82,c4,t2,138,100-300
+PA2H2_BOTAS,Vertebrate secretory phospholipase A2,Bothrops asper,Secreted,s312,f107,sf82,c4,t2,137,100-300
+PA2HB_ATRNM,Vertebrate secretory phospholipase A2,Atropoides nummifer,Secreted,s313,f107,sf82,c4,t2,121,100-300
+PA2H_PROMB,Vertebrate secretory phospholipase A2,Protobothrops mangshanensis,Secreted,s314,f107,sf82,c4,t2,121,100-300
+PA2A_NAJAT,Vertebrate secretory phospholipase A2,Naja atra,Secreted,s53,f107,sf82,c4,t2,119,100-300
+PA2A2_NAJNA,Vertebrate secretory phospholipase A2,Naja naja,Secreted,s315,f107,sf82,c4,t2,119,100-300
+SYTL4_HUMAN,C2 domain,Homo sapiens,Vesicle,s14,f60,sf45,c3,t2,671,500-1000
+SYT7_HUMAN,C2 domain,Homo sapiens,Vesicle,s14,f60,sf45,c3,t2,403,300-500
+SYT13_HUMAN,C2 domain,Homo sapiens,Eykaryo. plasma,s14,f60,sf45,c3,t2,426,300-500
+SYT17_HUMAN,C2 domain,Homo sapiens,Eykaryo. plasma,s14,f60,sf45,c3,t2,474,300-500
+ESYT2_HUMAN,C2 domain,Homo sapiens,Eykaryo. plasma,s14,f60,sf45,c3,t2,921,500-1000
+MCTP2_HUMAN,C2 domain,Homo sapiens,Eykaryo. plasma,s14,f60,sf45,c3,t2,878,500-1000
+SMUF2_HUMAN,C2 domain,Homo sapiens,Eykaryo. plasma,s14,f60,sf45,c3,t2,748,500-1000
+Q8EKT7_SHEON,Proton-dependent oligopeptide transporter (POT),Shewanella oneidensis,Gram-neg. inner,s319,f333,sf15,c1,t1,516,500-1000
+LOX5_HUMAN,Lipoxygenases,Homo sapiens,Eykaryo. plasma,s14,f104,sf80,c4,t2,674,500-1000
+OTOF_RAT,C2 domain,Rattus norvegicus,Vesicle,s54,f60,sf45,c3,t2,1993,1000-2000
+RLBP1_HUMAN,CRAL/TRIO domain,Homo sapiens,Eykaryo. plasma,s14,f172,sf121,c5,t2,317,300-500
+CYO14_VIOOD,Cyclotide,Viola odorata,Secreted,s221,f148,sf112,c3,t2,31,0-100
+CYO2_VIOOD,Cyclotide,Viola odorata,Secreted,s221,f148,sf112,c3,t2,30,0-100
+KAB7_OLDAF,Cyclotide,Oldenlandia affinis,Secreted,s178,f148,sf112,c3,t2,111,100-300
+LYSB_BPMD2,Cutinase-like,Mycobacterium phage D29,Gram-pos. inner,s323,f186,sf127,c5,t2,254,100-300
+CUP6H_MYCS2,Cutinase-like,Mycolicibacterium smegmatis,Secreted,s22,f186,sf127,c5,t2,337,300-500
+CUTI1_ASPOR,Cutinase-like,Aspergillus oryzae,Secreted,s324,f186,sf127,c5,t2,213,100-300
+CUTI1_COLGL,Cutinase-like,Colletotrichum gloeosporioides,Secreted,s325,f186,sf127,c5,t2,224,100-300
+Q874E9_9TREE,Cutinase-like,Cryptococcus sp.,Secreted,s326,f186,sf127,c5,t2,239,100-300
+CIRB_CHAPA,Cyclotide,Chassalia parviflora,Secreted,s49,f148,sf112,c3,t2,31,0-100
+VARF_VIOAR,Cyclotide,Viola arvensis,Secreted,s327,f148,sf112,c3,t2,29,0-100
+KAB5_OLDAF,Cyclotide,Oldenlandia affinis,Secreted,s178,f148,sf112,c3,t2,30,0-100
+VIOLA_VIOOD,Cyclotide,Viola odorata,Secreted,s221,f148,sf112,c3,t2,106,100-300
+VHL2_VIOHE,Cyclotide,Viola hederacea,Secreted,s220,f148,sf112,c3,t2,30,0-100
+VHL1_VIOHE,Cyclotide,Viola hederacea,Secreted,s220,f148,sf112,c3,t2,31,0-100
+TRIC_VIOAR,Cyclotide,Viola arvensis,Secreted,s327,f148,sf112,c3,t2,204,100-300
+NLGN2_MOUSE,Acetylcholinesterase-like,Mus musculus,Eykaryo. plasma,s52,f178,sf127,c5,t2,836,500-1000
+Q7LST4_PENEN,Fungal lipases,Penicillium expansum,Secreted,s334,f183,sf127,c5,t2,285,100-300
+Q9P8F7_YARLL,Fungal lipases,Yarrowia lipolytica,Secreted,s335,f183,sf127,c5,t2,334,300-500
+ACES_HUMAN,Acetylcholinesterase-like,Homo sapiens,Eykaryo. plasma,s14,f178,sf127,c5,t2,614,500-1000
+LIPA_MOEAP,Fungal lipases,Candida antarctica,Secreted,s107,f183,sf127,c5,t2,462,300-500
+O28511_ARCFU,Bacterial lipase,Archaeoglobus fulgidus,Secreted,s58,f184,sf127,c5,t2,474,300-500
+STAR_HUMAN,STAR domain,Homo sapiens,Mitochon. outer,s14,f197,sf138,c6,t2,285,100-300
+ACO11_HUMAN,STAR domain,Homo sapiens,Endoplasm. reticulum,s14,f197,sf138,c6,t2,607,500-1000
+O28738_ARCFU,Sterol carrier protein,Archaeoglobus fulgidus,Archaebac.,s58,f194,sf135,c6,t2,116,100-300
+Q16LC3_AEDAE,Sterol carrier protein,Aedes aegypti,Eykaryo. plasma,s343,f194,sf135,c6,t2,120,100-300
+Q0GY13_AEDAE,Sterol carrier protein,Aedes aegypti,Eykaryo. plasma,s343,f194,sf135,c6,t2,105,100-300
+Q86PR3_AEDAE,Sterol carrier protein,Aedes aegypti,Eykaryo. plasma,s343,f194,sf135,c6,t2,110,100-300
+PKHA3_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,300,300-500
+CP2B6_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,491,300-500
+CP11A_BOVIN,Cytochrome P450,Bos taurus,Mitochon. inner,s6,f52,sf39,c11,t1,520,500-1000
+CP1B1_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,543,500-1000
+CP2AD_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,494,300-500
+PA2B5_NOTSC,Vertebrate secretory phospholipase A2,Notechis scutatus scutatus,Secreted,s344,f107,sf82,c4,t2,119,100-300
+PA2HB_AGKPI,Vertebrate secretory phospholipase A2,Agkistridon piscivorus,Secreted,s74,f107,sf82,c4,t2,121,100-300
+PA2A4_NAJSG,Vertebrate secretory phospholipase A2,Naja sagittifera,Secreted,s224,f107,sf82,c4,t2,126,100-300
+ERBB3_HUMAN,Protein tyrosine kinases,Homo sapiens,Eykaryo. plasma,s14,f264,sf186,c11,t1,1342,1000-2000
+FABPL_CHICK,Fatty acid binding protein-like (n=10),Gallus gallus,Eykaryo. plasma,s11,f137,sf50,c3,t2,126,100-300
+Q1M2P5_DERFA,Fatty acid binding protein-like (n=10),Dermatophagoides farinae,Secreted,s351,f137,sf50,c3,t2,131,100-300
+EXFAB_COTJA,"Retinol binding protein-like (n=8,S=12)",Coturnix coturnix japonica,Secreted,s350,f63,sf50,c3,t2,178,100-300
+FABP2_AMBME,Fatty acid binding protein-like (n=10),Ambystoma mexicanum,Eykaryo. plasma,s349,f137,sf50,c3,t2,126,100-300
+SYT7_MOUSE,C2 domain,Mus musculus,Vesicle,s52,f60,sf45,c3,t2,403,300-500
+RP3A_MOUSE,C2 domain,Mus musculus,Eykaryo. plasma,s52,f60,sf45,c3,t2,681,500-1000
+SNX5_RAT,PX domain,Rattus norvegicus,Endosome,s54,f70,sf57,c6,t2,404,300-500
+KI16B_HUMAN,PX domain,Homo sapiens,Endosome,s14,f70,sf57,c6,t2,1317,1000-2000
+NISCH_HUMAN,PX domain,Homo sapiens,Endosome,s14,f70,sf57,c6,t2,1504,1000-2000
+BEM1_YEAST,PX domain,Saccharomyces cerevisiae,Eykaryo. plasma,s36,f70,sf57,c6,t2,551,500-1000
+CYH2_MOUSE,Pleckstrin-homology domain,Mus musculus,Eykaryo. plasma,s52,f62,sf49,c3,t2,400,300-500
+OSBL8_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,889,500-1000
+FGD6_MOUSE,Pleckstrin-homology domain,Mus musculus,Eykaryo. plasma,s52,f62,sf49,c3,t2,1399,1000-2000
+PKHA6_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,1048,1000-2000
+ASAP1_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,1129,1000-2000
+PKHB2_MOUSE,Pleckstrin-homology domain,Mus musculus,Eykaryo. plasma,s52,f62,sf49,c3,t2,221,100-300
+PKHA5_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,1116,1000-2000
+ARHG4_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,690,500-1000
+AKT3_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,479,300-500
+SLM1_YEAST,Pleckstrin-homology domain,Saccharomyces cerevisiae,Eykaryo. plasma,s36,f62,sf49,c3,t2,686,500-1000
+RHG27_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,889,500-1000
+A8EVM5_ALIB4,Voltage-gated calcium and sodium channels,Arcobacter butzleri,Gram-neg. inner,s345,f852,sf8,c1,t1,267,100-300
+OMPF_SALTY,General Bacterial Porin (GBP),Salmonella enterica,Gram-neg. outer,s269,f42,sf31,c2,t1,363,300-500
+ABCBA_HUMAN,Lipid exporter family,Homo sapiens,Mitochon. inner,s14,f99,sf17,c1,t1,738,500-1000
+ERBB2_RAT,Protein tyrosine kinases,Rattus norvegicus,Eykaryo. plasma,s54,f264,sf186,c11,t1,1257,1000-2000
+TXG1E_CHIGU,Spider ion channel inhibitory toxins,Chilobrachys guangxiensis,Secreted,s200,f154,sf112,c3,t2,36,0-100
+PRRG_PRB01,Microbial and algal rhodopsins,Gamma-proteobacterium,Gram-neg. inner,s357,f13,sf6,c1,t1,249,100-300
+SMUF1_HUMAN,C2 domain,Homo sapiens,Eykaryo. plasma,s14,f60,sf45,c3,t2,757,500-1000
+NEDD4_HUMAN,C2 domain,Homo sapiens,Eykaryo. plasma,s14,f60,sf45,c3,t2,1319,1000-2000
+NED4L_HUMAN,C2 domain,Homo sapiens,Eykaryo. plasma,s14,f60,sf45,c3,t2,975,500-1000
+FABP9_HUMAN,Fatty acid binding protein-like (n=10),Homo sapiens,Eykaryo. plasma,s14,f137,sf50,c3,t2,132,100-300
+Q6IMW5_DANRE,Fatty acid binding protein-like (n=10),Danio rerio,Eykaryo. plasma,s129,f137,sf50,c3,t2,131,100-300
+SCXA_MESMA,Long-chain scorpion toxins,Mesobuthus martensii,Secreted,s279,f71,sf58,c6,t2,84,0-100
+SIXP_MESMA,Long-chain scorpion toxins,Mesobuthus martensii,Secreted,s279,f71,sf58,c6,t2,90,0-100
+SCX2_ANDAU,Long-chain scorpion toxins,Androctonus australis,Secreted,s368,f71,sf58,c6,t2,85,0-100
+SCX3_LEIQU,Long-chain scorpion toxins,Leiurus quinquestriatus quinquestriatus,Secreted,s369,f71,sf58,c6,t2,64,0-100
+SCXI_CENSC,Long-chain scorpion toxins,Centruroides sculpturatus,Secreted,s48,f71,sf58,c6,t2,86,0-100
+SCX1_CENSC,Long-chain scorpion toxins,Centruroides sculpturatus,Secreted,s48,f71,sf58,c6,t2,87,0-100
+SCXA_LEIHE,Long-chain scorpion toxins,Leiurus quinquestriatus hebraeus,Secreted,s163,f71,sf58,c6,t2,85,0-100
+SCX5_CENNO,Long-chain scorpion toxins,Centruroides noxius,Secreted,s113,f71,sf58,c6,t2,87,0-100
+SCXV_CENSC,Long-chain scorpion toxins,Centruroides sculpturatus,Secreted,s48,f71,sf58,c6,t2,63,0-100
+SCX8_MESMA,Long-chain scorpion toxins,Mesobuthus martensii,Secreted,s279,f71,sf58,c6,t2,64,0-100
+SCX5_CENSC,Long-chain scorpion toxins,Centruroides sculpturatus,Secreted,s48,f71,sf58,c6,t2,59,0-100
+KURT_PARTR,Long-chain scorpion toxins,Parabuthus transvaalicus,Secreted,s370,f71,sf58,c6,t2,63,0-100
+SCX12_CENNO,Long-chain scorpion toxins,Centruroides noxius,Secreted,s113,f71,sf58,c6,t2,67,0-100
+SIX2_LEIHE,Long-chain scorpion toxins,Leiurus quinquestriatus hebraeus,Secreted,s163,f71,sf58,c6,t2,85,0-100
+DF195_ARATH,Plant defensins,Arabidopsis thaliana,Secreted,s246,f158,sf58,c6,t2,89,0-100
+SC12_MESMA,Long-chain scorpion toxins,Mesobuthus martensii,Secreted,s279,f71,sf58,c6,t2,85,0-100
+SC11_MESMA,Long-chain scorpion toxins,Mesobuthus martensii,Secreted,s279,f71,sf58,c6,t2,85,0-100
+DLP2_ORNAN,Vertebrate defensin,Ornithorhynchus anatinus,Secreted,s374,f67,sf54,c3,t2,66,0-100
+DLP1_ORNAN,Vertebrate defensin,Ornithorhynchus anatinus,Secreted,s374,f67,sf54,c3,t2,66,0-100
+DEFI_MYTGA,Invertebrate and fungal defensins,Mytilus galloprovincialis,Secreted,s375,f72,sf58,c6,t2,60,0-100
+DEFI_ANOGA,Invertebrate and fungal defensins,Anopheles gambiae,Secreted,s376,f72,sf58,c6,t2,102,100-300
+DEFCG_CRAGI,Invertebrate and fungal defensins,Crassostrea gigas,Secreted,s377,f72,sf58,c6,t2,65,0-100
+DEFPL_PSENR,Invertebrate and fungal defensins,Pseudoplectania nigrella,Secreted,s378,f72,sf58,c6,t2,95,0-100
+DEFN_HELVI,Invertebrate and fungal defensins,Heliothis virescens,Secreted,s379,f72,sf58,c6,t2,44,0-100
+B5AKV3_MACMU,Vertebrate defensin,Macaca mulatta,Secreted,s330,f67,sf54,c3,t2,93,0-100
+DEF1_HUMAN,Vertebrate defensin,Homo sapiens,Secreted,s14,f67,sf54,c3,t2,94,0-100
+DEF1_WHEAT,Plant defensins,Triticum aestivum,Secreted,s218,f158,sf58,c6,t2,47,0-100
+DEF1_HORVU,Plant defensins,Hordeum vulgare,Secreted,s155,f158,sf58,c6,t2,47,0-100
+DEF_TOBAC,Plant defensins,Nicotiana tabacum,Secreted,s175,f158,sf58,c6,t2,105,100-300
+Q6B519_9FABA,Plant defensins,Pachyrhizus erosus,Secreted,s381,f158,sf58,c6,t2,47,0-100
+Q6T418_VIGRA,Plant defensins,Vigna radiata,Secreted,s382,f158,sf58,c6,t2,73,0-100
+DEF1_PETHY,Plant defensins,Petunia hybrida,Secreted,s383,f158,sf58,c6,t2,103,100-300
+Q8W434_VIGRA,Plant defensins,Vigna radiata,Secreted,s382,f158,sf58,c6,t2,75,0-100
+PLS2_PITHY,Brevinin/gaegurin,Phyllomedusa hypochondrialis,Secreted,s384,f401,sf211,c7,t3,66,0-100
+GGN4_GLARU,Brevinin/gaegurin,Glandirana rugosa,Secreted,s385,f401,sf211,c7,t3,80,0-100
+TERN_PSEUS,Invertebrate and fungal defensins,Pseudacanthotermes spiniger,Secreted,s392,f72,sf58,c6,t2,36,0-100
+DEFI_PROTE,Invertebrate and fungal defensins,Protophormia terraenovae,Secreted,s394,f72,sf58,c6,t2,94,0-100
+PLS3_PITHY,Brevinin/gaegurin,Phyllomedusa hypochondrialis,Secreted,s384,f401,sf211,c7,t3,19,0-100
+PLS1_PITHY,Brevinin/gaegurin,Phyllomedusa hypochondrialis,Secreted,s384,f401,sf211,c7,t3,19,0-100
+DBTEW_CARCR,Vertebrate defensin,Caretta caretta,Secreted,s401,f67,sf54,c3,t2,36,0-100
+PVAT_PELSI,Vertebrate defensin,Pelodiscus sinensis,Secreted,s402,f67,sf54,c3,t2,42,0-100
+RN2A_RANCS,Brevinin/gaegurin,Rana temporaria,Secreted,s403,f401,sf211,c7,t3,32,0-100
+C5I2D9_PSEFL,Outer Membrane Receptor (OMR),Pseudomonas fluorescens,Gram-neg. outer,s290,f83,sf33,c2,t1,743,500-1000
+MYO10_RAT,Pleckstrin-homology domain,Rattus norvegicus,Endosome,s54,f62,sf49,c3,t2,2060,>2000
+CTXL_LEIQU,Short-chain scorpion toxins,Leiurus quinquestriatus quinquestriatus,Secreted,s369,f157,sf58,c6,t2,36,0-100
+KGX11_CENNO,Short-chain scorpion toxins,Centruroides noxius,Secreted,s113,f157,sf58,c6,t2,62,0-100
+ENV_HV1H3,Juxtamembrane peptides of viral envelope glycoproteins,Human immunodeficiency virus type 1,Endosome,s157,f439,sf277,c7,t3,856,500-1000
+MTX4_GRARO,Spider ion channel inhibitory toxins,Grammostola rosea,Secreted,s283,f154,sf112,c3,t2,82,0-100
+DEF_PENBA,Plant defensins,Pentadiplandra brazzeana,Secreted,s422,f158,sf58,c6,t2,54,0-100
+WGRTX_GRARO,Spider ion channel inhibitory toxins,Grammostola rosea,Secreted,s283,f154,sf112,c3,t2,87,0-100
+H1A01_CYRHA,Spider ion channel inhibitory toxins,Haplopelma hainanum,Secreted,s282,f154,sf112,c3,t2,83,0-100
+3S1EB_LATSE,Snake venom toxins,Laticauda semifasciata,Secreted,s424,f66,sf53,c3,t2,83,0-100
+O17A_CONPU,Conotoxin O1,Conus purpurascens,Secreted,s430,f153,sf112,c3,t2,72,0-100
+O17A_CONMA,Conotoxin O1,Conus magus,Secreted,s121,f153,sf112,c3,t2,71,0-100
+O16A_CONGE,Conotoxin O1,Conus geographus ,Secreted,s431,f153,sf112,c3,t2,73,0-100
+O16B_CONST,Conotoxin O1,Conus striatus,Secreted,s124,f153,sf112,c3,t2,72,0-100
+CM3E_CONMR,Conotoxin O1,Conus marmoreus,Secreted,s122,f153,sf112,c3,t2,71,0-100
+U6GS_CONGE,Conotoxin O1,Conus geographus ,Secreted,s431,f153,sf112,c3,t2,34,0-100
+U7A_CONTU,Conotoxin O1,Conus tulipa,Secreted,s432,f153,sf112,c3,t2,30,0-100
+CP91_CONGL,Conotoxin O1,Conus gloriamaris,Secreted,s433,f153,sf112,c3,t2,88,0-100
+H3A01_CYRHA,Spider ion channel inhibitory toxins,Haplopelma hainanum,Secreted,s282,f154,sf112,c3,t2,83,0-100
+TX1_STRGF,Spider ion channel inhibitory toxins,Stromatopelma calceatum griseipes,Secreted,s434,f154,sf112,c3,t2,34,0-100
+TXHP2_HETVE,Spider ion channel inhibitory toxins,Heteropoda venatoria,Secreted,s435,f154,sf112,c3,t2,30,0-100
+JZTX3_CHIGU,Spider ion channel inhibitory toxins,Chilobrachys guangxiensis,Secreted,s200,f154,sf112,c3,t2,63,0-100
+TXLA1_CYRSC,Spider ion channel inhibitory toxins,Haplopelma hainanum,Secreted,s282,f154,sf112,c3,t2,83,0-100
+H4A01_CYRHA,Spider ion channel inhibitory toxins,Haplopelma hainanum,Secreted,s282,f154,sf112,c3,t2,86,0-100
+T5G1A_AGEAP,Spider ion channel inhibitory toxins,Agelenopsis aperta,Secreted,s73,f154,sf112,c3,t2,36,0-100
+T3D1A_PIRLC,Spider ion channel inhibitory toxins,Pireneitega luctuosa,Secreted,s436,f154,sf112,c3,t2,37,0-100
+T3D1B_PIRLC,Spider ion channel inhibitory toxins,Pireneitega luctuosa,Secreted,s436,f154,sf112,c3,t2,37,0-100
+TXH21_CYRSC,Spider ion channel inhibitory toxins,Haplopelma hainanum,Secreted,s282,f154,sf112,c3,t2,85,0-100
+TXP2_BRAAI,Spider ion channel inhibitory toxins,Brachypelma ruhnaui,Secreted,s437,f154,sf112,c3,t2,39,0-100
+TXH10_CYRSC,Spider ion channel inhibitory toxins,Haplopelma hainanum,Secreted,s282,f154,sf112,c3,t2,68,0-100
+TOT2A_HADVE,Spider ion channel inhibitory toxins,Hadronyche versuta,Secreted,s438,f154,sf112,c3,t2,45,0-100
+TXMG5_MACGS,Spider ion channel inhibitory toxins,Macrothele gigas,Secreted,s439,f154,sf112,c3,t2,79,0-100
+TK1C_HADVE,Spider ion channel inhibitory toxins,Hadronyche versuta,Secreted,s438,f154,sf112,c3,t2,37,0-100
+MTX2_GRARO,Spider ion channel inhibitory toxins,Grammostola rosea,Secreted,s283,f154,sf112,c3,t2,31,0-100
+CA4A_CONPU,Alpha-conotoxin-like,Conus purpurascens,Secreted,s430,f212,sf148,c7,t3,68,0-100
+CA4A_CONER,Alpha-conotoxin-like,Conus ermineus,Secreted,s120,f212,sf148,c7,t3,30,0-100
+CA1A_CONTU,Alpha-conotoxin-like,Conus tulipa,Secreted,s432,f212,sf148,c7,t3,58,0-100
+CA1A_CONOM,Alpha-conotoxin-like,Conus omaria,Secreted,s440,f212,sf148,c7,t3,17,0-100
+CAS1_CONST,Alpha-conotoxin-like,Conus striatus,Secreted,s124,f212,sf148,c7,t3,64,0-100
+CA1A_CONER,Alpha-conotoxin-like,Conus ermineus,Secreted,s120,f212,sf148,c7,t3,62,0-100
+CA1A_CONEP,Alpha-conotoxin-like,Conus episcopatus,Secreted,s441,f212,sf148,c7,t3,56,0-100
+CA1A_CONBU,Alpha-conotoxin-like,Conus bullatus,Secreted,s442,f212,sf148,c7,t3,60,0-100
+CA1A_CONPU,Alpha-conotoxin-like,Conus purpurascens,Secreted,s430,f212,sf148,c7,t3,40,0-100
+CA1A_CONVC,Alpha-conotoxin-like,Conus victoriae,Secreted,s443,f212,sf148,c7,t3,66,0-100
+CA1_CONIM,Alpha-conotoxin-like,Conus imperialis,Secreted,s444,f212,sf148,c7,t3,17,0-100
+CAIA_CONGE,Alpha-conotoxin-like,Conus geographus ,Secreted,s431,f212,sf148,c7,t3,15,0-100
+CA1D_CONGE,Alpha-conotoxin-like,Conus geographus ,Secreted,s431,f212,sf148,c7,t3,66,0-100
+CA1A_CONCN,Alpha-conotoxin-like,Conus consors,Secreted,s445,f212,sf148,c7,t3,64,0-100
+NOXO1_HUMAN,PX domain,Homo sapiens,Eykaryo. plasma,s14,f70,sf57,c6,t2,376,300-500
+Q9HWP4_PSEAE,Outer membrane porin (Opr),Pseudomonas aeruginosa,Gram-neg. outer,s28,f259,sf182,c2,t1,418,300-500
+Q9I202_PSEAE,Outer membrane porin (Opr),Pseudomonas aeruginosa,Gram-neg. outer,s28,f259,sf182,c2,t1,409,300-500
+Q9I5H4_PSEAE,Outer membrane porin (Opr),Pseudomonas aeruginosa,Gram-neg. outer,s28,f259,sf182,c2,t1,427,300-500
+CP17A_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,508,500-1000
+3SDC7_OPHHA,Snake venom toxins,Ophiophagus hannah,Secreted,s179,f66,sf53,c3,t2,84,0-100
+3NOJ_BUNCA,Snake venom toxins,Bungarus candidus,Secreted,s509,f66,sf53,c3,t2,63,0-100
+3SIM7_DENAN,Snake venom toxins,Dendroaspis angusticeps,Secreted,s467,f66,sf53,c3,t2,86,0-100
+CYPC_BACSU,Cytochrome P450,Bacillus subtilis,Gram-pos. inner,s89,f52,sf39,c11,t1,417,300-500
+Q746J6_THET2,Cytochrome P450,Thermus thermophilus,Gram-neg. inner,s43,f52,sf39,c11,t1,389,300-500
+CP74A_ARATH,Cytochrome P450,Arabidopsis thaliana,Thylakoid,s246,f52,sf39,c11,t1,518,500-1000
+KAX31_ANDMA,Short-chain scorpion toxins,Androctonus mauritanicus,Secreted,s455,f157,sf58,c6,t2,38,0-100
+Q689G3_9FLAV,Flavivirus glycoprotein,Dengue virus,Viral,s131,f147,sf109,c11,t1,3392,>2000
+RGPS1_MOUSE,Pleckstrin-homology domain,Mus musculus,Eykaryo. plasma,s52,f62,sf49,c3,t2,585,500-1000
+AZUR_PSEAE,Plastocyanin/azurin-like,Pseudomonas aeruginosa,Gram-neg. inner,s28,f123,sf93,c3,t2,148,100-300
+CP21A_BOVIN,Cytochrome P450,Bos taurus,Endoplasm. reticulum,s6,f52,sf39,c11,t1,496,300-500
+QHED_PSEPU,Cytochrome c,Pseudomonas putida,Gram-neg. outer,s251,f92,sf71,c4,t2,690,500-1000
+P83787_MARNT,Cytochrome c,Marinobacter hydrocarbonoclasticus,Gram-neg. inner,s482,f92,sf71,c4,t2,326,300-500
+TXHM3_HERML,Spider ion channel inhibitory toxins,Heriaeus mellotteei,Secreted,s599,f154,sf112,c3,t2,35,0-100
+Q9I6X0_PSEAE,Outer membrane porin (Opr),Pseudomonas aeruginosa,Gram-neg. outer,s28,f259,sf182,c2,t1,444,300-500
+Q9HVS0_PSEAE,Outer membrane porin (Opr),Pseudomonas aeruginosa,Gram-neg. outer,s28,f259,sf182,c2,t1,484,300-500
+Q9I6P8_PSEAE,Outer membrane porin (Opr),Pseudomonas aeruginosa,Gram-neg. outer,s28,f259,sf182,c2,t1,421,300-500
+Q9HZH0_PSEAE,Outer membrane porin (Opr),Pseudomonas aeruginosa,Gram-neg. outer,s28,f259,sf182,c2,t1,421,300-500
+I1SB18_VIPAE,Vertebrate secretory phospholipase A2,Vipera ammodytes meridionalis,Secreted,s222,f107,sf82,c4,t2,122,100-300
+GLL2_CHICK,Vertebrate defensin,Gallus gallus,Secreted,s11,f67,sf54,c3,t2,64,0-100
+GH_HHV11,Juxtamembrane peptides of viral envelope glycoproteins,Human herpesvirus,Endosome,s355,f439,sf277,c7,t3,838,500-1000
+PGFRB_HUMAN,Protein tyrosine kinases,Homo sapiens,Eykaryo. plasma,s14,f264,sf186,c11,t1,1106,1000-2000
+FERM2_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,680,500-1000
+FYUA_YERPE,Outer Membrane Receptor (OMR),Yersinia pestis,Gram-neg. outer,s299,f83,sf33,c2,t1,673,500-1000
+A0L5S6_MAGMM,Voltage-gated calcium and sodium channels,Magnetococcus marinus ,Gram-neg. inner,s527,f852,sf8,c1,t1,274,100-300
+Q51056_NEIGO,General Bacterial Porin (GBP),Neisseria gonorrhoeae,Gram-neg. outer,s66,f42,sf31,c2,t1,327,300-500
+XYLE_ECOLI,Sugar porter family,Escherichia coli,Gram-neg. inner,s9,f656,sf15,c1,t1,491,300-500
+CXCR1_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,350,300-500
+MSCS_CALS4,Small conductance mechanosensitive ion channels,Caldanaerobacter subterraneus,Gram-pos. inner,s501,f19,sf11,c1,t1,282,100-300
+OMPC_SALTI,General Bacterial Porin (GBP),Salmonella typhimurium,Gram-neg. outer,s495,f42,sf31,c2,t1,378,300-500
+POLG_DEN2N,Flavivirus glycoprotein,Dengue virus,Viral,s131,f147,sf109,c11,t1,3391,>2000
+Q6XT21_9INFA,Influenza virus matrix protein 2,Influenza A virus,Viral,s51,f263,sf185,c11,t1,97,0-100
+Q51162_NEIME,Outer Membrane Receptor (OMR),Neisseria meningitidis,Gram-neg. outer,s24,f83,sf33,c2,t1,720,500-1000
+C11B2_HUMAN,Cytochrome P450,Homo sapiens,Mitochon. inner,s14,f52,sf39,c11,t1,503,500-1000
+E8QGV2_HELP7,Small conductance mechanosensitive ion channels,Helicobacter pylori,Gram-neg. inner,s153,f19,sf11,c1,t1,274,100-300
+CP1A1_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,512,500-1000
+PDR16_YEAST,CRAL/TRIO domain,Saccharomyces cerevisiae,Endoplasm. reticulum,s36,f172,sf121,c5,t2,351,300-500
+MSBA_VIBCH,Lipid exporter family,Vibrio cholerae,Gram-neg. inner,s45,f99,sf17,c1,t1,582,500-1000
+DEFEU_ASPAM,Invertebrate and fungal defensins,Aspergillus amstelodami,Secreted,s536,f72,sf58,c6,t2,42,0-100
+SNX11_HUMAN,PX domain,Homo sapiens,Eykaryo. plasma,s14,f70,sf57,c6,t2,270,100-300
+TTPA_MOUSE,CRAL/TRIO domain,Mus musculus,Golgi,s52,f172,sf121,c5,t2,278,100-300
+I4DST7_9EURY,Microbial and algal rhodopsins,Haloterrigena thermotolerans,Archaebac.,s537,f13,sf6,c1,t1,241,100-300
+PRRB_PRB02,Microbial and algal rhodopsins,Gamma-proteobacterium,Gram-neg. inner,s357,f13,sf6,c1,t1,251,100-300
+Q4PP54_9BACT,Microbial and algal rhodopsins,Gamma-proteobacterium,Gram-neg. inner,s357,f13,sf6,c1,t1,235,100-300
+BACH_NATPH,Microbial and algal rhodopsins,Natronomonas pharaonis,Archaebac.,s23,f13,sf6,c1,t1,291,100-300
+Q8EHE6_SHEON,Proton-dependent oligopeptide transporter (POT),Shewanella oneidensis,Gram-neg. inner,s319,f333,sf15,c1,t1,516,500-1000
+Q5KYD1_GEOKA,Proton-dependent oligopeptide transporter (POT),Geobacillus kaustophilus,Gram-pos. inner,s540,f333,sf15,c1,t1,496,300-500
+PA2H1_BOTMO,Vertebrate secretory phospholipase A2,Bothrops moojeni,Secreted,s96,f107,sf82,c4,t2,138,100-300
+LIP_BACSP,Bacterial lipase,Bacillus sp.,Secreted,s87,f184,sf127,c5,t2,416,300-500
+PA2BB_PSEAU,Vertebrate secretory phospholipase A2,Pseudechis australis,Secreted,s541,f107,sf82,c4,t2,118,100-300
+B1YFV8_EXIS2,Microbial and algal rhodopsins,Exiguobacterium sibiricum,Gram-pos. inner,s542,f13,sf6,c1,t1,252,100-300
+B9ZZP0_9BACI,Bacterial lipase,Geobacillus sp.,Secreted,s544,f184,sf127,c5,t2,389,300-500
+Q5I4I3_9BACI,Bacterial lipase,Bacillus sp.,Secreted,s87,f184,sf127,c5,t2,416,300-500
+LIP_STAHY,Bacterial lipase,Staphylococcus hyicus,Secreted,s543,f184,sf127,c5,t2,641,500-1000
+KAB8_OLDAF,Cyclotide,Oldenlandia affinis,Secreted,s178,f148,sf112,c3,t2,31,0-100
+PTGIS_DANRE,Cytochrome P450,Danio rerio,Endoplasm. reticulum,s129,f52,sf39,c11,t1,480,300-500
+CP2CJ_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,490,300-500
+Q9I1Q4_PSEAE,Outer membrane porin (Opr),Pseudomonas aeruginosa,Gram-neg. outer,s28,f259,sf182,c2,t1,416,300-500
+Q9I4U9_PSEAE,Outer membrane porin (Opr),Pseudomonas aeruginosa,Gram-neg. outer,s28,f259,sf182,c2,t1,416,300-500
+G3XDA5_PSEAE,Outer membrane porin (Opr),Pseudomonas aeruginosa,Gram-neg. outer,s28,f259,sf182,c2,t1,460,300-500
+Q9HWK2_PSEAE,Outer membrane porin (Opr),Pseudomonas aeruginosa,Gram-neg. outer,s28,f259,sf182,c2,t1,431,300-500
+Q9HY38_PSEAE,Outer membrane porin (Opr),Pseudomonas aeruginosa,Gram-neg. outer,s28,f259,sf182,c2,t1,416,300-500
+F5L478_CALTT,Voltage-gated calcium and sodium channels,Caldalkalibacillus thermarum,Gram-pos. inner,s546,f852,sf8,c1,t1,298,100-300
+TPA_RANTE,Brevinin/gaegurin,Rana temporaria,Secreted,s403,f401,sf211,c7,t3,13,0-100
+FGFR3_HUMAN,Protein tyrosine kinases,Homo sapiens,Eykaryo. plasma,s14,f264,sf186,c11,t1,806,500-1000
+GLCP_STAES,Sugar porter family,Staphylococcus epidermidis,Gram-pos. inner,s295,f656,sf15,c1,t1,446,300-500
+Q0ABW0_ALKEH,Voltage-gated calcium and sodium channels,Alkalilimnicola ehrlichii,Gram-neg. inner,s548,f852,sf8,c1,t1,288,100-300
+E2FYL5_SCOMX,C2 domain,Psetta maxima,Secreted,s549,f60,sf45,c3,t2,129,100-300
+PA2HH_TRIST,Vertebrate secretory phospholipase A2,Trimeresurus stejnegeri,Secreted,s551,f107,sf82,c4,t2,137,100-300
+PA2H1_BOTBZ,Vertebrate secretory phospholipase A2,Bothrops brazili,Secreted,s552,f107,sf82,c4,t2,121,100-300
+ACM2_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,466,300-500
+TRPV1_RAT,Transient receptor potential channels,Rattus norvegicus,Eykaryo. plasma,s54,f682,sf8,c1,t1,838,500-1000
+OMPB1_NEIMB,General Bacterial Porin (GBP),Neisseria meningitidis,Gram-neg. outer,s24,f42,sf31,c2,t1,331,300-500
+ENV_HV1SC,Juxtamembrane peptides of viral envelope glycoproteins,Human immunodeficiency virus type 1,Viral,s157,f439,sf277,c7,t3,856,500-1000
+A6ZSR0_YEAS7,Cytochrome P450,Saccharomyces cerevisiae,Endoplasm. reticulum,s36,f52,sf39,c11,t1,530,500-1000
+LX15B_HUMAN,Lipoxygenases,Homo sapiens,Eykaryo. plasma,s14,f104,sf80,c4,t2,676,500-1000
+PA2A5_TRIST,Vertebrate secretory phospholipase A2,Trimeresurus stejnegeri,Secreted,s551,f107,sf82,c4,t2,122,100-300
+LOX_PSEAI,Lipoxygenases,Pseudomonas aeruginosa,Gram-neg. inner,s28,f104,sf80,c4,t2,685,500-1000
+KPCT_MOUSE,C1 domain,Mus musculus,Eykaryo. plasma,s52,f74,sf60,c3,t2,707,500-1000
+RASF5_MOUSE,C1 domain,Mus musculus,Eykaryo. plasma,s52,f74,sf60,c3,t2,413,300-500
+KPCA_HUMAN,C1 domain,Homo sapiens,Eykaryo. plasma,s14,f74,sf60,c3,t2,672,500-1000
+KPCT_HUMAN,C1 domain,Homo sapiens,Eykaryo. plasma,s14,f74,sf60,c3,t2,706,500-1000
+GRP1_HUMAN,C1 domain,Homo sapiens,Eykaryo. plasma,s14,f74,sf60,c3,t2,797,500-1000
+RGAP1_HUMAN,C1 domain,Homo sapiens,Eykaryo. plasma,s14,f74,sf60,c3,t2,632,500-1000
+KPCG_HUMAN,C1 domain,Homo sapiens,Eykaryo. plasma,s14,f74,sf60,c3,t2,697,500-1000
+KPCL_HUMAN,C2 domain,Homo sapiens,Eykaryo. plasma,s14,f60,sf45,c3,t2,683,500-1000
+ARBK1_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,689,500-1000
+DYN2_HUMAN,Pleckstrin-homology domain,Homo sapiens,Eykaryo. plasma,s14,f62,sf49,c3,t2,870,500-1000
+VGFR2_HUMAN,Protein tyrosine kinases,Homo sapiens,Eykaryo. plasma,s14,f264,sf186,c11,t1,1356,1000-2000
+BACR_HALVA,Microbial and algal rhodopsins,Haloarcula vallismortis,Archaebac.,s559,f13,sf6,c1,t1,250,100-300
+INSR_HUMAN,Protein tyrosine kinases,Homo sapiens,Eykaryo. plasma,s14,f264,sf186,c11,t1,1382,1000-2000
+M1VAN7_CYAM1,Lipid exporter family,Cyanidioschyzon merolae,Eykaryo. plasma,s306,f99,sf17,c1,t1,696,500-1000
+DEF_NICAL,Plant defensins,Nicotiana alata,Secreted,s423,f158,sf58,c6,t2,105,100-300
+AQP2_HUMAN,Major intrinsic protein (MIP) family,Homo sapiens,Eykaryo. plasma,s14,f15,sf7,c1,t1,271,100-300
+GTR1_HUMAN,Sugar porter family,Homo sapiens,Eykaryo. plasma,s14,f656,sf15,c1,t1,492,300-500
+MCJD_ECOLX,Lipid exporter family,Escherichia coli,Gram-neg. inner,s9,f99,sf17,c1,t1,580,500-1000
+Q5M4H8_STRT2,Proton-dependent oligopeptide transporter (POT),Streptococcus thermophilus,Gram-pos. inner,s565,f333,sf15,c1,t1,483,300-500
+DTPD_ECOLI,Proton-dependent oligopeptide transporter (POT),Escherichia coli,Gram-neg. inner,s9,f333,sf15,c1,t1,493,300-500
+ARHG9_RAT,Pleckstrin-homology domain,Rattus norvegicus,Eykaryo. plasma,s54,f62,sf49,c3,t2,493,300-500
+SNX14_HUMAN,PX domain,Homo sapiens,Eykaryo. plasma,s14,f70,sf57,c6,t2,946,500-1000
+CP51_YEAST,Cytochrome P450,Saccharomyces cerevisiae,Endoplasm. reticulum,s36,f52,sf39,c11,t1,530,500-1000
+SNX10_HUMAN,PX domain,Homo sapiens,Endosome,s14,f70,sf57,c6,t2,201,100-300
+KAB12_OLDAF,Cyclotide,Oldenlandia affinis,Secreted,s178,f148,sf112,c3,t2,28,0-100
+CUGA_CONPB,Alpha-conotoxin-like,Conus pictus,Secreted,s574,f212,sf148,c7,t3,11,0-100
+DEFLU_LUCSE,Invertebrate and fungal defensins,Lucilia sericata,Secreted,s575,f72,sf58,c6,t2,92,0-100
+TXP3_APOSC,Spider ion channel inhibitory toxins,Apomastus schlingeri,Secreted,s576,f154,sf112,c3,t2,37,0-100
+TXPR1_THRPR,Spider ion channel inhibitory toxins,Thrixopelma pruriens,Secreted,s577,f154,sf112,c3,t2,35,0-100
+CA1C_CONLI,Alpha-conotoxin-like,Conus lividus ,Secreted,s578,f212,sf148,c7,t3,38,0-100
+TXM46_CONAO,Alpha-conotoxin-like,Conus araneosus,Secreted,s579,f212,sf148,c7,t3,14,0-100
+ASTX3_ASTEC,"Lasso peptides, type 2",Asticcacaulis excentricus,Secreted,s584,f219,sf155,c9,t3,49,0-100
+ASTX1_ASTEC,"Lasso peptides, type 2",Asticcacaulis excentricus,Secreted,s584,f219,sf155,c9,t3,51,0-100
+D5VKJ9_CAUST,"Lasso peptides, type 2",Caulobacter segnis,Secreted,s590,f219,sf155,c9,t3,42,0-100
+FABP5_MOUSE,Fatty acid binding protein-like (n=10),Mus musculus,Eykaryo. plasma,s52,f137,sf50,c3,t2,135,100-300
+E7N5J9_9ACTO,Invertebrate and fungal defensins,Actinomyces sp.,Secreted,s595,f72,sf58,c6,t2,66,0-100
+3SA4_NAJAT,Snake venom toxins,Naja atra,Secreted,s53,f66,sf53,c3,t2,81,0-100
+Q91R00_WNV,Flavivirus glycoprotein,West Nile virus,Viral,s597,f147,sf109,c11,t1,426,300-500
+JZT7A_CHIGU,Spider ion channel inhibitory toxins,Chilobrachys guangxiensis,Secreted,s200,f154,sf112,c3,t2,66,0-100
+KNO64_HEXDO,Spider ion channel inhibitory toxins,Sicarius dolichocephalus,Secreted,s600,f154,sf112,c3,t2,72,0-100
+TXAG_ALLOP,Spider ion channel inhibitory toxins,Allagelena opulenta,Secreted,s601,f154,sf112,c3,t2,35,0-100
+ENV_HV1W2,Juxtamembrane peptides of viral envelope glycoproteins,Human immunodeficiency virus type 1,Endosome,s157,f439,sf277,c7,t3,847,500-1000
+B4EVM3_PROMH,Bacterial lipase,Proteus mirabilis,Secreted,s304,f184,sf127,c5,t2,287,100-300
+Q93A71_GEOSE,Bacterial lipase,Bacillus stearothermophilus,Secreted,s88,f184,sf127,c5,t2,418,300-500
+BACR1_HALMA,Microbial and algal rhodopsins,Haloarcula marismortui,Archaebac.,s611,f13,sf6,c1,t1,250,100-300
+CAR4_ARATH,C2 domain,Arabidopsis thaliana,Eykaryo. plasma,s246,f60,sf45,c3,t2,177,100-300
+3NO2_NAJKA,Snake venom toxins,Naja kaouthia,Secreted,s230,f66,sf53,c3,t2,86,0-100
+B0LX40_9INFA,Influenza virus matrix protein 2,Influenza A virus,Viral,s51,f263,sf185,c11,t1,95,0-100
+A0A0H2UKY1_CAUSK,"Lasso peptides, type 2",Caulobacter sp.,Secreted,s612,f219,sf155,c9,t3,18,0-100
+B3DH80_DANRE,Cytochrome P450,Danio rerio,Endoplasm. reticulum,s129,f52,sf39,c11,t1,519,500-1000
+DEF_COPTR,Invertebrate and fungal defensins,Copris tripartitus,Secreted,s615,f72,sf58,c6,t2,80,0-100
+DEF_LENCC,Plant defensins,Lens culinaris,Secreted,s616,f158,sf58,c6,t2,74,0-100
+D106A_HUMAN,Vertebrate defensin,Homo sapiens,Secreted,s14,f67,sf54,c3,t2,65,0-100
+N0DKS8_9FLAO,Microbial and algal rhodopsins,Dokdonia eikasta,Gram-neg. inner,s623,f13,sf6,c1,t1,280,100-300
+G3CEP6_ACEAT,Microbial and algal rhodopsins,Acetabularia acetabulum,Eykaryo. plasma,s348,f13,sf6,c1,t1,246,100-300
+Q40128_SOLLC,Plant defensins,Solanum lycopersicum,Secreted,s625,f158,sf58,c6,t2,105,100-300
+CP21A_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,495,300-500
+DEFA1_HORSE,Vertebrate defensin,Equus caballus,Secreted,s142,f67,sf54,c3,t2,98,0-100
+STP10_ARATH,Sugar porter family,Arabidopsis thaliana,Eykaryo. plasma,s246,f656,sf15,c1,t1,514,500-1000
+ACES_BUNFA,Acetylcholinesterase-like,Bungarus fasciatus,Secreted,s634,f178,sf127,c5,t2,606,500-1000
+A0A075B5G4_HUMIN,Cutinase-like,Humicola insolens,Secreted,s477,f186,sf127,c5,t2,194,100-300
+A3FM73_RHICH,Fungal lipases,Rhizopus chinensis,Secreted,s635,f183,sf127,c5,t2,389,300-500
+Q2TFW1_9PEZI,Acetylcholinesterase-like,Ophiostoma piceae,Secreted,s639,f178,sf127,c5,t2,549,500-1000
+BACR1_HALWD,Microbial and algal rhodopsins,Haloquadratum walsbyi,Archaebac.,s640,f13,sf6,c1,t1,254,100-300
+OPRM_MOUSE,"G-protein coupled receptors, family A",Mus musculus,Eykaryo. plasma,s52,f14,sf6,c1,t1,398,300-500
+D0RMU8_9PROT,Voltage-gated calcium and sodium channels,Alpha proteobacterium,Gram-neg. inner,s641,f852,sf8,c1,t1,228,100-300
+O86150_CAMJU,Lipid exporter family,Campylobacter jejuni,Gram-neg. inner,s106,f99,sf17,c1,t1,564,500-1000
+Y964_NEIMB,Outer Membrane Receptor (OMR),Neisseria meningitidis,Gram-neg. outer,s24,f83,sf33,c2,t1,758,500-1000
+GAP1_ORYSJ,C2 domain,Oryza sativa,Eykaryo. plasma,s286,f60,sf45,c3,t2,165,100-300
+Q1J2S8_DEIGD,Sulfate permease,Deinococcus radiodurans,Gram-neg. inner,s513,f785,sf64,c1,t1,499,300-500
+Q3IUY6_CERS4,Sulfate permease,Cereibacter sphaeroides,Gram-neg. inner,s31,f785,sf64,c1,t1,496,300-500
+Q9KN88_VIBCH,Sulfate permease,Vibrio cholerae,Gram-neg. inner,s45,f785,sf64,c1,t1,553,500-1000
+S26A5_RAT,Sulfate permease,Rattus norvegicus,Eykaryo. plasma,s54,f785,sf64,c1,t1,744,500-1000
+Q7M9V0_WOLSU,Sulfate permease,Wolinella succinogenes,Gram-neg. inner,s46,f785,sf64,c1,t1,569,500-1000
+BACR1_HALWC,Microbial and algal rhodopsins,Haloquadratum walsbyi,Archaebac.,s640,f13,sf6,c1,t1,254,100-300
+GTR5_BOVIN,Sugar porter family,Bos taurus,Eykaryo. plasma,s6,f656,sf15,c1,t1,501,500-1000
+GTR5_RAT,Sugar porter family,Rattus norvegicus,Eykaryo. plasma,s54,f656,sf15,c1,t1,502,500-1000
+G1SNM3_RABIT,Transient receptor potential channels,Oryctolagus cuniculus,Eykaryo. plasma,s25,f682,sf8,c1,t1,817,500-1000
+B7K2Q5_RIPO1,Lipoxygenases,Synechococcus sp.,Gram-neg. inner,s133,f104,sf80,c4,t2,668,500-1000
+MNLOX_MAGO7,Lipoxygenases,Magnaporthe oryzae,Eykaryo. plasma,s653,f104,sf80,c4,t2,619,500-1000
+A0A0D5YKR4_ACIBA,Outer membrane porin (Opr),Acinetobacter baumannii,Gram-neg. outer,s539,f259,sf182,c2,t1,426,300-500
+A0A0D5YI36_ACIBA,Outer membrane porin (Opr),Acinetobacter baumannii,Gram-neg. outer,s539,f259,sf182,c2,t1,418,300-500
+O2VC1_CONVC,Alpha-conotoxin-like,Conus victoriae,Secreted,s443,f212,sf148,c7,t3,103,100-300
+O17J_CONGE,Conotoxin O1,Conus geographus ,Secreted,s431,f153,sf112,c3,t2,82,0-100
+DEF32_ARATH,Plant defensins,Arabidopsis thaliana,Secreted,s246,f158,sf58,c6,t2,81,0-100
+TRPV2_RAT,Transient receptor potential channels,Rattus norvegicus,Eykaryo. plasma,s54,f682,sf8,c1,t1,761,500-1000
+E3U904_PROST,General Bacterial Porin (GBP),Providencia stuartii,Gram-neg. outer,s657,f42,sf31,c2,t1,374,300-500
+E3U905_PROST,General Bacterial Porin (GBP),Providencia stuartii,Gram-neg. outer,s657,f42,sf31,c2,t1,365,300-500
+ES1A_PELLE,Brevinin/gaegurin,Pelophylax lessonae,Secreted,s658,f401,sf211,c7,t3,46,0-100
+DKTX_CYRSC,Long-chain scorpion toxins,Haplopelma schmidti,Secreted,s659,f71,sf58,c6,t2,79,0-100
+CAR1_ARATH,C2 domain,Arabidopsis thaliana,Eykaryo. plasma,s246,f60,sf45,c3,t2,168,100-300
+H9ZSC3_THETH,Microbial and algal rhodopsins,Thermus thermophilus,Gram-neg. inner,s43,f13,sf6,c1,t1,260,100-300
+TIP21_ARATH,Major intrinsic protein (MIP) family,Arabidopsis thaliana,Vacuole,s246,f15,sf7,c1,t1,250,100-300
+LOX15_PIG,Lipoxygenases,Sus scrofa,Eykaryo. plasma,s56,f104,sf80,c4,t2,663,500-1000
+X0BTD8_FUSOX,Cutinase-like,Fusarium oxysporum,Secreted,s664,f186,sf127,c5,t2,230,100-300
+MDLA_PENCY,Fungal lipases,Penicillium cyclopium,Secreted,s665,f183,sf127,c5,t2,305,300-500
+DEF2_RAPSA,Plant defensins,Raphanus sativus,Secreted,s193,f158,sf58,c6,t2,80,0-100
+CP51_CANGA,Cytochrome P450,Candida glabrata,Endoplasm. reticulum,s667,f52,sf39,c11,t1,533,500-1000
+TRPV6_RAT,Transient receptor potential channels,Rattus norvegicus,Eykaryo. plasma,s54,f682,sf8,c1,t1,767,500-1000
+W8VZW3_9FLAO,Microbial and algal rhodopsins,Nonlabens marinus,Gram-neg. inner,s671,f13,sf6,c1,t1,272,100-300
+Q93K99_ENTCL,General Bacterial Porin (GBP),Enterobacter cloacae,Gram-neg. outer,s676,f42,sf31,c2,t1,363,300-500
+LOXA_PSEAE,Lipoxygenases,Pseudomonas aeruginosa,Secreted,s28,f104,sf80,c4,t2,685,500-1000
+Q6D8U4_PECAS,Outer Membrane Receptor (OMR),Pectobacterium atrosepticum,Gram-neg. outer,s678,f83,sf33,c2,t1,860,500-1000
+GLL7_CHICK,Vertebrate defensin,Gallus gallus,Secreted,s11,f67,sf54,c3,t2,67,0-100
+A0A1D5B387_SPHAL,"Lasso peptides, type 2",Sphingopyxis alaskensis,Undefined,s680,f219,sf155,c9,t3,21,0-100
+POLG_DEN4D,Flavivirus glycoprotein,Dengue virus,Viral,s131,f147,sf109,c11,t1,3387,>2000
+C3V005_9FLAV,Flavivirus glycoprotein,Dengue virus,Viral,s131,f147,sf109,c11,t1,3392,>2000
+POLG_DEN3P,Flavivirus glycoprotein,Dengue virus,Viral,s131,f147,sf109,c11,t1,3390,>2000
+Q80QJ9_WNV,Flavivirus glycoprotein,West Nile virus,Viral,s597,f147,sf109,c11,t1,426,300-500
+POLG_WNV9,Flavivirus glycoprotein,West Nile virus,Viral,s597,f147,sf109,c11,t1,3433,>2000
+POLG_JAEV1,Flavivirus glycoprotein,Japanese encephalitis virus,Viral,s684,f147,sf109,c11,t1,3432,>2000
+POLG_STEVM,Flavivirus glycoprotein,St. louis encephalitis virus,Viral,s685,f147,sf109,c11,t1,3412,>2000
+A0A0B4SHY9_9FLAV,Flavivirus glycoprotein,Dengue virus,Viral,s131,f147,sf109,c11,t1,557,500-1000
+Q68Y26_9FLAV,Flavivirus glycoprotein,Dengue virus,Viral,s131,f147,sf109,c11,t1,3391,>2000
+NTRK1_HUMAN,Protein tyrosine kinases,Homo sapiens,Eykaryo. plasma,s14,f264,sf186,c11,t1,796,500-1000
+POLG_ZIKVF,Flavivirus glycoprotein,Zika virus,Viral,s692,f147,sf109,c11,t1,3423,>2000
+A0A0X9QZM7_ZIKV,Flavivirus glycoprotein,Zika virus,Viral,s692,f147,sf109,c11,t1,3423,>2000
+A0A0X8GJ44_ZIKV,Flavivirus glycoprotein,Zika virus,Viral,s692,f147,sf109,c11,t1,3423,>2000
+SYT5_HUMAN,C2 domain,Homo sapiens,Vesicle,s14,f60,sf45,c3,t2,386,300-500
+CCR9_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,369,300-500
+A0A1B0XTC8_ZIKV,Flavivirus glycoprotein,Zika virus,Viral,s692,f147,sf109,c11,t1,3423,>2000
+URP2_MOUSE,Pleckstrin-homology domain,Mus musculus,Eykaryo. plasma,s52,f62,sf49,c3,t2,665,500-1000
+NTA_PSARE,Spider ion channel inhibitory toxins,Psalmopoeus cambridgei,Secreted,s280,f154,sf112,c3,t2,35,0-100
+CP4B1_RABIT,Cytochrome P450,Oryctolagus cuniculus,Endoplasm. reticulum,s25,f52,sf39,c11,t1,506,500-1000
+RET1_HUMAN,Fatty acid binding protein-like (n=10),Homo sapiens,Eykaryo. plasma,s14,f137,sf50,c3,t2,135,100-300
+J7LF03_NOCAA,"Lasso peptides, type 2",Nocardiopsis alba,Secreted,s701,f219,sf155,c9,t3,46,0-100
+O67184_AQUAE,Lipid exporter family,Aquifex aeolicus,Gram-neg. inner,s57,f99,sf17,c1,t1,564,500-1000
+SCNA1_PERAM,Voltage-gated calcium and sodium channels,Periplaneta americana,Eykaryo. plasma,s704,f852,sf8,c1,t1,1553,1000-2000
+COW2_CONVC,Alpha-conotoxin-like,Conus victoriae,Secreted,s443,f212,sf148,c7,t3,63,0-100
+CP51_CANAL,Cytochrome P450,Candida albicans,Endoplasm. reticulum,s652,f52,sf39,c11,t1,528,500-1000
+ACES_ANOGA,Acetylcholinesterase-like,Anopheles gambiae,Eykaryo. plasma,s376,f178,sf127,c5,t2,737,500-1000
+PGLK_CAMJE,Lipid exporter family,Campylobacter jejuni,Gram-neg. inner,s106,f99,sf17,c1,t1,564,500-1000
+CP51B_ASPFU,Cytochrome P450,Aspergillus fumigatus,Endoplasm. reticulum,s711,f52,sf39,c11,t1,524,500-1000
+3SI1A_DENAN,Snake venom toxins,Dendroaspis angusticeps,Secreted,s467,f66,sf53,c3,t2,65,0-100
+A7U483_DANRE,Cytochrome P450,Danio rerio,Endoplasm. reticulum,s129,f52,sf39,c11,t1,495,300-500
+B7JX99_RIPO1,Lipoxygenases,Synechococcus sp.,Gram-neg. inner,s133,f104,sf80,c4,t2,569,500-1000
+S5DM51_9ACTN,Microbial and algal rhodopsins,Candidatus actinomarina minuta,Gram-pos. inner,s717,f13,sf6,c1,t1,220,100-300
+Q9VGM2_DROME,Fatty acid binding protein-like (n=10),Drosophila melanogaster,Nuclear inner,s50,f137,sf50,c3,t2,130,100-300
+SYT1_MOUSE,C2 domain,Mus musculus,Vesicle,s52,f60,sf45,c3,t2,421,300-500
+E0A9E1_DROME,Transient receptor potential channels,Drosophila melanogaster,Eykaryo. plasma,s50,f682,sf8,c1,t1,1732,1000-2000
+M2_I40A0,Influenza virus matrix protein 2,Influenza A virus,Viral,s51,f263,sf185,c11,t1,97,0-100
+VGP_EBOZ5,Juxtamembrane peptides of viral envelope glycoproteins,Zaire ebolavirus,Viral,s425,f439,sf277,c7,t3,676,500-1000
+TX3_PARSR,Spider ion channel inhibitory toxins,Paraphysa scrofa,Secreted,s181,f154,sf112,c3,t2,34,0-100
+PN3A_PAMNI,Spider ion channel inhibitory toxins,Pamphobeteus nigricolor,Secreted,s733,f154,sf112,c3,t2,35,0-100
+MSBA_ECO57,Lipid exporter family,Escherichia coli,Gram-neg. inner,s9,f99,sf17,c1,t1,582,500-1000
+SYT7_RAT,C2 domain,Rattus norvegicus,Eykaryo. plasma,s54,f60,sf45,c3,t2,403,300-500
+NPC1_HUMAN,Patched family,Homo sapiens,Lysosome,s14,f812,sf16,c1,t1,1278,1000-2000
+PA2B3_BOTAS,Vertebrate secretory phospholipase A2,Bothrops asper,Secreted,s312,f107,sf82,c4,t2,138,100-300
+A0A2H4A2U9_NAEFO,Cytochrome P450,Naegleria fowleri,Endoplasm. reticulum,s737,f52,sf39,c11,t1,466,300-500
+L0CKG3_ORENI,Pleurocidin,Oreochromis niloticus,Secreted,s739,f215,sf142,c7,t3,89,0-100
+CP3A5_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,502,500-1000
+Q8PAS2_XANCP,Proton-dependent oligopeptide transporter (POT),Xanthomonas campestris,Gram-neg. inner,s271,f333,sf15,c1,t1,620,500-1000
+Q8RUT8_CHLRE,Microbial and algal rhodopsins,Chlamydomonas reinhardtii,Eykaryo. plasma,s7,f13,sf6,c1,t1,737,500-1000
+NRIP1_HUMAN,Transient receptor potential channels,Homo sapiens,Eykaryo. plasma,s14,f682,sf8,c1,t1,1158,1000-2000
+TRPM4_MOUSE,Transient receptor potential channels,Mus musculus,Eykaryo. plasma,s52,f682,sf8,c1,t1,1213,1000-2000
+U3JD03_FICAL,Transient receptor potential channels,Ficedula albicollis,Eykaryo. plasma,s744,f682,sf8,c1,t1,1115,1000-2000
+G0QG75_NANS0,Microbial and algal rhodopsins,Nanosalina sp.,Archaebac.,s745,f13,sf6,c1,t1,228,100-300
+A2ATX9_DANRE,Cytochrome P450,Danio rerio,Endoplasm. reticulum,s129,f52,sf39,c11,t1,519,500-1000
+TRPV6_HUMAN,Transient receptor potential channels,Homo sapiens,Eykaryo. plasma,s14,f682,sf8,c1,t1,765,500-1000
+TRPM4_HUMAN,Transient receptor potential channels,Homo sapiens,Eykaryo. plasma,s14,f682,sf8,c1,t1,1214,1000-2000
+L0RVU0_VIBHA,General Bacterial Porin (GBP),Vibrio harveyi,Gram-neg. outer,s340,f42,sf31,c2,t1,375,300-500
+CULP6_MYCTU,Cutinase-like,Mycobacterium tuberculosis,Secreted,s21,f186,sf127,c5,t2,336,300-500
+TRPV5_RABIT,Transient receptor potential channels,Oryctolagus cuniculus,Eykaryo. plasma,s25,f682,sf8,c1,t1,730,500-1000
+C5AR1_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,350,300-500
+OMPU_VIBCH,General Bacterial Porin (GBP),Vibrio cholerae,Gram-neg. outer,s45,f42,sf31,c2,t1,341,300-500
+TX22A_MACGS,Spider ion channel inhibitory toxins,Macrothele gigas,Secreted,s439,f154,sf112,c3,t2,46,0-100
+LAM4_YEAST,STAR domain,Saccharomyces cerevisiae,Endoplasm. reticulum,s36,f197,sf138,c6,t2,1345,1000-2000
+PA2GE_HUMAN,Vertebrate secretory phospholipase A2,Homo sapiens,Secreted,s14,f107,sf82,c4,t2,142,100-300
+TXF1A_SCOMU,Short-chain scorpion toxins,Scolopendra subspinipes,Secreted,s749,f157,sf58,c6,t2,76,0-100
+YSP2_YEAST,STAR domain,Saccharomyces cerevisiae,Endoplasm. reticulum,s36,f197,sf138,c6,t2,1438,1000-2000
+PFEA_PSEAE,Outer Membrane Receptor (OMR),Pseudomonas aeruginosa,Gram-neg. outer,s28,f83,sf33,c2,t1,746,500-1000
+5HT1B_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,390,300-500
+KAX42_TITSE,Short-chain scorpion toxins,Tityus serrulatus,Secreted,s215,f157,sf58,c6,t2,57,0-100
+KGX22_MESMA,Short-chain scorpion toxins,Mesobuthus martensii,Secreted,s279,f157,sf58,c6,t2,57,0-100
+TXLB1_CYRSC,Spider ion channel inhibitory toxins,Haplopelma schmidti,Secreted,s659,f154,sf112,c3,t2,83,0-100
+CTXI1_MESEU,Short-chain scorpion toxins,Mesobuthus eupeus,Secreted,s406,f157,sf58,c6,t2,36,0-100
+KAX69_OPICA,Short-chain scorpion toxins,Opistophthalmus carinatus,Secreted,s753,f157,sf58,c6,t2,61,0-100
+V4RMX4_9CAUL,"Lasso peptides, type 2",Asticcacaulis benevestitus,Secreted,s756,f219,sf155,c9,t3,45,0-100
+A0A0B8ZWE6_9SPHN,"Lasso peptides, type 2",Novosphingobium subterraneum,Secreted,s757,f219,sf155,c9,t3,43,0-100
+ENV_HV1W1,Juxtamembrane peptides of viral envelope glycoproteins,Human immunodeficiency virus type 1,Endosome,s157,f439,sf277,c7,t3,856,500-1000
+TX1_SELPU,Spider ion channel inhibitory toxins,Selenotypus plumipes,Secreted,s762,f154,sf112,c3,t2,94,0-100
+A0A0C2JEQ8_9ACTN,"Lasso peptides, type 2",Streptomonospora alba,Secreted,s765,f219,sf155,c9,t3,41,0-100
+D5VKJ8_CAUST,"Lasso peptides, type 2",Caulobacter segnis,Secreted,s590,f219,sf155,c9,t3,37,0-100
+TX1A_HETMC,Spider ion channel inhibitory toxins,Heteroscodra maculata,Secreted,s767,f154,sf112,c3,t2,35,0-100
+A0A1S4NYG0_KLEPN,"Lasso peptides, type 2",Klebsiella pneumoniae,Secreted,s16,f219,sf155,c9,t3,19,0-100
+A0A171DJY5_9ACTN,"Lasso peptides, type 2",Planomonospora sphaerica,Secreted,s769,f219,sf155,c9,t3,39,0-100
+I0HM07_RUBGI,"Lasso peptides, type 2",Rubrivivax gelatinosus,Secreted,s770,f219,sf155,c9,t3,38,0-100
+S14L3_HUMAN,CRAL/TRIO domain,Homo sapiens,Vesicle,s14,f172,sf121,c5,t2,400,300-500
+Q1M0Y5_PERAM,"Retinol binding protein-like (n=8,S=12)",Periplaneta americana,Secreted,s704,f63,sf50,c3,t2,183,100-300
+TRPC4_MOUSE,Transient receptor potential channels,Mus musculus,Eykaryo. plasma,s52,f682,sf8,c1,t1,974,500-1000
+A0A0H3AME7_VIBC3,General Bacterial Porin (GBP),Vibrio cholerae,Gram-neg. outer,s45,f42,sf31,c2,t1,368,300-500
+O86021_VIBCL,General Bacterial Porin (GBP),Vibrio cholerae,Gram-neg. outer,s45,f42,sf31,c2,t1,344,300-500
+OMPU_VIBC3,General Bacterial Porin (GBP),Vibrio cholerae,Gram-neg. outer,s45,f42,sf31,c2,t1,341,300-500
+TX2_CERMR,Spider ion channel inhibitory toxins,Ceratogyrus marshalli,Secreted,s772,f154,sf112,c3,t2,33,0-100
+TX1_CERMR,Spider ion channel inhibitory toxins,Ceratogyrus marshalli,Secreted,s772,f154,sf112,c3,t2,33,0-100
+U3N7D8_DANRE,Transient receptor potential channels,Danio rerio,Eykaryo. plasma,s129,f682,sf8,c1,t1,915,500-1000
+TRPC3_HUMAN,Transient receptor potential channels,Homo sapiens,Eykaryo. plasma,s14,f682,sf8,c1,t1,921,500-1000
+TMP2L_NEMVE,Transient receptor potential channels,Nematostella vectensis,Eykaryo. plasma,s776,f682,sf8,c1,t1,1551,1000-2000
+TRPC6_HUMAN,Transient receptor potential channels,Homo sapiens,Eykaryo. plasma,s14,f682,sf8,c1,t1,931,500-1000
+TPB_RANTE,Brevinin/gaegurin,Rana temporaria,Secreted,s403,f401,sf211,c7,t3,61,0-100
+US28_HCMVT,"G-protein coupled receptors, family A",Human cytomegalovirus,Viral,s782,f14,sf6,c1,t1,354,300-500
+A0A0K0PTR1_9PSED,Bacterial lipase,Pseudomonas sp.,Secreted,s259,f184,sf127,c5,t2,388,300-500
+A0A1P8FCM7_KLEPN,General Bacterial Porin (GBP),Klebsiella pneumoniae,Gram-neg. outer,s16,f42,sf31,c2,t1,358,300-500
+A0A0H3FYJ7_KLEAK,General Bacterial Porin (GBP),Klebsiella aerogenes,Gram-neg. outer,s785,f42,sf31,c2,t1,359,300-500
+D6QLY0_KLEPN,General Bacterial Porin (GBP),Klebsiella pneumoniae,Gram-neg. outer,s16,f42,sf31,c2,t1,365,300-500
+Q9ALY0_KLEAE,General Bacterial Porin (GBP),Klebsiella aerogenes,Gram-neg. outer,s785,f42,sf31,c2,t1,375,300-500
+P78583_ASPOZ,Cutinase-like,Aspergillus oryzae,Secreted,s324,f186,sf127,c5,t2,306,300-500
+Q8L1V2_GEOTH,Bacterial lipase,Geobacillus thermoleovorans,Secreted,s787,f184,sf127,c5,t2,416,300-500
+PTC1_HUMAN,Patched family,Homo sapiens,Eykaryo. plasma,s14,f812,sf16,c1,t1,1447,1000-2000
+TPL_RANTE,Brevinin/gaegurin,Rana temporaria,Secreted,s403,f401,sf211,c7,t3,13,0-100
+NTA_AVIAU,Spider ion channel inhibitory toxins,Avicularia aurantiaca,Secreted,s764,f154,sf112,c3,t2,36,0-100
+TRPM7_MOUSE,Transient receptor potential channels,Mus musculus,Eykaryo. plasma,s52,f682,sf8,c1,t1,1863,1000-2000
+VP51_LYCMC,Short-chain scorpion toxins,Lychas mucronatus,Secreted,s793,f157,sf58,c6,t2,62,0-100
+TRPV3_MOUSE,Transient receptor potential channels,Mus musculus,Eykaryo. plasma,s52,f682,sf8,c1,t1,791,500-1000
+L1J207_GUITC,Microbial and algal rhodopsins,Guillardia theta,Eykaryo. plasma,s795,f13,sf6,c1,t1,438,300-500
+3SIM1_DENAN,Snake venom toxins,Dendroaspis angusticeps,Secreted,s467,f66,sf53,c3,t2,66,0-100
+3L21_NAJOX,Snake venom toxins,Naja oxiana,Secreted,s173,f66,sf53,c3,t2,73,0-100
+3SAT_NAJAT,Snake venom toxins,Naja atra,Secreted,s53,f66,sf53,c3,t2,60,0-100
+3SA1_NAJMO,Snake venom toxins,Naja mossambica,Secreted,s172,f66,sf53,c3,t2,60,0-100
+3L23_NAJNA,Snake venom toxins,Naja naja,Secreted,s315,f66,sf53,c3,t2,71,0-100
+M2_I96A0,Influenza virus matrix protein 2,Influenza A virus,Viral,s51,f263,sf185,c11,t1,97,0-100
+TRPM2_DANRE,Transient receptor potential channels,Danio rerio,Eykaryo. plasma,s129,f682,sf8,c1,t1,1470,1000-2000
+DEF1_HEUSA,Plant defensins,Heuchera sanguinea,Secreted,s797,f158,sf58,c6,t2,54,0-100
+G7L736_MEDTR,Plant defensins,Medicago truncatula,Secreted,s798,f158,sf58,c6,t2,76,0-100
+F2Z241_SACOF,Plant defensins,Saccharum officinarum,Secreted,s799,f158,sf58,c6,t2,71,0-100
+SCP2_YARLI,Sterol carrier protein,Yarrowia lipolytica,Peroxisome,s335,f194,sf135,c6,t2,129,100-300
+SNX27_HUMAN,PX domain,Homo sapiens,Endosome,s14,f70,sf57,c6,t2,541,500-1000
+K7NSY9_HELAM,Sterol carrier protein,Helicoverpa armigera,Undefined,s800,f194,sf135,c6,t2,535,500-1000
+DEFL1_CENLI,Invertebrate and fungal defensins,Centruroides limpidus,Secreted,s801,f72,sf58,c6,t2,56,0-100
+ASTRA_MOUSE,STAR domain,Mus musculus,Eykaryo. plasma,s52,f197,sf138,c6,t2,722,500-1000
+TRPV3_HUMAN,Transient receptor potential channels,Homo sapiens,Eykaryo. plasma,s14,f682,sf8,c1,t1,790,500-1000
+Q76HJ9_ACIBA,Outer Membrane Receptor (OMR),Acinetobacter baumannii,Gram-neg. outer,s539,f83,sf33,c2,t1,725,500-1000
+TX21_HADIN,Spider ion channel inhibitory toxins,Hadronyche infensa,Secreted,s150,f154,sf112,c3,t2,92,0-100
+Q841A2_NEIME,Outer Membrane Receptor (OMR),Neisseria meningitidis,Gram-neg. outer,s24,f83,sf33,c2,t1,672,500-1000
+CYPH1_SALMI,Cytochrome P450,Salvia miltiorrhiza,Endoplasm. reticulum,s804,f52,sf39,c11,t1,495,300-500
+A0A0M7H8A9_ENTCL,General Bacterial Porin (GBP),Enterobacter cloacae,Gram-neg. outer,s676,f42,sf31,c2,t1,351,300-500
+A0A0B9X9I7_ACIBA,General Bacterial Porin (GBP),Acinetobacter baumannii,Gram-neg. outer,s539,f42,sf31,c2,t1,434,300-500
+PE2R4_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,488,300-500
+EDNRB_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,442,300-500
+PTC1_MOUSE,Patched family,Mus musculus,Eykaryo. plasma,s52,f812,sf16,c1,t1,1434,1000-2000
+FIU_ECOLI,Outer Membrane Receptor (OMR),Escherichia coli,Gram-neg. outer,s9,f83,sf33,c2,t1,760,500-1000
+C11B1_HUMAN,Cytochrome P450,Homo sapiens,Mitochon. inner,s14,f52,sf39,c11,t1,503,500-1000
+Q8L435_CHLRE,Microbial and algal rhodopsins,Chlamydomonas reinhardtii,Eykaryo. plasma,s7,f13,sf6,c1,t1,712,500-1000
+TX15_GRAPO,Spider ion channel inhibitory toxins,Grammostola porteri,Secreted,s813,f154,sf112,c3,t2,34,0-100
+TRPM2_HUMAN,Transient receptor potential channels,Homo sapiens,Eykaryo. plasma,s14,f682,sf8,c1,t1,1503,1000-2000
+DTPA_ECOLI,Proton-dependent oligopeptide transporter (POT),Escherichia coli,Gram-neg. inner,s9,f333,sf15,c1,t1,500,500-1000
+EP300_HUMAN,Transient receptor potential channels,Homo sapiens,Eykaryo. plasma,s14,f682,sf8,c1,t1,2414,>2000
+Q89806_9ALPH,Juxtamembrane peptides of viral envelope glycoproteins,Bovine alphaherpesvirus 1,Viral,s820,f439,sf277,c7,t3,96,0-100
+TXNA1_OMOSC,Spider ion channel inhibitory toxins,Omothymus schioedtei,Secreted,s822,f154,sf112,c3,t2,33,0-100
+G3XD89_PSEAE,Outer Membrane Receptor (OMR),Pseudomonas aeruginosa,Gram-neg. outer,s28,f83,sf33,c2,t1,723,500-1000
+Q29SA6_ARAHA,Plant defensins,Arabidopsis halleri,Secreted,s824,f158,sf58,c6,t2,80,0-100
+D104A_HUMAN,Vertebrate defensin,Homo sapiens,Secreted,s14,f67,sf54,c3,t2,72,0-100
+DEF3_MESMA,Invertebrate and fungal defensins,Buthus sp.,Secreted,s826,f72,sf58,c6,t2,62,0-100
+YNAI_ECO57,Small conductance mechanosensitive ion channels,Escherichia coli,Gram-neg. inner,s9,f19,sf11,c1,t1,343,300-500
+D0E8G2_9RETR,Juxtamembrane peptides of viral envelope glycoproteins,Feline immunodeficiency virus,Viral,s829,f439,sf277,c7,t3,856,500-1000
+I0YUS5_COCSC,Microbial and algal rhodopsins,Coccomyxa subellipsoidea,Eykaryo. plasma,s830,f13,sf6,c1,t1,304,300-500
+FHUE_ECOLI,Outer Membrane Receptor (OMR),Escherichia coli,Gram-neg. outer,s9,f83,sf33,c2,t1,729,500-1000
+W5RZ24_BLOTA,Invertebrate and fungal defensins,Blomia tropicalis,Secreted,s831,f72,sf58,c6,t2,70,0-100
+A0A4V8H030_9SOLA,Plant defensins,Nicotiana occidentalis,Secreted,s833,f158,sf58,c6,t2,48,0-100
+A0A4V8GZR4_9ROSI,Cyclotide,Rinorea virgata,Secreted,s834,f148,sf112,c3,t2,29,0-100
+AQP10_HUMAN,Major intrinsic protein (MIP) family,Homo sapiens,Eykaryo. plasma,s14,f15,sf7,c1,t1,301,300-500
+A0A0R5TVW3_9INFA,Influenza virus matrix protein 2,Influenza A virus,Viral,s51,f263,sf185,c11,t1,90,0-100
+ASTRC_HUMAN,STAR domain,Homo sapiens,Endoplasm. reticulum,s14,f197,sf138,c6,t2,662,500-1000
+C90B1_ARATH,Cytochrome P450,Arabidopsis thaliana,Endoplasm. reticulum,s246,f52,sf39,c11,t1,513,500-1000
+V5UQK0_9CAUD,Cytochrome P450,Mycobacterium phage Adler,Secreted,s837,f52,sf39,c11,t1,471,300-500
+MYOF_HUMAN,C2 domain,Homo sapiens,Eykaryo. plasma,s14,f60,sf45,c3,t2,2061,>2000
+PA24A_CHICK,C2 domain,Gallus gallus,Vesicle,s11,f60,sf45,c3,t2,748,500-1000
+PA2B2_PROFL,Vertebrate secretory phospholipase A2,Protobothrops flavoviridis,Secreted,s838,f107,sf82,c4,t2,138,100-300
+A0A0R4IMY7,Transient receptor potential channels,Danio rerio,Eykaryo. plasma,s129,f682,sf8,c1,t1,1470,1000-2000
+B1B1U5_9ARAC,"G-protein coupled receptors, family A",Hasarius adansoni,Eykaryo. plasma,s840,f14,sf6,c1,t1,372,300-500
+Q603T8_METCA,Cytochrome P450,Methylococcus capsulatus,Gram-neg. inner,s19,f52,sf39,c11,t1,551,500-1000
+FABH_ASCSU,Fatty acid binding protein-like (n=10),Ascaris suum,Secreted,s521,f137,sf50,c3,t2,163,100-300
+S26A9_MOUSE,Sulfate permease,Mus musculus,Eykaryo. plasma,s52,f785,sf64,c1,t1,790,500-1000
+A0A1Z1SX23_PROMI,Bacterial lipase,Proteus mirabilis,Secreted,s304,f184,sf127,c5,t2,287,100-300
+3S1EC_LATSE,Snake venom toxins,Laticauda semifasciata,Secreted,s424,f66,sf53,c3,t2,83,0-100
+SUCR1_RAT,"G-protein coupled receptors, family A",Rattus norvegicus,Eykaryo. plasma,s54,f14,sf6,c1,t1,317,300-500
+Q7NP59_GLOVI,Microbial and algal rhodopsins,Gloeobacter violaceus,Gram-neg. inner,s261,f13,sf6,c1,t1,298,100-300
+TRPC5_MOUSE,Transient receptor potential channels,Mus musculus,Eykaryo. plasma,s52,f682,sf8,c1,t1,975,500-1000
+NTA_PSACA,Spider ion channel inhibitory toxins,Psalmopoeus cambridgei,Secreted,s280,f154,sf112,c3,t2,86,0-100
+DEF2_PEA,Plant defensins,Pisum sativum,Secreted,s185,f158,sf58,c6,t2,47,0-100
+Q9I116_PSEAE,Outer Membrane Receptor (OMR),Pseudomonas aeruginosa,Gram-neg. outer,s28,f83,sf33,c2,t1,820,500-1000
+D6QLY1_KLEPN,General Bacterial Porin (GBP),Klebsiella pneumoniae,Gram-neg. outer,s16,f42,sf31,c2,t1,367,300-500
+E5G6G2_KLEPN,General Bacterial Porin (GBP),Klebsiella pneumoniae,Gram-neg. outer,s16,f42,sf31,c2,t1,369,300-500
+BR1A_RANBO,Brevinin/gaegurin,Rana boylii,Secreted,s851,f401,sf211,c7,t3,24,0-100
+PISC3_MORCS,Pleurocidin,Morone saxatilis,Secreted,s302,f215,sf142,c7,t3,22,0-100
+BACR3_HALSD,Microbial and algal rhodopsins,Halorubrum sodomense,Archaebac.,s853,f13,sf6,c1,t1,258,100-300
+NPC1_YEAST,Patched family,Saccharomyces cerevisiae,Eykaryo. plasma,s36,f812,sf16,c1,t1,1170,1000-2000
+A0A5S8WF66_PARMJ,Transient receptor potential channels,Parus major,Eykaryo. plasma,s854,f682,sf8,c1,t1,1098,1000-2000
+Q4WG73_ASPFU,Fungal lipases,Aspergillus fumigatus,Secreted,s711,f183,sf127,c5,t2,463,300-500
+G8DI69_9PHYC,Microbial and algal rhodopsins,Phaeocystis globosa virus,Viral,s856,f13,sf6,c1,t1,225,100-300
+YDDB_ECOLI,Outer Membrane Receptor (OMR),Escherichia coli,Gram-neg. outer,s9,f83,sf33,c2,t1,790,500-1000
+Q0Z852_CHLRE,Transient receptor potential channels,Chlamydomonas reinhardtii,Eykaryo. plasma,s7,f682,sf8,c1,t1,901,500-1000
+STAR4_HUMAN,STAR domain,Homo sapiens,Eykaryo. plasma,s14,f197,sf138,c6,t2,205,100-300
+F2Y2Z0_9PHYC,Microbial and algal rhodopsins,Organic Lake phycodnavirus,Viral,s857,f13,sf6,c1,t1,211,100-300
+AQP7_HUMAN,Major intrinsic protein (MIP) family,Homo sapiens,Eykaryo. plasma,s14,f15,sf7,c1,t1,342,300-500
+CAC1G_HUMAN,Voltage-gated calcium and sodium channels,Homo sapiens,Eykaryo. plasma,s14,f852,sf8,c1,t1,2377,>2000
+OPRD_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,372,300-500
+PIP24_ARATH,Major intrinsic protein (MIP) family,Arabidopsis thaliana,Eykaryo. plasma,s246,f15,sf7,c1,t1,291,100-300
+BICA_SYNY3,Sulfate permease,Synechocystis sp.,Gram-neg. inner,s212,f785,sf64,c1,t1,564,500-1000
+OX1R_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,425,300-500
+C2D1_DROME,C2 domain,Drosophila melanogaster,Eykaryo. plasma,s50,f60,sf45,c3,t2,816,500-1000
+TRPA1_HUMAN,Transient receptor potential channels,Homo sapiens,Eykaryo. plasma,s14,f682,sf8,c1,t1,1119,1000-2000
+A4D7H3_9INFA,Influenza virus matrix protein 2,Influenza A virus,Viral,s51,f263,sf185,c11,t1,97,0-100
+M2_I71A1,Influenza virus matrix protein 2,Influenza A virus,Viral,s51,f263,sf185,c11,t1,97,0-100
+LUT5_ARATH,Cytochrome P450,Arabidopsis thaliana,Chloroplast inner,s246,f52,sf39,c11,t1,595,500-1000
+AS1C_DOLGE,Invertebrate and fungal defensins,Dolopus genitalis,Secreted,s867,f72,sf58,c6,t2,80,0-100
+ASC3B_DOLGE,Invertebrate and fungal defensins,Dolopus genitalis,Secreted,s867,f72,sf58,c6,t2,69,0-100
+ADRB2_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,413,300-500
+O97467_PLAFA,Sugar porter family,Plasmodium falciparum,Eykaryo. plasma,s249,f656,sf15,c1,t1,504,500-1000
+M2_I34A1,Influenza virus matrix protein 2,Influenza A virus,Viral,s51,f263,sf185,c11,t1,97,0-100
+MSBA_ECOLI,Lipid exporter family,Escherichia coli,Gram-neg. inner,s9,f99,sf17,c1,t1,582,500-1000
+OPRK_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,380,300-500
+S5UCA2_KLEPN,General Bacterial Porin (GBP),Klebsiella pneumoniae,Gram-neg. outer,s16,f42,sf31,c2,t1,374,300-500
+Q1AUE6_RUBXD,Microbial and algal rhodopsins,Rubrobacter xylanophilus,Gram-pos. inner,s878,f13,sf6,c1,t1,239,100-300
+A0A0U1MWF9_STAAU,Bacterial lipase,Staphylococcus aureus,Secreted,s38,f184,sf127,c5,t2,690,500-1000
+MSL1_ARATH,Small conductance mechanosensitive ion channels,Arabidopsis thaliana,Mitochon. inner,s246,f19,sf11,c1,t1,497,300-500
+CA1A_CONTE,Alpha-conotoxin-like,Conus textile,Secreted,s125,f212,sf148,c7,t3,56,0-100
+CAS2_CONST,Alpha-conotoxin-like,Conus striatus,Secreted,s124,f212,sf148,c7,t3,72,0-100
+Q5XI77_RAT,Annexins,Rattus norvegicus,Eykaryo. plasma,s54,f54,sf41,c4,t2,503,500-1000
+YNCD_ECOLI,Outer Membrane Receptor (OMR),Escherichia coli,Gram-neg. outer,s9,f83,sf33,c2,t1,700,500-1000
+TCMO_SORBI,Cytochrome P450,Sorghum bicolor,Endoplasm. reticulum,s497,f52,sf39,c11,t1,501,500-1000
+3SA3_NAJKA,Snake venom toxins,Naja kaouthia,Secreted,s230,f66,sf53,c3,t2,60,0-100
+A0A6P3CW41_9CYAN,Microbial and algal rhodopsins,Mastigocladopsis repens,Gram-neg. inner,s872,f13,sf6,c1,t1,232,100-300
+LUT1_ARATH,Cytochrome P450,Arabidopsis thaliana,Thylakoid,s246,f52,sf39,c11,t1,539,500-1000
+DISP_DROME,Patched family,Drosophila melanogaster,Eykaryo. plasma,s50,f812,sf16,c1,t1,1218,1000-2000
+SCP2_HUMAN,Sterol carrier protein,Homo sapiens,Peroxisome,s14,f194,sf135,c6,t2,547,500-1000
+Q9KCR8_HALH5,Voltage-gated calcium and sodium channels,Bacillus halodurans,Gram-pos. inner,s550,f852,sf8,c1,t1,274,100-300
+NPCL1_RAT,Patched family,Rattus norvegicus,Endoplasm. reticulum,s54,f812,sf16,c1,t1,1331,1000-2000
+SCXD_CENLI,Invertebrate and fungal defensins,Centruroides limpidus,Secreted,s801,f72,sf58,c6,t2,68,0-100
+DISP1_HUMAN,Patched family,Homo sapiens,Eykaryo. plasma,s14,f812,sf16,c1,t1,1524,1000-2000
+Q90WJ0_PSEAM,Pleurocidin,Pseudopleuronectes americanus,Secreted,s191,f215,sf142,c7,t3,72,0-100
+PLE3_PSEAM,Pleurocidin,Pseudopleuronectes americanus,Secreted,s191,f215,sf142,c7,t3,61,0-100
+Q90VX5_PSEAM,Pleurocidin,Pseudopleuronectes americanus,Secreted,s191,f215,sf142,c7,t3,89,0-100
+PLE4_PSEAM,Pleurocidin,Pseudopleuronectes americanus,Secreted,s191,f215,sf142,c7,t3,68,0-100
+RABP1_BOVIN,Fatty acid binding protein-like (n=10),Bos taurus,Eykaryo. plasma,s6,f137,sf50,c3,t2,137,100-300
+FABP1_DORPE,Fatty acid binding protein-like (n=10),Doryteuthis pealeii,Eykaryo. plasma,s897,f137,sf50,c3,t2,132,100-300
+FABP4_PYGPA,Fatty acid binding protein-like (n=10),Pygoscelis papua,Eykaryo. plasma,s898,f137,sf50,c3,t2,132,100-300
+FABP5_PYGPA,Fatty acid binding protein-like (n=10),Pygoscelis papua,Eykaryo. plasma,s898,f137,sf50,c3,t2,134,100-300
+FABP8_CAEEL,Fatty acid binding protein-like (n=10),Caenorhabditis elegans,Lysosome,s236,f137,sf50,c3,t2,137,100-300
+LICH_HUMAN,Bacterial lipase,Homo sapiens,Lysosome,s14,f184,sf127,c5,t2,399,300-500
+CAL1_ORYSJ,Plant defensins,Oryza sativa,Secreted,s286,f158,sf58,c6,t2,80,0-100
+DEF4_MACMU,Vertebrate defensin,Macaca mulatta,Secreted,s330,f67,sf54,c3,t2,94,0-100
+STA10_HUMAN,STAR domain,Homo sapiens,Eykaryo. plasma,s14,f197,sf138,c6,t2,291,100-300
+OXYR_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,389,300-500
+V7BTW4_PHAVU,Plant defensins,Phaseolus vulgaris,Secreted,s184,f158,sf58,c6,t2,75,0-100
+A0A2M8WFL4_9SPHN,"Lasso peptides, type 2",Sphingomonas koreensis,Secreted,s942,f219,sf155,c9,t3,43,0-100
+POLG_ZIKV,Flavivirus glycoprotein,Zika virus,Viral,s692,f147,sf109,c11,t1,3419,>2000
+A0A218QMM7_9CYAN,Microbial and algal rhodopsins,Tolypothrix sp.,Gram-neg. inner,s945,f13,sf6,c1,t1,252,100-300
+YNAI_ECOLI,Small conductance mechanosensitive ion channels,Escherichia coli,Gram-neg. inner,s9,f19,sf11,c1,t1,343,300-500
+D5F6K1_9INFA,Influenza virus matrix protein 2,Influenza A virus,Viral,s51,f263,sf185,c11,t1,65,0-100
+W6Q990_PENRF,Fungal lipases,Penicillium roqueforti,Secreted,s982,f183,sf127,c5,t2,305,300-500
+SFH5_YEAS7,CRAL/TRIO domain,Saccharomyces cerevisiae,Endoplasm. reticulum,s36,f172,sf121,c5,t2,294,100-300
+YBIO_ECOLI,Small conductance mechanosensitive ion channels,Escherichia coli,Gram-neg. inner,s9,f19,sf11,c1,t1,741,500-1000
+F2Y337_9PHYC,Microbial and algal rhodopsins,Organic Lake phycodnavirus,Viral,s857,f13,sf6,c1,t1,223,100-300
+S26A9_HUMAN,Sulfate permease,Homo sapiens,Eykaryo. plasma,s14,f785,sf64,c1,t1,791,500-1000
+F2TZN0_SALR5,Microbial and algal rhodopsins,Salpingoeca rosetta,Eykaryo. plasma,s983,f13,sf6,c1,t1,704,500-1000
+PLE2_PSEAM,Pleurocidin,Pseudopleuronectes americanus,Secreted,s191,f215,sf142,c7,t3,68,0-100
+NTR1_RAT,"G-protein coupled receptors, family A",Rattus norvegicus,Eykaryo. plasma,s54,f14,sf6,c1,t1,424,300-500
+TRPC5_HUMAN,Transient receptor potential channels,Homo sapiens,Eykaryo. plasma,s14,f682,sf8,c1,t1,973,500-1000
+A0A1Y1BQV9_9BURK,Bacterial lipase,Burkholderia stabilis,Gram-neg. inner,s993,f184,sf127,c5,t2,364,300-500
+C6K7N1_ECOLX,General Bacterial Porin (GBP),Escherichia coli,Gram-neg. outer,s9,f42,sf31,c2,t1,367,300-500
+RABP1_HUMAN,Fatty acid binding protein-like (n=10),Homo sapiens,Eykaryo. plasma,s14,f137,sf50,c3,t2,137,100-300
+A0A524F8J2_9ARCH,Microbial and algal rhodopsins,Asgard group archaeon,Archaebac.,s991,f13,sf6,c1,t1,202,100-300
+SCN5A_HUMAN,Voltage-gated calcium and sodium channels,Homo sapiens,Eykaryo. plasma,s14,f852,sf8,c1,t1,2016,>2000
+M4GGR4_NEIME,General Bacterial Porin (GBP),Neisseria meningitidis,Gram-neg. outer,s24,f42,sf31,c2,t1,355,300-500
+I3LZN5_ICTTR,Transient receptor potential channels,Ictidomys tridecemlineatus,Eykaryo. plasma,s999,f682,sf8,c1,t1,840,500-1000
+YVC1_YEAST,Transient receptor potential channels,Saccharomyces cerevisiae,Vacuole,s36,f682,sf8,c1,t1,675,500-1000
+ANX13_HUMAN,Annexins,Homo sapiens,Eykaryo. plasma,s14,f54,sf41,c4,t2,316,300-500
+FCHO2_HUMAN,F-BAR domain,Homo sapiens,Vesicle,s14,f1156,sf577,c4,t2,810,500-1000
+PACN2_MOUSE,F-BAR domain,Mus musculus,Endosome,s52,f1156,sf577,c4,t2,486,300-500
+CIP4_HUMAN,F-BAR domain,Homo sapiens,Lysosome,s14,f1156,sf577,c4,t2,601,500-1000
+FNBP1_HUMAN,F-BAR domain,Homo sapiens,Lysosome,s14,f1156,sf577,c4,t2,617,500-1000
+PACN1_HUMAN,F-BAR domain,Homo sapiens,Eykaryo. plasma,s14,f1156,sf577,c4,t2,444,300-500
+PACN2_HUMAN,F-BAR domain,Homo sapiens,Endosome,s14,f1156,sf577,c4,t2,486,300-500
+GAS7_MOUSE,F-BAR domain,Mus musculus,Eykaryo. plasma,s52,f1156,sf577,c4,t2,421,300-500
+PACN1_MOUSE,F-BAR domain,Mus musculus,Eykaryo. plasma,s52,f1156,sf577,c4,t2,441,300-500
+PACN3_MOUSE,F-BAR domain,Mus musculus,Eykaryo. plasma,s52,f1156,sf577,c4,t2,424,300-500
+CDC15_SCHPO,F-BAR domain,Schizosaccharomyces pombe,Endoplasm. reticulum,s841,f1156,sf577,c4,t2,927,500-1000
+IMP2_SCHPO,F-BAR domain,Schizosaccharomyces pombe,Endoplasm. reticulum,s841,f1156,sf577,c4,t2,670,500-1000
+CYK2_YEAST,F-BAR domain,Saccharomyces cerevisiae,Endoplasm. reticulum,s36,f1156,sf577,c4,t2,669,500-1000
+PACN2_CHICK,F-BAR domain,Gallus gallus,Endosome,s11,f1156,sf577,c4,t2,448,300-500
+Q9VDI1_DROME,F-BAR domain,Drosophila melanogaster,Eykaryo. plasma,s50,f1156,sf577,c4,t2,494,300-500
+A0A493T764_ANAPP,Vertebrate defensin,Anas platyrhynchos,Secreted,s1028,f67,sf54,c3,t2,60,0-100
+A0A1H8GYX0_9BACL,"Lasso peptides, type 2",Lihuaxuella thermophila,Secreted,s1033,f219,sf155,c9,t3,34,0-100
+Q65FG2_BACLD,Bacterial lipase,Bacillus licheniformis,Secreted,s409,f184,sf127,c5,t2,487,300-500
+3SA7A_NAJKA,Snake venom toxins,Naja kaouthia,Secreted,s230,f66,sf53,c3,t2,60,0-100
+NPCL1_HUMAN,Patched family,Homo sapiens,Eykaryo. plasma,s14,f812,sf16,c1,t1,1359,1000-2000
+POLG_USUV,Flavivirus glycoprotein,Usutu virus,Viral,s1027,f147,sf109,c11,t1,3434,>2000
+S26A5_HUMAN,Sulfate permease,Homo sapiens,Eykaryo. plasma,s14,f785,sf64,c1,t1,744,500-1000
+SUT41_ARATH,Sulfate permease,Arabidopsis thaliana,Eykaryo. plasma,s246,f785,sf64,c1,t1,685,500-1000
+SYT1_ARATH,C2 domain,Arabidopsis thaliana,Eykaryo. plasma,s246,f60,sf45,c3,t2,541,500-1000
+Q388M5_TRYB2,C2 domain,Trypanosoma brucei,Endoplasm. reticulum,s219,f60,sf45,c3,t2,594,500-1000
+Q9HGT7_LEPMC,Microbial and algal rhodopsins,Leptosphaeria maculans,Eykaryo. plasma,s1039,f13,sf6,c1,t1,313,300-500
+PRRG_UNKP,Microbial and algal rhodopsins,Gamma-proteobacterium,Gram-neg. inner,s357,f13,sf6,c1,t1,250,100-300
+S1PR3_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,378,300-500
+S15A2_RAT,Proton-dependent oligopeptide transporter (POT),Rattus norvegicus,Eykaryo. plasma,s54,f333,sf15,c1,t1,729,500-1000
+D3Y1J3_9ACTN,Cytochrome P450,Streptomyces sp.,Gram-pos. inner,s210,f52,sf39,c11,t1,413,300-500
+CP3A7_HUMAN,Cytochrome P450,Homo sapiens,Endoplasm. reticulum,s14,f52,sf39,c11,t1,503,500-1000
+DISP1_MOUSE,Patched family,Mus musculus,Eykaryo. plasma,s52,f812,sf16,c1,t1,1521,1000-2000
+TRPV2_MOUSE,Transient receptor potential channels,Mus musculus,Eykaryo. plasma,s52,f682,sf8,c1,t1,756,500-1000
+B2KYM6_HUMAN,Transient receptor potential channels,Homo sapiens,Eykaryo. plasma,s14,f682,sf8,c1,t1,791,500-1000
+TRPM8_MOUSE,Transient receptor potential channels,Mus musculus,Eykaryo. plasma,s52,f682,sf8,c1,t1,1104,1000-2000
+Q5F4S7_MOUSE,Transient receptor potential channels,Mus musculus,Eykaryo. plasma,s52,f682,sf8,c1,t1,1732,1000-2000
+ARRB1_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,418,300-500
+SCNAA_HUMAN,Voltage-gated calcium and sodium channels,Homo sapiens,Eykaryo. plasma,s14,f852,sf8,c1,t1,1956,1000-2000
+GP183_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,361,300-500
+5HT2B_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,481,300-500
+LPAR1_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,364,300-500
+MRGX2_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,330,300-500
+5HT2A_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,471,300-500
+LSHR_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,699,500-1000
+TSHR_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,764,500-1000
+A0A0B9X4I2_ACIBA,Lipid exporter family,Acinetobacter baumannii,Gram-neg. inner,s539,f99,sf17,c1,t1,575,500-1000
+A0A140NBS6_ECOBD,Lipid exporter family,Escherichia coli,Gram-neg. inner,s9,f99,sf17,c1,t1,582,500-1000
+DEF2_PINSY,Plant defensins,Pinus sylvestris,Secreted,s1092,f158,sf58,c6,t2,83,0-100
+A0A0U4N5W4_NAJNA,Snake venom toxins,Naja naja,Secreted,s315,f66,sf53,c3,t2,72,0-100
+Q0VNY2_ALCBS,Voltage-gated calcium and sodium channels,Alcanivorax borkumensis,Gram-neg. inner,s626,f852,sf8,c1,t1,283,100-300
+F7IVA8_RUEPO,Voltage-gated calcium and sodium channels,Ruegeria pomeroyi,Gram-neg. inner,s1096,f852,sf8,c1,t1,258,100-300
+IGF1R_HUMAN,Protein tyrosine kinases,Homo sapiens,Eykaryo. plasma,s14,f264,sf186,c11,t1,1367,1000-2000
+D6QLY2_KLEPN,General Bacterial Porin (GBP),Klebsiella pneumoniae,Gram-neg. outer,s16,f42,sf31,c2,t1,367,300-500
+GLUT4_HUMAN,Sugar porter family,Homo sapiens,Eykaryo. plasma,s14,f656,sf15,c1,t1,509,500-1000
+CAC1I_HUMAN,Voltage-gated calcium and sodium channels,Homo sapiens,Eykaryo. plasma,s14,f852,sf8,c1,t1,2223,>2000
+A0A140NDF1_ECOBD,Major intrinsic protein (MIP) family,Escherichia coli,Gram-neg. inner,s9,f15,sf7,c1,t1,231,100-300
+NIP21_ORYSJ,Major intrinsic protein (MIP) family,Oryza sativa,Eykaryo. plasma,s286,f15,sf7,c1,t1,298,100-300
+M1K561_ANATE,Major intrinsic protein (MIP) family,Anabas testudineus,Eykaryo. plasma,s1054,f15,sf7,c1,t1,261,100-300
+PPIP1_HUMAN,F-BAR domain,Homo sapiens,Eykaryo. plasma,s14,f1156,sf577,c4,t2,416,300-500
+Q9HW12_PSEAE,Small conductance mechanosensitive ion channels,Pseudomonas aeruginosa,Gram-neg. inner,s28,f19,sf11,c1,t1,278,100-300
+A0A7U3W892_DIOMU,Small conductance mechanosensitive ion channels,Dionaea muscipula,Eykaryo. plasma,s1067,f19,sf11,c1,t1,752,500-1000
+H9BYJ9_9FLAV,Flavivirus glycoprotein,Donggang virus,Viral,s1068,f147,sf109,c11,t1,3444,>2000
+KPCD_RAT,C1 domain,Rattus norvegicus,Eykaryo. plasma,s54,f74,sf60,c3,t2,673,500-1000
+ACKR3_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Vesicle,s14,f14,sf6,c1,t1,362,300-500
+Q98SW6_XENLA,Patched family,Xenopus calcaratus,Eykaryo. plasma,s1106,f812,sf16,c1,t1,1418,1000-2000
+PACA_LITCT,Brevinin/gaegurin,Lithobates catesbeianus,Secreted,s1081,f401,sf211,c7,t3,71,0-100
+CHIP_ECOLI,Outer membrane porin (Opr),Escherichia coli,Gram-neg. outer,s9,f259,sf182,c2,t1,468,300-500
+S15A1_HUMAN,Proton-dependent oligopeptide transporter (POT),Homo sapiens,Eykaryo. plasma,s14,f333,sf15,c1,t1,708,500-1000
+S15A2_HUMAN,Proton-dependent oligopeptide transporter (POT),Homo sapiens,Eykaryo. plasma,s14,f333,sf15,c1,t1,729,500-1000
+F6SG69_HORSE,Proton-dependent oligopeptide transporter (POT),Equus caballus,Eykaryo. plasma,s142,f333,sf15,c1,t1,707,500-1000
+INSRR_HUMAN,Protein tyrosine kinases,Homo sapiens,Eykaryo. plasma,s14,f264,sf186,c11,t1,1297,1000-2000
+G4TS85_SERID,Sugar porter family,Serendipita indica,Eykaryo. plasma,s1099,f656,sf15,c1,t1,522,500-1000
+DTPC_ECOLI,Proton-dependent oligopeptide transporter (POT),Escherichia coli,Gram-neg. inner,s9,f333,sf15,c1,t1,485,300-500
+A0A859PCV5_ZIKV,Flavivirus glycoprotein,Zika virus,Viral,s692,f147,sf109,c11,t1,3340,>2000
+A0A2Z2DVT8_ZIKV,Flavivirus glycoprotein,Zika virus,Viral,s692,f147,sf109,c11,t1,3423,>2000
+FABPH_MOUSE,Fatty acid binding protein-like (n=10),Mus musculus,Eykaryo. plasma,s52,f137,sf50,c3,t2,133,100-300
+POLG_TBEVW,Flavivirus glycoprotein,Tick-borne encephalitis virus,Viral,s233,f147,sf109,c11,t1,3414,>2000
+S22A3_HUMAN,Sugar porter family,Homo sapiens,Eykaryo. plasma,s14,f656,sf15,c1,t1,556,500-1000
+L8GJB3_ACACF,Cytochrome P450,Acanthamoeba castellanii,Endoplasm. reticulum,s944,f52,sf39,c11,t1,486,300-500
+OX2R_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,444,300-500
+A0A0G2JSH6_RAT,Transient receptor potential channels,Rattus norvegicus,Eykaryo. plasma,s54,f682,sf8,c1,t1,761,500-1000
+J3KQA0_HUMAN,C2 domain,Homo sapiens,Vesicle,s14,f60,sf45,c3,t2,419,300-500
+MSCK_ECOLI,Small conductance mechanosensitive ion channels,Escherichia coli,Gram-neg. inner,s9,f19,sf11,c1,t1,1120,1000-2000
+C76H3_SALMI,Cytochrome P450,Salvia miltiorrhiza,Endoplasm. reticulum,s804,f52,sf39,c11,t1,494,300-500
+HCAR2_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,363,300-500
+S26A2_HUMAN,Sulfate permease,Homo sapiens,Eykaryo. plasma,s14,f785,sf64,c1,t1,739,500-1000
+S26A4_MOUSE,Sulfate permease,Mus musculus,Eykaryo. plasma,s52,f785,sf64,c1,t1,780,500-1000
+M5AE98_OPLFA,Pleurocidin,Oplegnathus fasciatus,Secreted,s1117,f215,sf142,c7,t3,70,0-100
+ACM3_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,590,500-1000
+GPR20_HUMAN,"G-protein coupled receptors, family A",Homo sapiens,Eykaryo. plasma,s14,f14,sf6,c1,t1,358,300-500
+A0A977XLG0_9BACT,Microbial and algal rhodopsins,Bdellovibrionales bacterium,Gram-neg. inner,s1126,f13,sf6,c1,t1,256,100-300
+TRPV1_HUMAN,Transient receptor potential channels,Homo sapiens,Eykaryo. plasma,s14,f682,sf8,c1,t1,839,500-1000
+3L255_OPHHA,Snake venom toxins,Ophiophagus hannah,Secreted,s179,f66,sf53,c3,t2,93,0-100
+S26A3_HUMAN,Sulfate permease,Homo sapiens,Eykaryo. plasma,s14,f785,sf64,c1,t1,764,500-1000
+A0A411LJN5_SPHPI,Microbial and algal rhodopsins,Sphingomonas paucimobilis,Gram-neg. inner,s1148,f13,sf6,c1,t1,237,100-300
+S22A1_HUMAN,Sugar porter family,Homo sapiens,Eykaryo. plasma,s14,f656,sf15,c1,t1,554,500-1000
+TAAR9_MOUSE,"G-protein coupled receptors, family A",Mus musculus,Eykaryo. plasma,s52,f14,sf6,c1,t1,348,300-500
+S26A6_HUMAN,Sulfate permease,Homo sapiens,Eykaryo. plasma,s14,f785,sf64,c1,t1,759,500-1000
