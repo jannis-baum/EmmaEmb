@@ -1,3 +1,8 @@
+import os
+
+PATH = "/scratch/protein_models/"
+os.environ['HF_HOME'] = PATH
+
 import torch
 from abc import ABC, abstractmethod
 import logging

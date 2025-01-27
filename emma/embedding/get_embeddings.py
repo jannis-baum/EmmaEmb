@@ -10,7 +10,6 @@ import numpy as np
 import requests
 from tqdm import tqdm
 
-
 from emma.embedding.embedding_handler_selector import select_embedding_handler
 from emma.embedding.embedding_model_metadata_handler import (
     EmbeddingModelMetadataHandler,
@@ -28,14 +27,16 @@ def parse_args() -> argparse.Namespace:
         type=str,
         help="Path to a FASTA file containing protein sequences or \
             a list of protein names",
-        default="examples/deeploc/data/deeploc_train.fasta",
+        # default = "examples/phages/foldseek_clusterreps_7k_function_500_hyp.fasta"
+        # default="examples/deeploc/data/deeploc_train.fasta",
+        default="examples/Pla2g2/Pla2g2.fasta",
     )
     parser.add_argument(
         "-m",
         "--model",
-        type=str,
+        type=str, 
         help="Name of the embedding model to be used",
-        default="esm2_t30_150M_UR50D",
+        default="Rostlab/ProstT5",
     )
     parser.add_argument(
         "-o",
