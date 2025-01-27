@@ -1183,7 +1183,7 @@ class EmbeddingHandler:
             normalise=normalise
         )
         
-        # check if clustering exissts in self.clusters
+        # check if clustering exists in self.clusters
         if params_hash not in self.clusters:
             raise ValueError("Clustering with the specific \
                 parameters has not been computed yet.")
@@ -1399,7 +1399,8 @@ class EmbeddingHandler:
         return delta_emb_pwd
 
     def visualise_emb_pca(
-        self, emb_space_name: str, colour: str = None
+        self, emb_space_name: str, colour: str = None, 
+        normalise : bool = True
     ) -> go.Figure:
         """Visualise embedding space using PCA. The first two principal \
         components are used for the plot. The variance explained by the \
@@ -1413,6 +1414,8 @@ class EmbeddingHandler:
             colour (str, optional): Categorical column in the meta_data to \
                 colour the data points. Default is None and will colour the \
                 data points based on their unsupervised clusters.
+            normalise (bool): Whether embeddings should be normalised \
+                (z-score) before the PCA. Default: True
 
         Returns:
             go.Figure: PCA plot.
@@ -1424,9 +1427,12 @@ class EmbeddingHandler:
             # colour = "cluster_" + emb_space_name
 
         self.__check_col_categorical__(colour)
+        
+        scaler = StandardScaler()
+        normalized_emb = scaler.fit_transform(self.emb[emb_space_name]["emb"])
 
         pca = PCA(n_components=2)
-        X_2d = pca.fit_transform(self.emb[emb_space_name]["emb"])
+        X_2d = pca.fit_transform(normalized_emb)
 
         # get variance explained by the first two components
         variance_explained = pca.explained_variance_ratio_
@@ -1452,7 +1458,8 @@ class EmbeddingHandler:
         return fig
 
     def visualise_emb_umap(
-        self, emb_space_name: str, colour: str = None
+        self, emb_space_name: str, colour: str = None, 
+        normalise : bool = True
     ) -> go.Figure:
         """Visualise embedding space using UMAP. The data points \
             are coloured based on the categorical column in the meta_data. \
@@ -1464,6 +1471,8 @@ class EmbeddingHandler:
             colour (str, optional): Categorical column in the meta_data to \
                 colour the data points. Default is None and will colour the \
                 data points based on their unsupervised clusters.
+            normalise (bool): Whether embeddings should be normalised \
+                (z-score) before the PCA. Default: True
 
         Returns:
             go.Figure: UMAP plot.
@@ -1474,9 +1483,12 @@ class EmbeddingHandler:
             # self.__calculate_clusters__(emb_space_name, n_clusters=None)
             # colour = "cluster_" + emb_space_name
         self.__check_col_categorical__(colour)
+        
+        scaler = StandardScaler()
+        normalized_emb = scaler.fit_transform(self.emb[emb_space_name]["emb"])
 
         umap_data = umap.UMAP(n_components=2, random_state=8)
-        X_2d = umap_data.fit_transform(self.emb[emb_space_name]["emb"])
+        X_2d = umap_data.fit_transform(normalized_emb)
 
         fig = get_scatter_plot(
             emb_object=self,
@@ -1488,7 +1500,8 @@ class EmbeddingHandler:
         return fig
 
     def visualise_emb_tsne(
-        self, emb_space_name: str, colour: str = None, perplexity=10
+        self, emb_space_name: str, colour: str = None, perplexity=10, 
+        normalise : bool = True
     ) -> go.Figure:
         """Visualise embedding space using t-SNE. The data points \
             are coloured based on the categorical column in the meta_data. \
@@ -1503,6 +1516,8 @@ class EmbeddingHandler:
                 data points based on their unsupervised clusters.
             perplexity (int, optional): Perplexity parameter for t-SNE.\
                 Defaults to 10.
+            normalise (bool): Whether embeddings should be normalised \
+                (z-score) before the PCA. Default: True
 
         Returns:
             go.Figure: t-SNE plot.
@@ -1513,9 +1528,12 @@ class EmbeddingHandler:
             # self.__calculate_clusters__(emb_space_name, n_clusters=None)
             # colour = "cluster_" + emb_space_name
         self.__check_col_categorical__(colour)
+        
+        scaler = StandardScaler()
+        normalized_emb = scaler.fit_transform(self.emb[emb_space_name]["emb"])
 
         tsne = TSNE(n_components=2, random_state=8, perplexity=perplexity)
-        X_2d = tsne.fit_transform(self.emb[emb_space_name]["emb"])
+        X_2d = tsne.fit_transform(normalized_emb)
 
         fig = get_scatter_plot(
             emb_object=self,
