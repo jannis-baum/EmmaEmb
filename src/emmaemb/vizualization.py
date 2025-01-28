@@ -1,6 +1,7 @@
 import plotly.express as px
 import plotly.graph_objects as go
 import numpy as np
+import pandas as pd
 
 from scipy import stats
 from sklearn.preprocessing import StandardScaler
@@ -9,6 +10,7 @@ from sklearn.manifold import TSNE
 from umap import UMAP
 
 from src.emmaemb.core import Emma
+from src.emmaemb.functions import *
 
 
 def update_fig_layout(fig: go.Figure) -> go.Figure:
@@ -16,7 +18,7 @@ def update_fig_layout(fig: go.Figure) -> go.Figure:
         and grid settings.
 
     Args:
-        fig (_type_): Plotly figure object.
+        fig (go.Figure): Plotly figure object.
 
     Returns:
         go.Figurge : Plotly figure object with updated layout.
@@ -242,26 +244,27 @@ def plot_pairwise_distance_comparison(
     group_by: str = None,
     point_opacity: float = 0.5,
 ) -> go.Figure:
-    """Function to plot a scatter plot comparing pairwise distance metrics \
-    of two embedding spaces within an Emma object, with optional color-coding \
-        based on a metadata column.
-        
+    """Function to plot a scatter plot comparing pairwise distances between \
+    samples in two embedding spaces.
+    
     Args:
         emma (Emma): An instance of the Emma class.
-        emb_space_1 (str): Name of the first embedding space.
-        emb_space_2 (str): Name of the second embedding space.
-        metric (str, optional): Distance metric to use. \
-            Defaults to "euclidean".
-        title (str, optional): Title for the plot. Defaults to \
+        emb_space_x (str): Name of the first embedding space in the \
+            Emma instance.
+        emb_space_y (str): Name of the second embedding space in the \
+            Emma instance.
+        metric (str, optional): Distance metric to use. Defaults to "euclidean".
+        title (str, optional): Title of the plot. Defaults to \
             "Pairwise Distance Comparison".
-        color (str, optional): Color of the scatter plot points. \
-            Defaults to "blue".
-        group_by (str, optional): Metadata column name to group \
-            and color-code the points.
-        
+        color (str, optional): Colour of the plot elements. Defaults to "blue".
+        group_by (str, optional): Metadata column name to group and colour \
+            the points. Defaults to None.
+        point_opacity (float, optional): Opacity of the points. \
+            Defaults to 0.5.
+    
     Returns:
-        go.Figure: A scatter plot comparing the pairwise distances \
-            of the two embedding spaces.
+        go.Figure: A scatter plot comparing pairwise distances between \
+        samples in two embedding spaces.
     """
     # Ensure both embedding spaces exist and pairwise distances are calculated
     for emb_space in [emb_space_x, emb_space_y]:
@@ -366,5 +369,269 @@ def plot_pairwise_distance_comparison(
     )
 
     fig = update_fig_layout(fig)
+
+    return fig
+
+
+def plot_knn_alignment_across_embedding_spaces(
+    emma: Emma,
+    feature: str,
+    k: int = 10,
+    metric: str = "euclidean",
+    emb_space_order: list = None,
+    color: str = "#303496",
+):
+    """
+    Function to plot KNN alignment scores for a given feature \
+    across multiple embedding spaces.
+    
+    Args:
+        emma (Emma): An instance of the Emma class.
+        feature (str): Name of the feature in the metadata.
+        k (int, optional): Number of nearest neighbours to consider. \
+            Defaults to 10.
+        metric (str, optional): Distance metric to use. \
+            Defaults to "euclidean".
+        emb_space_order (list, optional): Order in which to display the \
+            embedding spaces. Defaults to None.
+        color (str, optional): Colour of the plot elements. \
+            Defaults to "#303496".
+        
+    Returns:
+        go.Figure: A box plot of KNN alignment scores across embedding spaces.
+    """
+
+    df = get_knn_alignment_scores(emma, feature, k, metric)
+    fig = px.box(
+        df,
+        x="Embedding",
+        y="Fraction",
+        title=f"KNN feature alignment scores for {feature}<br>k = {k}, {metric}",
+        labels={
+            "Embedding": "Embedding Space",
+            "Fraction": "KNN feature alignment scores",
+        },
+        template="plotly_white",
+        color_discrete_sequence=[color],
+    )
+
+    if emb_space_order:
+        fig.update_xaxes(categoryorder="array", categoryarray=emb_space_order)
+
+    fig = update_fig_layout(fig)
+
+    return fig
+
+
+def plot_knn_alignment_across_classes(
+    emma: Emma,
+    feature: str,
+    k: int = 10,
+    metric: str = "euclidean",
+    emb_space_order: list = None,
+    color: str = "#303496",
+) -> go.Figure:
+    """Function to plot KNN alignment scores for a given feature across \
+    multiple embedding spaces.
+    
+    Args:
+        emma (Emma): An instance of the Emma class.
+        feature (str): Name of the feature in the metadata.
+        k (int, optional): Number of nearest neighbours to consider. \
+            Defaults to 10.
+        metric (str, optional): Distance metric to use. Defaults to "euclidean".
+        emb_space_order (list, optional): Order in which to display the \
+            embedding spaces. Defaults to None.
+        color (str, optional): Colour of the plot elements. \
+            Defaults to "#303496".
+    
+    Returns:
+        go.Figure: A heatmap of KNN alignment scores across
+    """
+    df = get_knn_alignment_scores(emma, feature, k, metric)
+
+    heatmap_data = (
+        df.groupby(["Class", "Embedding"])["Fraction"]
+        .mean()
+        .unstack()  # Reshape to have Classes as rows and Embeddings as columns
+    )
+
+    if emb_space_order:
+        heatmap_data = heatmap_data.reindex(columns=emb_space_order)
+
+    class_counts = df.groupby("Class").size()
+
+    heatmap_data.index = [
+        f"{feature_class} (n = {int(count / len(df['Embedding'].unique()))})"
+        for feature_class, count in zip(
+            heatmap_data.index, class_counts[heatmap_data.index]
+        )
+    ]
+
+    fig = px.imshow(
+        heatmap_data,
+        labels=dict(
+            x="Embedding Space",
+            y="Feature Class (Samples)",
+            color="Mean KNN feature alignment score",
+        ),
+        title=f"Mean KNN feature alignment scores for {feature} \
+            across Embedding Spaces<br> \
+            k = {k}, {metric}",
+        color_continuous_scale=[
+            (0.0, "lightblue"),
+            (1.0, color),
+        ],
+        text_auto=".2f",
+        aspect="auto",
+    )
+
+    # Update font settings for the heatmap
+    fig.update_layout(font=dict(family="Arial"))
+
+    return fig
+
+
+def plot_knn_class_mixing_matrix(
+    emma: Emma,
+    emb_space: str,
+    feature: str,
+    k: int = 10,
+    metric: str = "euclidean",
+) -> go.Figure:
+    """Function to plot a matrix of class mixing in k \
+    nearest neighbors for a given feature in an embedding space.
+    
+    Args:
+        emma (Emma): An instance of the Emma class.
+        emb_space (str): Name of the embedding space in the Emma instance.
+        feature (str): Name of the feature in the metadata.
+        k (int, optional): Number of nearest neighbours to consider. \
+            Defaults to 10.
+        metric (str, optional): Distance metric to use. Defaults to "euclidean".
+        
+    Returns:
+        go.Figure: A heatmap of class mixing in k nearest neighbors. \
+            Rows represent the feature class of the sample, \
+            columns represent the feature class of the neighbor. \
+                Values represent the count of neighbors in each class.
+    """
+    mixing_counts, class_labels = get_class_mixing_in_neighborhood(
+        emma, emb_space, feature, k, metric
+    )
+
+    mixing_df = pd.DataFrame(
+        mixing_counts, index=class_labels, columns=class_labels
+    )
+
+    fig = px.imshow(
+        mixing_df,
+        labels=dict(
+            x="Feature Class (Sample)",
+            y="Feature Class (Neighbor)",
+            color="Neighbor Count",
+        ),
+        title=f"Class Mixing in Neighborhoods (Embedding: {emb_space})",
+        color_continuous_scale="Blues",
+        text_auto=True,
+        aspect="auto",
+    )
+
+    fig.update_traces(texttemplate="%{z:.0f}")
+
+    fig.update_layout(font=dict(family="Arial", color="black"))
+
+    return fig
+
+
+def plot_low_similarity_distribution(
+    emma: Emma,
+    emb_space_1: str,
+    emb_space_2: str,
+    feature: str,
+    metric: str = "euclidean",
+    k: int = 10,
+    similarity_threshold: float = 0.2,
+):
+
+    for emb_space in [emb_space_1, emb_space_2]:
+        emma._check_for_emb_space(emb_space)
+        if metric not in emma.emb[emb_space].get("pairwise_distances", {}):
+            raise ValueError(
+                f"Pairwise distances for metric {metric} not found \
+                    in {emb_space}. Run `calculate_pairwise_distances` first."
+            )
+
+    emma._check_column_is_categorical(feature)
+
+    similarities = get_neighbourhood_similarity(
+        emma, emb_space_1, emb_space_2, k, metric
+    )
+
+    low_similarity_indices = np.where(similarities < similarity_threshold)[0]
+    low_similarity_samples = emma.metadata.iloc[low_similarity_indices]
+
+    # Compute distributions
+    total_distribution = emma.metadata[feature].value_counts(
+        normalize=True
+    )  # Entire dataset
+    low_similarity_distribution = low_similarity_samples[feature].value_counts(
+        normalize=True
+    )  # Low-similarity subset
+
+    aligned_distributions = total_distribution.align(
+        low_similarity_distribution, fill_value=0
+    )
+
+    # Prepare scatter plot data
+    fractions_in_dataset = aligned_distributions[
+        0
+    ]  # Fraction in entire dataset
+    fractions_in_subset = aligned_distributions[
+        1
+    ]  # Fraction in low-similarity subset
+    class_labels = aligned_distributions[0].index
+
+    fig = px.scatter(
+        x=fractions_in_dataset,
+        y=fractions_in_subset,
+        color=class_labels,
+        labels={
+            "x": "Fraction in Dataset",
+            "y": "Fraction in Subsample",
+            "color": feature,
+        },
+        title=f"Comparison of {feature} Fractions (Similarity < {similarity_threshold} between {emb_space_1} and {emb_space_2}, Metric: {metric}, k: {k})",
+        template="plotly_white",
+    )
+    fig.update_traces(
+        marker=dict(size=10, line=None)
+    )  # Remove rim around dots
+    fig.add_shape(
+        type="line",
+        x0=0,
+        y0=0,
+        x1=1,
+        y1=1,
+        line=dict(color="LightGrey", dash="dash"),
+    )
+
+    fig.update_layout(
+        template="plotly_white",
+        font=dict(family="Arial", size=12, color="black"),
+    )
+    # show line at y=0 and x=0
+    fig.update_xaxes(showline=True, linecolor="black", linewidth=2)
+    fig.update_yaxes(showline=True, linecolor="black", linewidth=2)
+    # hide gridlines
+    fig.update_xaxes(showgrid=False)
+    fig.update_yaxes(showgrid=False)
+
+    # Update layout for font and legend
+    fig.update_layout(
+        font=dict(family="Arial", color="black"),
+        # legend=dict(orientation="h", yanchor="bottom", y=-0.2),  # Move legend below plot
+        showlegend=True,
+    )
 
     return fig
