@@ -65,6 +65,8 @@ class Emma:
         """
         if column not in self.metadata.columns:
             raise ValueError(f"Column {column} not found in metadata.")
+        else:
+            return True
 
     def _check_column_is_categorical(self, column: str):
         """Check if a column is categorical.
@@ -74,6 +76,8 @@ class Emma:
         """
         if column not in self.metadata_categorical_columns:
             raise ValueError(f"Column {column} is not categorical.")
+        else:
+            return True
 
     def _get_color_map_for_features(self) -> dict:
         """Generate a color map for categorical features
@@ -284,6 +288,7 @@ class Emma:
     ):
         """Calculate pairwise distances between samples in an embedding space.\
             Will store the distances in the Emma object.
+            Will also calculate and store the ranks based on the distances.
 
         Args:
         emb_space (str): Name of the embedding space.
@@ -300,9 +305,16 @@ class Emma:
                 emb_space, metric, self.emb[emb_space]["emb"]
             )
 
+            # Compute ranks based on distances
+            ranked_indices = np.argsort(emb_pwd, axis=1)
+
             if "pairwise_distances" not in self.emb[emb_space]:
                 self.emb[emb_space]["pairwise_distances"] = {}
+            if "ranks" not in self.emb[emb_space]:
+                self.emb[emb_space]["ranks"] = {}
+
             self.emb[emb_space]["pairwise_distances"][metric] = emb_pwd
+            self.emb[emb_space]["ranks"][metric] = ranked_indices
 
         else:
             print(f"Pairwise distances using {metric} already calculated.")
@@ -331,42 +343,6 @@ class Emma:
 
         return self.emb[emb_space]["pairwise_distances"][metric]
 
-    def calculate_knn(self, emb_space: str, k: int, metric: str = "euclidean"):
-        """Calculate the k-nearest neighbours for each sample in \
-            an embedding space.
-
-        Args:
-        emb_space (str): Name of the embedding space.
-        k (int): Number of neighbours to consider.
-        metric (str): Distance metric to use. Default 'euclidean'.
-        """
-        self._check_for_emb_space(emb_space)
-        if k < 1:
-            raise ValueError("k must be a positive integer.")
-        if k > len(self.sample_names):
-            raise ValueError("k must be less than the number of samples.")
-        if metric not in DISTANCE_METRIC_ALIASES:
-            raise ValueError(f"Distance metric {metric} not supported.")
-
-        try:
-            emb_pwd = self.emb[emb_space]["pairwise_distances"][metric]
-        except KeyError:
-            emb_pwd = self.get_pairwise_distances(emb_space, metric)
-            knn_indices = np.argsort(emb_pwd, axis=1)[:, 1 : k + 1]
-
-            if "knn" not in self.emb[emb_space]:
-                self.emb[emb_space]["knn"] = {}
-
-            if metric not in self.emb[emb_space]["knn"]:
-                self.emb[emb_space]["knn"][metric] = {}
-
-            self.emb[emb_space]["knn"][metric][k] = knn_indices
-
-            print(
-                f"k-NN for '{emb_space}' calculated with k={k} for \
-                    metric: {', '.join(metric)}."
-            )
-
     def get_knn(
         self, emb_space: str, k: int, metric: str = "euclidean"
     ) -> np.ndarray:
@@ -381,6 +357,8 @@ class Emma:
         Returns:
         np.ndarray: Indices of the k-nearest neighbours.
         """
+
+        # Validate input
         self._check_for_emb_space(emb_space)
         if k < 1:
             raise ValueError("k must be a positive integer.")
@@ -390,9 +368,9 @@ class Emma:
             raise ValueError(f"Distance metric {metric} not supported.")
 
         try:
-            knn_indices = self.emb[emb_space]["knn"][metric][k]
+            ranked_indices = self.emb[emb_space]["ranks"][metric]
         except KeyError:
-            self.calculate_knn(emb_space, k, metric)
-            knn_indices = self.emb[emb_space]["knn"][metric][k]
+            self.calculate_pairwise_distances(emb_space, metric)
+            ranked_indices = self.emb[emb_space]["ranks"][metric]
 
-        return knn_indices
+        return ranked_indices[:, 1 : k + 1]

@@ -1,6 +1,8 @@
 import plotly.express as px
 import plotly.graph_objects as go
+import numpy as np
 
+from scipy import stats
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
@@ -41,6 +43,27 @@ def plot_emb_space(
     random_state: int = 42,
     perplexity: int = 30,
 ) -> go.Figure:
+    """Function to plot the embeddings of a given embedding space in 2D. \
+    Dimensionality reduction is performed using PCA, TSNE, or UMAP.\
+    The dots are coloured by a column in the metadata.
+
+    Args:
+        emma (Emma): An instance of the Emma class.
+        emb_space (str): Name of an embedding space in the Emma instance.
+        method (str, optional): Method for dimensionality reduction. \
+            Either "PCA", "TSNE", or "UMAP". Defaults to "PCA".
+        normalise (bool, optional): Whether to perform z-score normalisation \
+            prior to dimensionality reduction. Defaults to True.
+        color_by (str, optional): A column name from the metadata stored in \
+            the Emma object, by which the dots are coloured. Defaults to None.
+        random_state (int, optional): Random state for UMAP or TSNE. Defaults \
+            to 42.
+        perplexity (int, optional): Perplexity, only applied to UMAP.\
+            Defaults to 30.
+
+    Returns:
+        go.Figure: A scatter plot of the embeddings in 2D.
+    """
 
     emma._check_for_emb_space(emb_space)
     embeddings = emma.emb[emb_space]["emb"]
@@ -72,7 +95,7 @@ def plot_emb_space(
     fig = px.scatter(
         x=embeddings_2d[:, 0],
         y=embeddings_2d[:, 1],
-        color=emma.feature_data[color_by] if color_by else None,
+        color=emma.metadata[color_by] if color_by else None,
         labels={"color": color_by},
         title=f"{emb_space} embeddings after {method}",
         hover_data={"Sample": emma.sample_names},
@@ -103,4 +126,245 @@ def plot_emb_space(
             ),
         )
     fig = update_fig_layout(fig)
+    return fig
+
+
+def plot_pairwise_distance_heatmap(
+    emma: Emma,
+    emb_space: str,
+    metric: str = "euclidean",
+    group_by: str = None,
+    sample_labels: bool = True,
+    color_scale: str = "Greys",
+) -> go.Figure:
+    """Function to plot a heatmap of pairwise distances between samples in an \
+    embedding space.
+        
+    Args:
+        emma (Emma): An instance of the Emma class.
+        emb_space (str): Name of an embedding space in the Emma instance.
+        metric (str, optional): Distance metric to use. Defaults to "euclidean"
+        group_by (str): Metadata column name to group and order the heatmap. \
+            Default is None.
+        sample_labels (bool, optional): Whether to show sample names on the \
+            x and y axes. Defaults to True.
+        color_scale (str, optional): Colour scale for the heatmap. \
+            Defaults to "Greys".
+    Returns:
+
+        go.Figure: A heatmap of pairwise distances between samples.
+    """
+
+    # Ensure pairwise distances are calculated
+    emma._check_for_emb_space(emb_space)
+    if metric not in emma.emb[emb_space].get("pairwise_distances", {}):
+        raise ValueError(
+            f"Pairwise distances for metric {metric} not found. \
+            Run `calculate_pairwise_distances` first."
+        )
+    if group_by:
+        if group_by not in emma.metadata.columns:
+            raise ValueError(
+                f"Group column '{group_by}' not found in metadata."
+            )
+
+    # retrieve pairwise distances and sample names
+    pairwise_distances = emma.emb[emb_space]["pairwise_distances"][metric]
+    sample_names = emma.sample_names if sample_labels else None
+
+    if group_by is not None:
+        group_labels = emma.metadata[group_by].values
+        sorted_indices = np.argsort(group_labels)
+        pairwise_distances = pairwise_distances[sorted_indices][
+            :, sorted_indices
+        ]
+        if sample_labels:
+            sample_names = np.array(emma.sample_names)[sorted_indices]
+        else:
+            sample_names = None
+        group_labels = group_labels[sorted_indices]
+    else:
+        group_labels = None
+        sample_names = np.array(emma.sample_names) if sample_labels else None
+
+    median_value = np.median(pairwise_distances)
+    reversed_color_scale = color_scale + "_r"
+
+    hover_text = []
+    for i in range(pairwise_distances.shape[0]):
+        hover_row = []
+        for j in range(pairwise_distances.shape[1]):
+            distance = pairwise_distances[i, j]
+            row_label = group_labels[i] if group_labels is not None else "N/A"
+            col_label = group_labels[j] if group_labels is not None else "N/A"
+            row_name = sample_names[i] if sample_labels else f"Sample {i}"
+            col_name = sample_names[j] if sample_labels else f"Sample {j}"
+            hover_info = (
+                f"Row Sample: {row_name}<br>Col Sample: {col_name}<br>"
+                f"Distance: {distance:.2f}<br>"
+                f"Row Group: {row_label}<br>Col Group: {col_label}"
+            )
+            hover_row.append(hover_info)
+        hover_text.append(hover_row)
+
+    heatmap = go.Heatmap(
+        z=pairwise_distances,
+        x=sample_names,
+        y=sample_names,
+        text=hover_text,
+        hoverinfo="text",
+        colorscale=reversed_color_scale,
+        zmid=median_value,
+        colorbar=dict(title=f"{metric.capitalize()} Distance"),
+    )
+
+    fig = go.Figure(data=[heatmap])
+    fig.update_layout(
+        title=(
+            f"Pairwise Distance Heatmap ({metric.capitalize()}) in {emb_space}"
+        ),
+        xaxis=dict(title="Samples", tickangle=45),
+        yaxis=dict(title="Samples"),
+    )
+
+    fig = update_fig_layout(fig)
+
+    return fig
+
+
+def plot_pairwise_distance_comparison(
+    emma: Emma,
+    emb_space_x: str,
+    emb_space_y: str,
+    metric: str = "euclidean",
+    title: str = "Pairwise Distance Comparison",
+    color: str = "blue",
+    group_by: str = None,
+    point_opacity: float = 0.5,
+) -> go.Figure:
+    """Function to plot a scatter plot comparing pairwise distance metrics \
+    of two embedding spaces within an Emma object, with optional color-coding \
+        based on a metadata column.
+        
+    Args:
+        emma (Emma): An instance of the Emma class.
+        emb_space_1 (str): Name of the first embedding space.
+        emb_space_2 (str): Name of the second embedding space.
+        metric (str, optional): Distance metric to use. \
+            Defaults to "euclidean".
+        title (str, optional): Title for the plot. Defaults to \
+            "Pairwise Distance Comparison".
+        color (str, optional): Color of the scatter plot points. \
+            Defaults to "blue".
+        group_by (str, optional): Metadata column name to group \
+            and color-code the points.
+        
+    Returns:
+        go.Figure: A scatter plot comparing the pairwise distances \
+            of the two embedding spaces.
+    """
+    # Ensure both embedding spaces exist and pairwise distances are calculated
+    for emb_space in [emb_space_x, emb_space_y]:
+        emma._check_for_emb_space(emb_space)
+        if metric not in emma.emb[emb_space].get("pairwise_distances", {}):
+            raise ValueError(
+                f"Pairwise distances for metric {metric} not found \
+                    in {emb_space}. Run `calculate_pairwise_distances` first."
+            )
+
+    neutral_color: str = "#CCCCCC"
+
+    emb_pwd_1 = emma.emb[emb_space_x]["pairwise_distances"][metric]
+    emb_pwd_2 = emma.emb[emb_space_y]["pairwise_distances"][metric]
+
+    group_labels = None
+    if group_by:
+        if group_by not in emma.metadata.columns:
+            raise ValueError(
+                f"Group column '{group_by}' not found in metadata."
+            )
+        group_labels = emma.metadata[group_by].values
+
+    group_labels = None
+    if group_by:
+        if group_by not in emma.metadata.columns:
+            raise ValueError(
+                f"Group column '{group_by}' not found in metadata."
+            )
+        group_labels = emma.metadata[group_by].values
+
+    n_samples = len(emma.sample_names)
+    colors = []
+    hover_samples = []
+    legend_labels = []
+
+    for i in range(n_samples):
+        for j in range(i + 1, n_samples):
+
+            sample_pair = f"{emma.sample_names[i]} - {emma.sample_names[j]}"
+            hover_samples.append(sample_pair)
+
+            if group_labels is not None:
+                group_i = group_labels[i]
+                group_j = group_labels[j]
+
+                # If both samples belong to the same group, use group label
+                # for color
+                if group_i == group_j:
+                    color = emma.color_map.get(group_i, neutral_color)
+                    legend_labels.append(group_i)
+                else:
+                    # Use neutral color for different groups
+                    color = neutral_color
+                    legend_labels.append("Neutral")
+            else:
+                # If no group_by is specified, assign all points to neutral
+                # color
+                color = neutral_color
+                legend_labels.append("Neutral")
+
+            colors.append(color)
+
+    x = emb_pwd_1[np.triu_indices(n_samples, k=1)]
+    y = emb_pwd_2[np.triu_indices(n_samples, k=1)]
+
+    # Create the scatter plot
+    fig = px.scatter(
+        x=x,
+        y=y,
+        title=title,
+        opacity=point_opacity,
+        color=legend_labels,
+        color_discrete_map={
+            "Neutral": neutral_color,
+            **{
+                group: emma.color_map[group_by].get(group, neutral_color)
+                for group in set(legend_labels)
+            },
+        },
+        hover_data={"Sample pair": hover_samples},
+    )
+
+    # Compute Spearman correlation between the distances of both
+    # embedding spaces
+    corr, p_value = stats.spearmanr(x, y)
+
+    # Add correlation to title
+    fig.update_layout(
+        title=f"{title} <br> Spearman correlation: {corr:.2f} <br> \
+            p-value: {p_value:.4f}"
+    )
+
+    # Adjust axes to have the same scale
+    fig.update_xaxes(
+        range=[0, max(x.max() * 1.1, y.max() * 1.1)],
+        title=f"{emb_space_x} {metric.capitalize()} Distance",
+    )
+    fig.update_yaxes(
+        range=[0, max(x.max() * 1.1, y.max() * 1.1)],
+        title=f"{emb_space_y} {metric.capitalize()} Distance",
+    )
+
+    fig = update_fig_layout(fig)
+
     return fig
