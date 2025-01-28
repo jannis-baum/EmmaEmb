@@ -1,6 +1,6 @@
-# ema-tool
+# EmmaEmb
 
-ema-tool is a Python library designed to facilitate the initial **comparison** of diverse **embedding spaces** in biomedical data. By incorporating **user-defined metadata** on the natural grouping of data points, ema-tool enables users to compare global statistics and understand the differences in clustering of natural groupings across different embedding spaces.
+EmmaEmb is a Python library designed to facilitate the initial **comparison** of diverse **embedding spaces** in biomedical data. By incorporating **user-defined feature data** on the natural grouping of data points, EmmaEmb enables users to compare global statistics and understand the differences in clustering of natural groupings across different embedding spaces.
 
 More information about the ema-tool can be found in our pre-print on bioRxiv: [ema-tool: a Python Library for the Comparative Analysis of Embeddings from Biomedical Foundation Models](https://www.biorxiv.org/content/10.1101/2024.06.21.600139v1).
 
@@ -22,7 +22,7 @@ Given a set of samples and metadata, and at least two embedding spaces, the **em
 
 The following figure provides an overview of the ema-tool workflow:
 
-![ema-tool](images/ema_overview.jpg)
+![EmmaEmb workflow](images/emma_overview.jpg)
 
 
 ## Installation
