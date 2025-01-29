@@ -70,14 +70,17 @@ The distances can be visually inspected in a heatmap.
 
 ### Feature distribution across spaces
 
+For a selected feature from the feature data, EmmaEmb provides two metrics to assess the alignment of features across embedding spaces:
 
-- **KNN feature alignment scores**: Quantify the alignment of features by examining the nearest neighbors of each sample in different spaces. This score reveals the extent to which similar samples in one space are also similar in another.
-- **KNN class similarity matrix**: Measure the consistency of class-level relationships by assessing the overlap of nearest neighbors for samples within the same class across spaces. This provides insights into class-level embedding fidelity.
+- **KNN feature alignment scores**: Quantify the alignment of features by examining the nearest neighbors of each sample in different spaces. This score reveals the extent to which samples with a shared feature are embedded close to each other in different spaces.
+- **KNN class similarity matrix**: Measure the consistency of class-level relationships by assessing the overlap of nearest neighbors for samples within the same class across spaces. This provides insights into the relationships between classes in different embedding spaces.
 
-### Pairwise space comparison 
+### Pairwise space comparison
 
-- **Global comparison of pairwise distances**: Pairwise distances are calculated between all samples within each embedding space. This enables a global comparison of distance distributions across spaces to understand geometric alignment.
-- **Cross-space neighborhood similarity**: Determine how neighborhoods of samples overlap between embedding spaces. This metric is key to assessing local structural preservation.
+EmmaEmb provides two metrics to directly compare two embedding spaces:
+
+- **Global comparison of pairwise distances**: Compare the distribution of pairwise distances between samples in two embedding spaces. This metric is useful for assessing the overall similarity of the two spaces. The pairwise distances can also be visualized in a scatter plot.
+- **Cross-space neighborhood similarity**: Assess the similarity of local neighborhoods in two embedding spaces. This metric is useful for identifying regions where the two spaces diverge. The similarity is calculated based on the overlap of k-nearest neighbors between samples in the two spaces. The regions of divergence can be characterized using the feature data.
 
 
 ## Installation
