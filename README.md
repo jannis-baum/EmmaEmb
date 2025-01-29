@@ -4,69 +4,103 @@ EmmaEmb is a Python library designed to facilitate the initial **comparison** of
 
 Although designed for the application on embeddings of molecular biology data (e.g. protein sequences), the library is general and can be applied to any type of embedding space.
 
+
+
 ## Overview
 
+- **[Workflow](#workflow)**
+- **[Input](#input)**
 - **[Features](#features)**
+    - **[Visualisation after dimensionality reduction](#visualisation-after-dimensionality-reduction)**
+    - **[Computation of pairwise distances](#computation-of-pairwise-distances)**
+    - **[Feature distribution across spaces](#feature-distribution-across-spaces)**
+    - **[Pairwise space comparison](#pairwise-space-comparison)**
 - **[Installation](#installation)**
-- **[Colab Notebook Examples](#colab-notebook-examples)**
-- **[Scripts for Protein Language Model Embeddings](#scripts-for-protein-language-model-embeddings)**
+- **[Scripts for protein language model embeddings](#scripts-for-protein-language-model-embeddings)**
 - **[License](#license)**
 
-## Features
 
-The following figure provides an overview of the ema-tool workflow:
+## Workflow
+
+The following figure provides an overview of the EmmaEmb workflow:
 
 ![EmmaEmb workflow](images/emma_overview.jpg)
 
-EmmaEmb is centered around the `Emma` object, which serves as the core of the library. This object is initialized with feature data and provides the following functionality:
 
-1. **Loading Embedding Spaces**: Embedding spaces can be added incrementally to the Emma object. Importantly, these spaces:
-    - Need to be precomputed (scripts for generating embeddings from protein language models are [provided](#scripts-for-protein-language-model-embeddings)).
-    - Do not need to have the same number of dimensions.
-    - Are automatically stored within the Emma object for subsequent analyses.
+EmmaEmb enables the comparative analysis of information captured in different embedding spaces. The workflow consists of the following steps:
 
-2. **Computation of Pairwise Distances**: EmmaEmb calculates pairwise distances between samples in each embedding space. This enables the comparison across spaces. Users can select from multiple distance metrics, including:
-    - Euclidean
-    - Cosine
-    - Manhattan
+**A. Embedding Generation**: Starting with a set of samples (e.g., proteins or genes), embeddings are extracted from multiple foundation models, which may differ in architecture or training.
 
-3. Analysis
--  **Feature distribution across spaces**: Analyze how specific features are represented across embedding spaces.
-    - **KNN feature alignment scores**: Quantify the alignment of features by examining the nearest neighbors of each sample in different spaces. This score reveals the extent to which similar samples in one space are also similar in another.
-    - **KNN class similarity matrix**: Measure the consistency of class-level relationships by assessing the overlap of nearest neighbors for samples within the same class across spaces. This provides insights into class-level embedding fidelity.
+**B. Feature Integration**: Sample-specific categorical data (e.g., functional annotations, protein families) is incorporated to the analysis.
 
-- **Pairwise space comparison**: Directly compare embedding spaces to identify global and local differences.
-    - **Global comparison of pairwise distances**: Pairwise distances are calculated between all samples within each embedding space. This enables a global comparison of distance distributions across spaces to understand geometric alignment.
-    - **Cross-space neighborhood similarity**: Determine how neighborhoods of samples overlap between embedding spaces. This metric is key to assessing local structural preservation.
+**C. Feature Distribution Analysis**: The distribution of categorical features is assessed within local neighborhoods in each embedding space, using k-nearest neighbors to quantify class consistency and overlap.
 
-- **Dimensionality Reduction**: EmmaEmb supports dimensionality reduction techniques such as PCA, t-SNE, and UMAP to visualize and analyze high-dimensional embeddings in lower-dimensional spaces. These visualizations are critical for intuitive understanding of embedding space structure.
+**D. Pairwise Space Comparison**: Embedding spaces are compared based on pairwise distances and neighborhood similarity to identify global and local differences. Regions with high divergence can be further examined using feature data to understand variations in model representation.
+
+## Input
+
+EmmaEmb is centered around the `Emma` object, which serves as the core of the library. The following input data is required:
+
+1. **Feature Data**: A pandas DataFrame containing sample-specific categorical features. Each row corresponds to a sample, and each column corresponds to a feature. The first column should contain the sample IDs.
+
+2. **Embedding Spaces**: Precomputed embeddings for each sample (scripts for generating embeddings from protein language models are [provided](#scripts-for-protein-language-model-embeddings)). Embeddings should be stored in a directory with one file per sample. The file name should correspond to the sample ID, and the file should contain the embedding as a list of floats. Multiple embedding spaces can be added to the Emma object for comparison. Dimensions do not need to match across spaces.
+
+The `Emma` object is initialized with feature data and embedding spaces can be added incrementally. 
 
 
-The following figure provides an overview of the ema-tool workflow:
 
+## Features
+
+### Visualisation after dimensionality reduction
+
+EmmaEmb supports dimensionality reduction techniques such as PCA, t-SNE, and UMAP to visualize and analyze high-dimensional embeddings in lower-dimensional spaces. The plots can be colour coded by a feature of interest from the feature data.
+
+### Computation of pairwise distances
+
+To make embedding spaces comparable, EmmaEmb analyses rely on comparing not individual embeddings, but the relationships between them. The library calculates pairwise distances between samples in each embedding space. Users can select from multiple distance metrics, including:
+
+- Euclidean
+- Cosine
+- Manhattan
+
+For parts of the analysis only the k-nearest neighbors are considered, which will be based on the pairwise distances. The pairwise distances are only calculated once and can be reused for multiple analyses.
+
+The distances can be visually inspected in a heatmap.
+
+
+### Feature distribution across spaces
+
+
+- **KNN feature alignment scores**: Quantify the alignment of features by examining the nearest neighbors of each sample in different spaces. This score reveals the extent to which similar samples in one space are also similar in another.
+- **KNN class similarity matrix**: Measure the consistency of class-level relationships by assessing the overlap of nearest neighbors for samples within the same class across spaces. This provides insights into class-level embedding fidelity.
+
+### Pairwise space comparison 
+
+- **Global comparison of pairwise distances**: Pairwise distances are calculated between all samples within each embedding space. This enables a global comparison of distance distributions across spaces to understand geometric alignment.
+- **Cross-space neighborhood similarity**: Determine how neighborhoods of samples overlap between embedding spaces. This metric is key to assessing local structural preservation.
 
 
 ## Installation
 
-You can install the ema library through pip, or access examples locally by cloning the github repo.
+You can install the EmmaEmb library through pip, or access examples locally by cloning the github repo.
 
-### Installing the ema library
+### Installing the EmmaEmb library
 ```
 pip install ema-emb
 ```
 
-### Cloning the ema repo
+### Cloning the EmmaEmb repo
 ```
 git clone https://github.com/broadinstitute/EmmaEmb
 
-cd ema                         # enter project directory
+cd src/emmaemb                 # enter project directory
 pip3 install .                 # install dependencies
 jupyter lab colab_notebooks    # open notebook examples in jupyter for local exploration
 ```
 
 ### Getting Started
 
-To get started with the EmmaEmb library, load the metadata and embeddings, and initialize the `Emma` object. The following code snippet demonstrates how to use the ema-tool to compare two embedding spaces:
+To get started with the EmmaEmb library, load the metadata and embeddings, and initialize the `Emma` object. The following code snippet demonstrates how to use EmmaEmb to compare two embedding spaces:
 
 ```python
 from emmaemb import Emma
@@ -100,17 +134,7 @@ fig_3 = plot_knn_alignment_across_embedding_spaces(
 ```
 
 
-## Colab Notebook Example
-
-Two examples of how to use the ema-tool library is provided in the following colab notebooks: 
-
-| Link | Description |
-|---------|-------------|
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pia-francesca/ema/blob/main/colab_notebooks/application_example_ion_channel_proteins.ipynb) | Example of how to use the ema-tool to compare protein embeddings across three ESM models
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/pia-francesca/ema/blob/main/colab_notebooks/application_example_HCN1_variants.ipynb) | Example of how to use the ema-tool to compare embeddings of missense mutations across two ESM models
-
-
-## Scripts for Protein Language Model Embeddings
+## Scripts for protein language model embeddings
 
 The repository also contains a wrapper [script](plm_embeddings/get_embeddings.py) for retrieving protein embeddings from a diverse set of pre-trained Protein Language Models. 
 
