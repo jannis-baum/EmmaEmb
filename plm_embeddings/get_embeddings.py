@@ -34,7 +34,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "-m",
         "--model",
-        type=str, 
+        type=str,
         help="Name of the embedding model to be used",
         default="Rostlab/ProstT5",
     )
@@ -99,7 +99,7 @@ def parse_args() -> argparse.Namespace:
         "--model_dir",
         type=str,
         default="/scratch/protein_models/",
-        help="Directory for model output. Should be a non-empty string or missing."
+        help="Directory for model output. Should be a non-empty string or missing.",
     )
     return parser.parse_args()
 
@@ -312,14 +312,16 @@ def validate_parameters(
     # Validate dev
     if not isinstance(dev, bool):
         raise ValueError("The dev parameter must be a boolean.")
-    
+
     # validate model_dir
-    if model_dir is not None and (not isinstance(output_dir, str) or not output_dir.strip()):
+    if model_dir is not None and (
+        not isinstance(output_dir, str) or not output_dir.strip()
+    ):
         raise ValueError("Output directory must be a non-empty string.")
     if not os.path.isdir(model_dir):
         print(f"The directory '{model_dir} does not exist. Creating it ...")
         os.makedirs(model_dir)
-    
+
     # Validate bidrectional
     if not isinstance(bidrectional, bool):
         raise ValueError("The bidrectional parameter must be a boolean.")
@@ -793,7 +795,7 @@ def get_embeddings(
             output_dir=chopped_output_dir,
             layer=layer,
             truncation_seq_length=max_seq_length,
-            model_dir = model_dir,
+            model_dir=model_dir,
             # add batch size parameter
             **kwargs,
         )
