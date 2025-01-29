@@ -149,8 +149,8 @@ class Emma:
 
     def add_emb_space(
         self,
-        embeddings_source: str,
         emb_space_name: str,
+        embeddings_source: str,
         file_extension: str = "npy",
     ):
         """Add an embedding space to the Emma object.
