@@ -7,7 +7,7 @@ packages = ["emmaemb"]
 
 [project]
 name = "emmaemb"
-version = "0.0.5"
+version = "0.0.6"
 authors = [
   { name="Francesca Rissom", email="francesca.rissom@hpi.de" },
   { name="Paulo Yanez Sarmiento", email="paul.yanze@hpi.de" },
@@ -15,7 +15,7 @@ authors = [
 ]
 description = "A library for comparing embedding spaces"
 readme = "README.md"
-requires-python = ">=3.8,<3.9"
+requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
