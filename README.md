@@ -89,7 +89,7 @@ You can install the EmmaEmb library through pip, or access examples locally by c
 
 ### Installing the EmmaEmb library
 ```
-pip install ema-emb
+pip install emmaemb
 ```
 
 ### Cloning the EmmaEmb repo
