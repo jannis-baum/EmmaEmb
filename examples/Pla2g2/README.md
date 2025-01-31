@@ -1,6 +1,6 @@
 # PLA2G2 example data and scripts
 
-This directory contains example data and scripts for the PLA2G2 project.
+This directory contains a demonstration on how to use the `EmmaEmb` package using the PLA2G2 dataset.
 
 ## Data
 
