@@ -1,7 +1,7 @@
 import pandas as pd
-from src.emmaemb.core import Emma
-from src.emmaemb.vizualization import *
-from src.emmaemb.functions import *
+from emmaemb.core import Emma
+from emmaemb.vizualization import *
+from emmaemb.functions import *
 
 fp_metadata = "examples/Pla2g2/Pla2g2_features.csv"
 # fp_metadata = "examples/deeploc/data/deeploc_train_features.csv"

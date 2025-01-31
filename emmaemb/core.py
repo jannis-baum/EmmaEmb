@@ -5,7 +5,7 @@ import os
 
 from scipy.spatial.distance import pdist, squareform
 
-from src.emmaemb.config import EMB_SPACE_COLORS, DISTANCE_METRIC_ALIASES
+from emmaemb.config import EMB_SPACE_COLORS, DISTANCE_METRIC_ALIASES
 
 
 class Emma:

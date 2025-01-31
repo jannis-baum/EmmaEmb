@@ -9,8 +9,8 @@ from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 from umap import UMAP
 
-from src.emmaemb.core import Emma
-from src.emmaemb.functions import *
+from emmaemb.core import Emma
+from emmaemb.functions import *
 
 
 def update_fig_layout(fig: go.Figure) -> go.Figure:

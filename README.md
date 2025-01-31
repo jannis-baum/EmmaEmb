@@ -96,7 +96,7 @@ pip install emmaemb
 ```
 git clone https://github.com/broadinstitute/EmmaEmb
 
-cd src/emmaemb                 # enter project directory
+cd emmaemb                 # enter project directory
 pip3 install .                 # install dependencies
 jupyter lab colab_notebooks    # open notebook examples in jupyter for local exploration
 ```

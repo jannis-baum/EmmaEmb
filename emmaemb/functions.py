@@ -4,7 +4,7 @@ import numpy as np
 from collections import Counter
 from sklearn.preprocessing import LabelEncoder
 
-from src.emmaemb.core import Emma
+from emmaemb.core import Emma
 
 
 # get knn alignment scores
