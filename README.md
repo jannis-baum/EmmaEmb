@@ -136,6 +136,7 @@ fig_3 = plot_knn_alignment_across_embedding_spaces(
 )
 ```
 
+A more detailed example can be found in the [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/EmmaEmb/blob/main/examples/Pla2g2/emmaemb_pla2g2.ipynb) notebook.
 
 ## Scripts for protein language model embeddings
 
