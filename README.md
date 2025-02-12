@@ -158,8 +158,7 @@ The script supports the following models:
 
 If you have any questions or suggestions, please feel free to reach out to the authors: francesca.risom@hpi.de.
 
-More information about the library can be found in our pre-print on bioRxiv: [ema-tool: a Python Library for the Comparative Analysis of Embeddings from Biomedical Foundation Models](https://www.biorxiv.org/content/10.1101/2024.06.21.600139v1).
+More information about the library can be found in our pre-print on bioRxiv: [Decoding protein language models: insights from embedding space analysis](https://doi.org/10.1101/2024.06.21.600139).
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
