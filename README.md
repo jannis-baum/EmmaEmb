@@ -4,7 +4,22 @@ EmmaEmb is a Python library designed to facilitate the initial **comparison** of
 
 Although designed for the application on embeddings of molecular biology data (e.g. protein sequences), the library is general and can be applied to any type of embedding space.
 
+## How to cite
 
+If you use EmmaEmb, please cite the pre-print:
+
+Rissom, P. F., Yanez Sarmiento, P., Safer, J., Coley, C. W., Renard, B. Y., Heyne, H. O., Iqbal, S. Decoding protein language models: insights from embedding space analysis. bioRxiv, doi: https://doi.org/10.1101/2024.06.21.600139
+
+or, if you prefer the BibTeX format:
+
+@article {Rissom2024.06.21.600139,
+	author = {Rissom, Pia Francesca and Sarmiento, Paulo Yanez and Safer, Jordan and Coley, Connor W. and Renard, Bernhard Y. and Heyne, Henrike O. and Iqbal, Sumaiya},
+	title = {Decoding protein language models: insights from embedding space analysis},
+	year = {2025},
+	doi = {10.1101/2024.06.21.600139},
+	publisher = {Cold Spring Harbor Laboratory},
+	journal = {bioRxiv}
+}
 
 ## Overview
 
@@ -158,7 +173,6 @@ The script supports the following models:
 
 If you have any questions or suggestions, please feel free to reach out to the authors: francesca.risom@hpi.de.
 
-More information about the library can be found in our pre-print on bioRxiv: [Decoding protein language models: insights from embedding space analysis](https://doi.org/10.1101/2024.06.21.600139).
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
