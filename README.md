@@ -6,7 +6,7 @@ Although designed for the application on embeddings of molecular biology data (e
 
 ## How to cite
 
-If you use EmmaEmb, please cite the pre-print:
+If you use EmmaEmb, please cite the [pre-print](https://www.biorxiv.org/content/10.1101/2024.06.21.600139v2):
 
 - *Rissom, P. F., Yanez Sarmiento, P., Safer, J., Coley, C. W., Renard, B. Y., Heyne, H. O., Iqbal, S. Decoding protein language models: insights from embedding space analysis. bioRxiv (2025), [https://doi.org/10.1101/2024.06.21.600139](https://doi.org/10.1101/2024.06.21.600139)*
 
