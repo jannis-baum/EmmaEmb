@@ -8,10 +8,11 @@ Although designed for the application on embeddings of molecular biology data (e
 
 If you use EmmaEmb, please cite the pre-print:
 
-Rissom, P. F., Yanez Sarmiento, P., Safer, J., Coley, C. W., Renard, B. Y., Heyne, H. O., Iqbal, S. Decoding protein language models: insights from embedding space analysis. bioRxiv, doi: https://doi.org/10.1101/2024.06.21.600139
+- *Rissom, P. F., Yanez Sarmiento, P., Safer, J., Coley, C. W., Renard, B. Y., Heyne, H. O., Iqbal, S. Decoding protein language models: insights from embedding space analysis. bioRxiv (2025), [https://doi.org/10.1101/2024.06.21.600139](https://doi.org/10.1101/2024.06.21.600139)*
 
-or, if you prefer the BibTeX format:
+or, if you prefer the `BibTeX` format:
 
+```
 @article {Rissom2024.06.21.600139,
 	author = {Rissom, Pia Francesca and Sarmiento, Paulo Yanez and Safer, Jordan and Coley, Connor W. and Renard, Bernhard Y. and Heyne, Henrike O. and Iqbal, Sumaiya},
 	title = {Decoding protein language models: insights from embedding space analysis},
@@ -20,6 +21,7 @@ or, if you prefer the BibTeX format:
 	publisher = {Cold Spring Harbor Laboratory},
 	journal = {bioRxiv}
 }
+```
 
 ## Overview
 
