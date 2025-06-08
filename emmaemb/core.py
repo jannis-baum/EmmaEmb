@@ -79,6 +79,17 @@ class Emma:
         else:
             return True
 
+    def _check_column_is_numeric(self, column: str):
+        """Check if a column is numeric.
+
+        Args:
+        column (str): Column name.
+        """
+        if column not in self.metadata_numeric_columns:
+            raise ValueError(f"Column {column} is not numeric.")
+        else:
+            return True
+
     def _get_color_map_for_features(self) -> dict:
         """Generate a color map for categorical features
         in the metadata. The color map is used for plotting.
