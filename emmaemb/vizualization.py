@@ -70,10 +70,6 @@ def plot_emb_space(
     emma._check_for_emb_space(emb_space)
     embeddings = emma.emb[emb_space]["emb"]
 
-    if color_by:
-        if not emma._check_column_is_categorical(color_by):
-            raise ValueError(f"Column {color_by} is not categorical")
-
     if normalise:
         scaler = StandardScaler()
         embeddings = scaler.fit_transform(embeddings)
@@ -94,6 +90,13 @@ def plot_emb_space(
     else:
         raise ValueError(f"Method {method} not implemented")
 
+    color_discrete_map = None
+    try:
+        emma._check_column_is_categorical(color_by)
+        color_discrete_map = emma.color_map[color_by]
+    except:
+        pass
+
     fig = px.scatter(
         x=embeddings_2d[:, 0],
         y=embeddings_2d[:, 1],
@@ -102,7 +105,7 @@ def plot_emb_space(
         title=f"{emb_space} embeddings after {method}",
         hover_data={"Sample": emma.sample_names},
         opacity=0.5,
-        color_discrete_map=(emma.color_map[color_by] if color_by else None),
+        color_discrete_map=color_discrete_map
     )
 
     fig.update_layout(
