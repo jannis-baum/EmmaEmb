@@ -35,21 +35,17 @@ def update_fig_layout(fig: go.Figure) -> go.Figure:
     fig.update_yaxes(showgrid=False)
     return fig
 
-
-def plot_emb_space(
+def reduce_2d(
     emma: Emma,
     emb_space: str,
     method: str = "PCA",
     normalise: bool = True,
-    color_by: str = None,
-    logarithmic_colors: bool = False,
     random_state: int = 42,
     perplexity: int = 30,
     shuffle_umap: bool = True,
-) -> go.Figure:
-    """Function to plot the embeddings of a given embedding space in 2D. \
-    Dimensionality reduction is performed using PCA, TSNE, or UMAP.\
-    The dots are coloured by a column in the metadata.
+) -> tuple[np.ndarray, dict]:
+    """Function to reduce the embeddings of a given embedding space to 2D. \
+    Dimensionality reduction is performed using PCA, TSNE, or UMAP.
 
     Args:
         emma (Emma): An instance of the Emma class.
@@ -58,10 +54,6 @@ def plot_emb_space(
             Either "PCA", "TSNE", or "UMAP". Defaults to "PCA".
         normalise (bool, optional): Whether to perform z-score normalisation \
             prior to dimensionality reduction. Defaults to True.
-        color_by (str, optional): A column name from the metadata stored in \
-            the Emma object, by which the dots are coloured. Defaults to None.
-        logarithmic_colors (bool, optional): Use a logarithmic scale to color by
-            a numerical column. Defaults to False.
         random_state (int, optional): Random state for UMAP or TSNE. Defaults \
             to 42.
         perplexity (int, optional): Perplexity, only applied to UMAP.\
@@ -71,10 +63,17 @@ def plot_emb_space(
 
     Returns:
         go.Figure: A scatter plot of the embeddings in 2D.
+        dict: A dictionary of kw arguments that can be passed to the plotting \
+            function.
     """
-
     emma._check_for_emb_space(emb_space)
     embeddings = emma.emb[emb_space]["emb"]
+
+    plot_kwargs = {
+        "emma": emma,
+        "emb_space": emb_space,
+        "method": method,
+    }
 
     if normalise:
         scaler = StandardScaler()
@@ -83,7 +82,7 @@ def plot_emb_space(
     if method == "PCA":
         pca = PCA(n_components=2)
         embeddings_2d = pca.fit_transform(embeddings)
-        variance_explained = pca.explained_variance_ratio_
+        plot_kwargs["pca_variance_explained"] = pca.explained_variance_ratio_
     elif method == "TSNE":
         tsne = TSNE(
             n_components=2, random_state=random_state, perplexity=perplexity
@@ -102,6 +101,37 @@ def plot_emb_space(
     else:
         raise ValueError(f"Method {method} not implemented")
 
+    return embeddings_2d, plot_kwargs
+
+def plot_emb_space_from_2d(
+    emma: Emma,
+    embeddings_2d: np.ndarray,
+    emb_space: str,
+    method: str,
+    color_by: str = None,
+    logarithmic_colors: bool = False,
+    pca_variance_explained: np.ndarray | None = None,
+):
+    """Function to plot the pre-reduced 2D embeddings of a given embedding space. \
+    The dots are coloured by a column in the metadata.
+
+    Args:
+        emma (Emma): An instance of the Emma class.
+        embeddings_2d (np.ndarray): The dimensionality reduced 2D embeddings \
+            to plot.
+        emb_space (str): Name of an embedding space in the Emma instance.
+        method (str, optional): Method for dimensionality reduction. \
+            Either "PCA", "TSNE", or "UMAP". Defaults to "PCA".
+        color_by (str, optional): A column name from the metadata stored in \
+            the Emma object, by which the dots are coloured. Defaults to None.
+        logarithmic_colors (bool, optional): Use a logarithmic scale to color by \
+            a numerical column. Defaults to False.
+        pca_variance_explained (np.ndarray): PCA.explained_variance_ratio_ to \
+            label PCA plots
+
+    Returns:
+        go.Figure: A scatter plot of the embeddings in 2D.
+    """
     # args for px.scatter
     scatter_args = {
         "x": embeddings_2d[:, 0],
@@ -146,17 +176,70 @@ def plot_emb_space(
         marker=dict(size=max(10, (1 / len(emma.sample_names)) * 400))
     )
 
-    if method == "PCA":
+    if method == "PCA" and pca_variance_explained is not None:
         fig.update_layout(
             xaxis_title="PC1 ({}%)".format(
-                round(variance_explained[0] * 100, 2)
+                round(pca_variance_explained[0] * 100, 2)
             ),
             yaxis_title="PC2 ({}%)".format(
-                round(variance_explained[1] * 100, 2)
+                round(pca_variance_explained[1] * 100, 2)
             ),
         )
     fig = update_fig_layout(fig)
     return fig
+
+def plot_emb_space(
+    emma: Emma,
+    emb_space: str,
+    method: str = "PCA",
+    normalise: bool = True,
+    color_by: str = None,
+    logarithmic_colors: bool = False,
+    random_state: int = 42,
+    perplexity: int = 30,
+    shuffle_umap: bool = True,
+) -> go.Figure:
+    """Function to plot the embeddings of a given embedding space in 2D. \
+    Dimensionality reduction is performed using PCA, TSNE, or UMAP.\
+    The dots are coloured by a column in the metadata.
+
+    Args:
+        emma (Emma): An instance of the Emma class.
+        emb_space (str): Name of an embedding space in the Emma instance.
+        method (str, optional): Method for dimensionality reduction. \
+            Either "PCA", "TSNE", or "UMAP". Defaults to "PCA".
+        normalise (bool, optional): Whether to perform z-score normalisation \
+            prior to dimensionality reduction. Defaults to True.
+        color_by (str, optional): A column name from the metadata stored in \
+            the Emma object, by which the dots are coloured. Defaults to None.
+        logarithmic_colors (bool, optional): Use a logarithmic scale to color by
+            a numerical column. Defaults to False.
+        random_state (int, optional): Random state for UMAP or TSNE. Defaults \
+            to 42.
+        perplexity (int, optional): Perplexity, only applied to UMAP.\
+            Defaults to 30.
+        shuffle_umap (bool, optional): Shuffle order of embeddings before \
+            running UMAP. Defaults to True
+
+    Returns:
+        go.Figure: A scatter plot of the embeddings in 2D.
+    """
+
+    embeddings_2d, plot_kwargs = reduce_2d(
+        emma=emma,
+        emb_space=emb_space,
+        method=method,
+        normalise=normalise,
+        random_state=random_state,
+        perplexity=perplexity,
+        shuffle_umap=shuffle_umap,
+    )
+    return plot_emb_space_from_2d(
+        color_by=color_by,
+        logarithmic_colors=logarithmic_colors,
+        embeddings_2d=embeddings_2d,
+        **plot_kwargs
+    )
 
 
 def plot_pairwise_distance_heatmap(
