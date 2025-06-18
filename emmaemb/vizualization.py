@@ -108,7 +108,7 @@ def plot_emb_space(
         "y": embeddings_2d[:, 1],
         "labels": {"color": color_by},
         "title": f"{emb_space} embeddings after {method}",
-        "hover_data": {"Sample": emma.sample_names},
+        "hover_data": emma.metadata.to_dict(orient='list'),
         "opacity": 0.5,
     }
 
