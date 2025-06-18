@@ -3,13 +3,14 @@ import os
 import numpy as np
 import pandas as pd
 import plotly.express as px
-from scipy.spatial.distance import pdist, squareform
+from sklearn.metrics import pairwise_distances
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 from sklearn.manifold import TSNE
 from umap import UMAP
 
 from emmaemb.config import EMB_SPACE_COLORS, DISTANCE_METRIC_ALIASES
+from emmaemb.utils import row_argsort_parallel
 
 
 class Emma:
@@ -267,7 +268,7 @@ class Emma:
             emb = self.emb[emb_space]["emb"]
             emb_norm = np.linalg.norm(emb, axis=1)
             emb = emb / emb_norm[:, None]  # divide each row by its norm
-            emb_pwd = squareform(pdist(emb, metric="sqeuclidean"))
+            emb_pwd = pairwise_distances(emb, metric="sqeuclidean", n_jobs=-1)
             return emb_pwd
 
         elif metric == "euclidean_normalised":
@@ -276,12 +277,12 @@ class Emma:
             emb = self.emb[emb_space]["emb"]
             emb_norm = np.linalg.norm(emb, axis=1)
             emb = emb / emb_norm[:, None]  # divide each row by its norm
-            emb_pwd = squareform(pdist(emb, metric="euclidean"))
+            emb_pwd = pairwise_distances(emb, metric="euclidean", n_jobs=-1)
             return emb_pwd
 
         elif metric == "cityblock_normalised":
-            emb_pwd = squareform(
-                pdist(self.emb[emb_space]["emb"], metric="cityblock")
+            emb_pwd = pairwise_distances(
+                self.emb[emb_space]["emb"], metric="cityblock", n_jobs=-1
             )
             emb_pwd = emb_pwd / len(self.emb[emb_space]["emb"][1])
             return emb_pwd
@@ -290,10 +291,10 @@ class Emma:
             # substract the mean of each column from each value
             emb = self.emb[emb_space]["emb"]
             emb = emb - np.median(emb, axis=0)  # emb.median(axis=0)
-            emb_pwd = squareform(pdist(emb, metric="cosine"))
+            emb_pwd = pairwise_distances(emb, metric="cosine", n_jobs=-1)
             return emb_pwd
 
-        emb_pwd = squareform(pdist(embeddings, metric=metric))
+        emb_pwd = pairwise_distances(embeddings, metric=metric, n_jobs=-1)
         return emb_pwd
 
     def calculate_pairwise_distances(
@@ -319,7 +320,7 @@ class Emma:
             )
 
             # Compute ranks based on distances
-            ranked_indices = np.argsort(emb_pwd, axis=1)
+            ranked_indices = row_argsort_parallel(emb_pwd)
 
             if "pairwise_distances" not in self.emb[emb_space]:
                 self.emb[emb_space]["pairwise_distances"] = {}
