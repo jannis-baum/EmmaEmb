@@ -10,6 +10,7 @@ from sklearn.manifold import TSNE
 from umap import UMAP
 
 from emmaemb.config import EMB_SPACE_COLORS, DISTANCE_METRIC_ALIASES
+from emmaemb.utils import row_argsort_parallel
 
 
 class Emma:
@@ -319,7 +320,7 @@ class Emma:
             )
 
             # Compute ranks based on distances
-            ranked_indices = np.argsort(emb_pwd, axis=1)
+            ranked_indices = row_argsort_parallel(emb_pwd)
 
             if "pairwise_distances" not in self.emb[emb_space]:
                 self.emb[emb_space]["pairwise_distances"] = {}
