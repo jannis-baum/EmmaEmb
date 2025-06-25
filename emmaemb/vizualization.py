@@ -97,7 +97,6 @@ def plot_emb_space(
     scatter_args = {
         "x": embeddings_2d[:, 0],
         "y": embeddings_2d[:, 1],
-        "labels": {"color": color_by},
         "title": f"{emb_space} embeddings after {method}",
         "hover_data": {"Sample": emma.sample_names},
         "opacity": 0.5,
