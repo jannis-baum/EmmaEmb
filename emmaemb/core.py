@@ -420,12 +420,13 @@ class Emma:
         """
         self._check_for_emb_space(emb_space)
 
-        key = "2d__" + "__".join(
+        self.emb[emb_space]["2d"] = self.emb[emb_space].get("2d", dict())
+        key = "__".join(
             (str(arg) for arg in [method, normalise, random_state, perplexity, shuffle_umap])
         )
         # cache
-        if key in self.emb[emb_space]:
-            return self.emb[emb_space][key]
+        if key in self.emb[emb_space]["2d"]:
+            return self.emb[emb_space]["2d"][key]
 
         embeddings = self.emb[emb_space]["emb"]
         result = {}
@@ -456,5 +457,5 @@ class Emma:
             raise ValueError(f"Method {method} not implemented")
 
         result["2d"] = embeddings_2d
-        self.emb[emb_space][key] = result
+        self.emb[emb_space]["2d"][key] = result
         return result
