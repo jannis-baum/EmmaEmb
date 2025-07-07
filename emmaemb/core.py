@@ -368,7 +368,11 @@ class Emma:
         return self.emb[emb_space]["pairwise_distances"][metric]
 
     def get_knn(
-        self, emb_space: str, k: int, metric: str = "euclidean"
+        self,
+        emb_space: str,
+        k: int,
+        metric: str = "euclidean",
+        cache_distances: bool = False
     ) -> np.ndarray:
         """Get the k-nearest neighbours for each sample in an embedding space. \
             Will calculate the neighbours if not already done.
@@ -377,6 +381,8 @@ class Emma:
         emb_space (str): Name of the embedding space.
         k (int): Number of neighbours to consider.
         metric (str): Distance metric to use. Default 'euclidean'.
+        cache_distances (bool): Whether to preserve computed pairwise distances \
+            and ranks in cache.
 
         Returns:
         np.ndarray: Indices of the k-nearest neighbours.
@@ -396,6 +402,9 @@ class Emma:
         except KeyError:
             self.calculate_pairwise_distances(emb_space, metric)
             ranked_indices = self.emb[emb_space]["ranks"][metric]
+            if not cache_distances:
+                del self.emb[emb_space]["ranks"][metric]
+                del self.emb[emb_space]["pairwise_distances"][metric]
 
         return ranked_indices[:, 1 : k + 1]
 
