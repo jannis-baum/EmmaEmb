@@ -118,9 +118,20 @@ class Emma:
                 )
                 continue
 
+            # select smallest color set from list that fits or fall back to 24 colors
+            color_set = next((
+                set for set in [
+                    px.colors.qualitative.Set2, # 8 colors
+                    px.colors.qualitative.Pastel, # 11 colors
+                    px.colors.qualitative.Set3, # 12 colors
+                    px.colors.qualitative.Light24, # 24 colors
+                ]
+                if len(set) >= len(column_values)
+            ), px.colors.qualitative.Alphabet)
+
+            # repeat colors if we don't have enough
             colors = (
-                px.colors.qualitative.Set2
-                * math.ceil(len(column_values) / len(px.colors.qualitative.Set2))
+                color_set * math.ceil(len(column_values) / len(color_set))
             )[:len(column_values)]
 
             color_map[column] = dict(zip(column_values, colors))
