@@ -39,23 +39,17 @@ def get_knn_alignment_scores(
     if embedding_spaces is None:
         raise ValueError("No embeddings found in Emma object")
     emma._check_column_is_categorical(feature)
-    # check if metric is already calculated
-    for emb_space in embedding_spaces:
-        if metric not in emma.emb[emb_space]["ranks"]:
-            raise ValueError(
-                f"Metric {metric} not calculated for embedding {emb_space}"
-            )
 
     all_results = []
     feature_classes = emma.metadata[feature]
 
     for emb_space in embedding_spaces:
-        rank_matrix = emma.emb[emb_space]["ranks"].get(metric)
+        rank_matrix = emma.get_knn(emb_space, k, metric)
 
         fractions = []
         for i in range(len(rank_matrix)):
             # Get the indices of the k-nearest neighbors (ranked by distance)
-            neighbor_indices = rank_matrix[i][1 : k + 1]
+            neighbor_indices = rank_matrix[i]
 
             # Count how many of the k-nearest neighbors belong to
             # the same class
@@ -90,11 +84,6 @@ def get_class_mixing_in_neighborhood(
     # validate input
     emma._check_for_emb_space(emb_space)
     emma._check_column_is_categorical(feature)
-    # check if metric is already calculated
-    if metric not in emma.emb[emb_space]["ranks"]:
-        raise ValueError(
-            f"Metric {metric} not calculated for embedding {emb_space}"
-        )
 
     le = LabelEncoder()
     encoded_classes = le.fit_transform(emma.metadata[feature])
@@ -102,9 +91,7 @@ def get_class_mixing_in_neighborhood(
     num_classes = len(unique_classes)
 
     neighbor_class_counts = np.zeros((num_classes, num_classes), dtype=int)
-
-    rank_matrix = emma.emb[emb_space]["ranks"].get(metric)
-    neighboring_indices = rank_matrix[:, 1 : k + 1]
+    neighboring_indices = emma.get_knn(emb_space, k, metric)
 
     for i, neighbors in enumerate(neighboring_indices):
         sample_class_idx = encoded_classes[i]
@@ -127,15 +114,8 @@ def get_neighbourhood_similarity(
     k: int = 10,
     metric: str = "euclidean",
 ):
-    for emb_space in [emb_space_1, emb_space_2]:
-        emma._check_for_emb_space(emb_space)
-        if metric not in emma.emb[emb_space]["ranks"]:
-            raise ValueError(
-                f"Metric {metric} not calculated for embedding {emb_space_1}"
-            )
-
-    knn_1 = emma.emb[emb_space_1]["ranks"].get(metric)[:, 1 : k + 1]
-    knn_2 = emma.emb[emb_space_2]["ranks"].get(metric)[:, 1 : k + 1]
+    knn_1 = emma.get_knn(emb_space_1, k, metric)
+    knn_2 = emma.get_knn(emb_space_2, k, metric)
 
     similarity = np.zeros(len(knn_1))
 
