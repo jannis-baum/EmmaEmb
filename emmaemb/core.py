@@ -1,5 +1,6 @@
-import os
 import math
+import os
+from typing import Literal
 
 import numpy as np
 import pandas as pd
@@ -372,7 +373,7 @@ class Emma:
         emb_space: str,
         k: int,
         metric: str = "euclidean",
-        cache_distances: bool = False
+        cache: Literal["distances"] | Literal["knns"] | None = "knns",
     ) -> np.ndarray:
         """Get the k-nearest neighbours for each sample in an embedding space. \
             Will calculate the neighbours if not already done.
@@ -380,9 +381,11 @@ class Emma:
         Args:
         emb_space (str): Name of the embedding space.
         k (int): Number of neighbours to consider.
-        metric (str): Distance metric to use. Default 'euclidean'.
-        cache_distances (bool): Whether to preserve computed pairwise distances \
-            and ranks in cache.
+        metric (str): Distance metric to use. Default "euclidean".
+        cache ("knns" | "distances" | None): Which new computation results to \
+            preserve in cache: "distances" preserves all pairwise distances \
+            and ranks (high use of RAM), "knns" preserves only the given `k` \
+            nearest neighbors, None preserves nothing. Default "knns".
 
         Returns:
         np.ndarray: Indices of the k-nearest neighbours.
@@ -396,17 +399,27 @@ class Emma:
             raise ValueError("k must be less than the number of samples.")
         if metric not in DISTANCE_METRIC_ALIASES:
             raise ValueError(f"Distance metric {metric} not supported.")
+        if cache not in ["distances", "knns", None]:
+            raise ValueError(f"Cache strategy {cache} unknown.")
+
+        # prepare & check knn cache
+        self.emb[emb_space]["knns"] = self.emb[emb_space].get("knns", {})
+        if metric in self.emb[emb_space]["knns"] and self.emb[emb_space]["knns"][metric].shape[1] >= k:
+            return self.emb[emb_space]["knns"][metric][:, :k]
 
         try:
             ranked_indices = self.emb[emb_space]["ranks"][metric]
         except KeyError:
             self.calculate_pairwise_distances(emb_space, metric)
             ranked_indices = self.emb[emb_space]["ranks"][metric]
-            if not cache_distances:
+            if cache != "distances":
                 del self.emb[emb_space]["ranks"][metric]
                 del self.emb[emb_space]["pairwise_distances"][metric]
 
-        return ranked_indices[:, 1 : k + 1]
+        knns = ranked_indices[:, 1 : k + 1]
+        if cache == "knns":
+            self.emb[emb_space]["knns"][metric] = knns
+        return knns
 
     # Dimensionality reduction
     def get_2d(
