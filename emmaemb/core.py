@@ -1,4 +1,5 @@
 import os
+import math
 
 import numpy as np
 import pandas as pd
@@ -117,13 +118,22 @@ class Emma:
                 )
                 continue
 
-            colors = (
-                px.colors.qualitative.Set2
-                + px.colors.qualitative.Set2
-                * (len(column_values) - len(px.colors.qualitative.Set2))
-            )
+            # select smallest color set from list that fits or fall back to 24 colors
+            color_set = next((
+                set for set in [
+                    px.colors.qualitative.Set2, # 8 colors
+                    px.colors.qualitative.Pastel, # 11 colors
+                    px.colors.qualitative.Set3, # 12 colors
+                    px.colors.qualitative.Light24, # 24 colors
+                ]
+                if len(set) >= len(column_values)
+            ), px.colors.qualitative.Alphabet)
 
-            colors = colors[: len(column_values)]  # shorten if necessary
+            # repeat colors if we don't have enough
+            colors = (
+                color_set * math.ceil(len(column_values) / len(color_set))
+            )[:len(column_values)]
+
             color_map[column] = dict(zip(column_values, colors))
 
             # check for specifial values
