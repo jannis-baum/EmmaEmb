@@ -1,4 +1,5 @@
 import os
+import math
 
 import numpy as np
 import pandas as pd
@@ -119,11 +120,9 @@ class Emma:
 
             colors = (
                 px.colors.qualitative.Set2
-                + px.colors.qualitative.Set2
-                * (len(column_values) - len(px.colors.qualitative.Set2))
-            )
+                * math.ceil(len(column_values) / len(px.colors.qualitative.Set2))
+            )[:len(column_values)]
 
-            colors = colors[: len(column_values)]  # shorten if necessary
             color_map[column] = dict(zip(column_values, colors))
 
             # check for specifial values
