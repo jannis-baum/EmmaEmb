@@ -35,7 +35,7 @@ def get_knn_alignment_scores(
     """
 
     # validate input
-    embedding_spaces = emma.emb.keys()
+    embedding_spaces = emma.get_spaces()
     if embedding_spaces is None:
         raise ValueError("No embeddings found in Emma object")
     emma._check_column_is_categorical(feature)

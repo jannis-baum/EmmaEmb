@@ -278,6 +278,49 @@ class Emma:
         diff = self.emb[emb_space_a]["emb"] - self.emb[emb_space_b]["emb"]
 
         self.add_emb_space(name, diff)
+        # store metadata for origin
+        self.emb[name]["diff"] = {
+            "minuend": emb_space_a,
+            "subtrahend": emb_space_b
+        }
+
+    def space_is_diff(self, emb_space: str) -> bool:
+        """Check if the given space is the difference between two other spaces
+
+        Args:
+        emb_space (str): Name of the first embedding space.
+
+        Returns:
+        boolean
+        """
+        self._check_for_emb_space(emb_space)
+        return "diff" in self.emb[emb_space]
+
+    def get_spaces(
+        self,
+        include: Literal["all"] | Literal["spaces"] | Literal["diffs"] = "spaces"
+    ) -> list[str]:
+        """Get defined spaces
+
+        Args:
+        include ("all" | "spaces" | "diffs"): Whether to include all spaces, \
+            only original spaces or only diffs.
+
+        Returns
+        list[str]: The names of the spaces.
+        """
+        if include not in ["all", "spaces", "diffs"]:
+            raise ValueError("Unknown include strategy")
+
+        def _include(space: str) -> bool:
+            if include == "all": return True
+            is_diff = self.space_is_diff(space)
+            return {
+                "spaces": not is_diff,
+                "diffs": is_diff,
+            }[include]
+
+        return [space for space in self.emb if _include(space)]
 
     def _check_for_emb_space(self, emb_space_name: str):
         """Check if an embedding space is available.
