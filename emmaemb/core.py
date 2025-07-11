@@ -175,22 +175,13 @@ class Emma:
     def add_emb_space(
         self,
         emb_space_name: str,
-        embeddings_source: str,
-        file_extension: str = "npy",
+        embeddings: np.ndarray,
     ):
-        """Add an embedding space to the Emma object.
-        
+        """Add an embedding space to the Emma object given as a Numpy array.
+
         Args:
-        embeddings_source (str): Path to either a .npy file or a \
-            directory containing .npy files for each embedding.
         emb_space_name (str): Name of the embedding space. Must be unique.
-        ext (str): Extension of the embedding files (default 'npy').
-        
-        If embeddings_source is a .npy file, it is loaded directly assuming \
-            it contains all embeddings for the provided meta data in \
-                respective order.
-        If embedding_source is a directory, embeddings are loaded from files \
-            in the directory corresponding to self.sample_names.
+        embeddings (np.ndarray): Embedding matrix.
         """
 
         # Validate the embedding space name
@@ -202,6 +193,45 @@ class Emma:
                 exists."
             )
 
+        # Validate the number of embeddings
+        if embeddings.shape[0] != len(self.sample_names):
+            raise ValueError(
+                (
+                    "Number of embeddings does not match the number \
+                        of samples in the metadata."
+                )
+            )
+
+        # Add the embedding space
+        self.emb[emb_space_name] = {
+            "emb": embeddings,
+            "colour": self._assign_colour_to_embedding_space(len(self.emb)),
+        }
+
+        print(f"Embedding space '{emb_space_name}' added successfully.")
+        print(f"Embeddings have {embeddings.shape[1]} features each.")
+
+    def load_emb_space_from_disk(
+        self,
+        emb_space_name: str,
+        embeddings_source: str,
+        file_extension: str = "npy",
+    ):
+        """Add an embedding space from a directory or file on disk to the \
+        Emma object.
+
+        Args:
+        embeddings_source (str): Path to either a .npy file or a \
+            directory containing .npy files for each embedding.
+        emb_space_name (str): Name of the embedding space. Must be unique.
+        ext (str): Extension of the embedding files (default 'npy').
+
+        If embeddings_source is a .npy file, it is loaded directly assuming \
+            it contains all embeddings for the provided meta data in \
+                respective order.
+        If embedding_source is a directory, embeddings are loaded from files \
+            in the directory corresponding to self.sample_names.
+        """
         # Load embeddings
         embeddings = None
         if embeddings_source.endswith(f".{file_extension}"):
@@ -223,24 +253,7 @@ class Emma:
                         a directory path."
                 )
             )
-
-        # Validate the number of embeddings
-        if embeddings.shape[0] != len(self.sample_names):
-            raise ValueError(
-                (
-                    "Number of embeddings does not match the number \
-                        of samples in the metadata."
-                )
-            )
-
-        # Add the embedding space
-        self.emb[emb_space_name] = {
-            "emb": embeddings,
-            "colour": self._assign_colour_to_embedding_space(len(self.emb)),
-        }
-
-        print(f"Embedding space '{emb_space_name}' added successfully.")
-        print(f"Embeddings have {embeddings.shape[1]} features each.")
+        self.add_emb_space(emb_space_name, embeddings)
 
     def _check_for_emb_space(self, emb_space_name: str):
         """Check if an embedding space is available.

@@ -15,7 +15,7 @@ metadata = pd.read_csv(fp_metadata)
 emma = Emma(feature_data=metadata)
 
 for model_alias, model_name in models.items():
-    emma.add_emb_space(
+    emma.load_emb_space_from_disk(
         emb_space_name=model_alias,
         embeddings_source=embedding_dir + model_name,
     )

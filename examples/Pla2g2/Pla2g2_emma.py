@@ -32,7 +32,7 @@ metadata = pd.read_csv(fp_metadata)
 ema = EmbeddingHandler(sample_meta_data=metadata)
 
 for model_alias, model_name in models.items():
-    ema.add_emb_space(
+    ema.load_emb_space_from_disk(
         embeddings_source=embedding_dir + model_name,
         emb_space_name=model_alias,
     )
