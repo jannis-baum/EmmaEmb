@@ -572,3 +572,33 @@ class Emma:
         result["2d"] = embeddings_2d
         self.emb[emb_space]["2d"][key] = result
         return result
+
+    def get_norms(
+        self,
+        emb_space: str,
+        ord: float | Literal["fro", "nuc"] | None = None,
+        cache: bool = False
+    ):
+        """Function to get the element-wise norms (magnitudes) of a given \
+        embedding space.
+
+        Args:
+            emb_space (str): Name of an embedding space in the Emma instance.
+            ord: See `Note` table in \
+                https://numpy.org/doc/stable/reference/generated/numpy.linalg.norm.html#numpy.linalg.norm
+            cache (bool, optional): Whether to cache results for later \
+                computation. Defaults to False
+        Returns:
+            np.ndarray: The norms
+        """
+        self._check_for_emb_space(emb_space)
+        self.emb[emb_space]["norm"] = self.emb[emb_space].get("norm", dict())
+        key = repr(ord)
+        if key in self.emb[emb_space]["norm"]:
+            return self.emb[emb_space]["norm"][key]
+
+        norms = np.linalg.norm(self.emb[emb_space]["emb"], axis=1, ord=ord)
+        if cache:
+            self.emb[emb_space]["norm"][key] = norms
+
+        return norms
