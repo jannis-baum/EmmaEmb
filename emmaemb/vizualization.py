@@ -1,3 +1,4 @@
+from typing import Literal
 import plotly.express as px
 import plotly.graph_objects as go
 import numpy as np
@@ -643,6 +644,87 @@ def plot_low_similarity_distribution(
         font=dict(family="Arial", color="black"),
         # legend=dict(orientation="h", yanchor="bottom", y=-0.2),  # Move legend below plot
         showlegend=True,
+    )
+
+    return fig
+
+def plot_diff_norms(
+    emma: Emma,
+    ord: float | Literal["fro", "nuc"] | None = None,
+) -> go.Figure:
+    """Function to plot norms of a diff embedding space.
+
+    Args:
+        emma (Emma): An instance of the Emma class.
+        ord: See `Note` table in \
+            https://numpy.org/doc/stable/reference/generated/numpy.linalg.norm.html#numpy.linalg.norm
+
+    Returns:
+        go.Figure: A plot showing norms with violins for all diff spaces \
+            along with their minuends (left) and subtrahends (right).
+    """
+    data = {
+        key: (
+            emma.get_norms(key, ord=ord),
+            emma.get_norms(emma.emb[key]["diff"]["minuend"], ord=ord),
+            emma.get_norms(emma.emb[key]["diff"]["subtrahend"], ord=ord),
+        )
+        for key in emma.get_spaces("diffs")
+    }
+
+    fig = go.Figure()
+
+    # define colors and alpha levels, higher for diff, lower for origins
+    alpha_min = 0.3
+    alpha_diff = 0.7
+
+    # create violins
+    for x_val, (diff, minuend, subtrahend) in data.items():
+        # minuend
+        fig.add_trace(go.Violin(
+            y=minuend,
+            x=[x_val] * len(minuend),
+            name=f'{x_val} - Minuend',
+            side='negative', # left side
+            opacity=alpha_min,
+            box_visible=False,
+            line_color='blue',
+            fillcolor='rgba(0, 0, 255, 0.2)'
+        ))
+
+        # subtrahend
+        fig.add_trace(go.Violin(
+            y=subtrahend,
+            x=[x_val] * len(subtrahend),
+            name=f'{x_val} - Subtrahend',
+            side='positive', # right side
+            opacity=alpha_min,
+            box_visible=False,
+            line_color='red',
+            fillcolor='rgba(255, 0, 0, 0.2)'
+        ))
+
+        # diff
+        fig.add_trace(go.Violin(
+            y=diff,
+            x=[x_val] * len(diff),
+            name=f'{x_val} - Diff',
+            side='both', # symmetrical violin
+            opacity=alpha_diff,
+            box_visible=False,
+            line_color='green',
+            fillcolor='rgba(0, 255, 0, 0.5)'
+        ))
+
+    # customize layout
+    fig.update_layout(
+        title="Violin plots of diff, minuend and subtrahend norms",
+        xaxis_title="Diff spaces",
+        yaxis_title="Norms",
+        showlegend=True,
+        violingap=0.15,  # Adjust gap between violins
+        violingroupgap=0.2,  # Adjust group gap
+        template="plotly_white"
     )
 
     return fig
