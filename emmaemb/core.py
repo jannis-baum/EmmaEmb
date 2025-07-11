@@ -255,6 +255,30 @@ class Emma:
             )
         self.add_emb_space(emb_space_name, embeddings)
 
+    def add_diff_space(
+        self,
+        emb_space_a: str,
+        emb_space_b: str,
+        name: str | None = None
+    ):
+        """Add a new embedding space as the difference between the two given \
+        (equally shaped) existing spaces
+
+        Args:
+        emb_space_a_name (str): Name of the first embedding space.
+        emb_space_a_name (str): Name of the embedding space to subtract from \
+            the first.
+        name: (str, optional): Name of the new embedding space. Defaults to \
+            "diff__{emb_space_a}__{emb_space_b}"
+        """
+        self._check_for_emb_space(emb_space_a)
+        self._check_for_emb_space(emb_space_b)
+
+        name = name or f"diff__{emb_space_a}__{emb_space_b}"
+        diff = self.emb[emb_space_a]["emb"] - self.emb[emb_space_b]["emb"]
+
+        self.add_emb_space(name, diff)
+
     def _check_for_emb_space(self, emb_space_name: str):
         """Check if an embedding space is available.
 
